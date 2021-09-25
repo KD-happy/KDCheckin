@@ -1,3 +1,7 @@
+"""
+cron: 2 6 * * *
+new Env('联想商城');
+"""
 import requests, sys
 from bs4 import BeautifulSoup
 from io import StringIO
