@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 cron: 0 7 * * *
 new Env('天翼云盘');
