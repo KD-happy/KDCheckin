@@ -1,8 +1,9 @@
 """
-cron: 0 7 * * *
+cron: 55 7 * * *
 new Env('天翼云盘');
 """
-import requests, time, re
+
+import requests, time, re, json
 from io import StringIO
 from KDconfig import getYmlConfig
 
@@ -61,12 +62,13 @@ class Cloud:
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
             except BaseException as e:
-                print(e)
+                self.dio.write(f"\n{cookie.get('name')}: {e}")
             if cookie.get('TV') != None:
                 try:
-                    self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), cookie.get('header'))
+                    cookie = cookie.get('TV')
+                    self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), json.loads(cookie.get('header')))
                 except BaseException as e:
-                    print(e)
+                    self.dio.write(f"\n{cookie.get('name')}: {e}")
         return self.dio, self.sio
 
 if __name__ == '__main__':
@@ -75,6 +77,8 @@ if __name__ == '__main__':
     if Cookies != None:
         cloud = Cloud(Cookies)
         dio, sio = cloud.SignIn()
+        print(dio.getvalue())
+        print("\n\n")
         print(sio.getvalue())
     else:
         print('配置文件没有 天翼云盘')

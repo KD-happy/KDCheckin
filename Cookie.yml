@@ -1,11 +1,23 @@
-spkey: ''
+send:
+    # 0 不发送, 1 发送, 默认0
+    send: 0
+    # 0 只要一个成功就不发送, 1 写了配置的都要发送, 默认0
+    all: 0
+    # https://www.pushplus.plus/
+    pushplusToken: ''
+    # https://pushplus.hxtrip.com/
+    push+Token: ''
+
 # 天翼云盘
 Cloud:
-    # 用户1
-    - user:
-        name: ''
-        cookie: ''
-        TV:
+    # 是否推送
+    send: 0
+    cookies:
+        # 用户1
+        - user:
             name: ''
-            familyId: ''
-            header: ''
+            cookie: ''
+            TV:
+                name: ''
+                familyId: ''
+                header: ''
