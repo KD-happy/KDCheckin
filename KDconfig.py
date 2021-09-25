@@ -8,7 +8,7 @@ def getYmlConfig(yaml_file='Cookie.yml'):
         if os.path.exists(cookie_file):
             file = open(cookie_file, 'r', encoding="utf-8")
         else:
-            print('未找到Cookie的配置文件\n请执行下面的命令行\ncp')
+            print('未找到Cookie的配置文件\n请执行下面的命令行\ncp /ql/repo/KD-happy_QingLongCheckin/Cookie.yml /ql/config/Cookie.yml')
             return {}
     else:
         if os.path.exists(yaml_file):
