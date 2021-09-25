@@ -10,20 +10,19 @@ from KDconfig import getYmlConfig, send
 
 class Cloud:
     def __init__(self, cookie):
-        self.dio = StringIO()
         self.sio = StringIO()
         self.Cookies = cookie
 
     def SignIn(self):
-        self.dio.write("【天翼云盘 日志】")
+        print("【天翼云盘 日志】")
         self.sio.write("【天翼云盘】")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
             except BaseException as e:
-                self.dio.write(f"\n{cookie.get('name')}: {e}")
-        return self.dio, self.sio
+                print(f"\n{cookie.get('name')}: {e}")
+        return self.sio
 
 if __name__ == '__main__':
     config = getYmlConfig('Cookie.yml')
@@ -31,9 +30,7 @@ if __name__ == '__main__':
     if Cookies != None:
         if Cookies.get('cookies') != None:
             cloud = Cloud(Cookies['cookies'])
-            dio, sio = cloud.SignIn()
-            print(dio.getvalue())
-            print("\n\n")
+            sio = cloud.SignIn()
             print(sio.getvalue())
             if Cookies.get('send') != None and Cookies['send'] == 1:
                 send('{签到的标题}', sio.getvalue())

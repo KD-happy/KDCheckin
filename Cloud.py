@@ -9,7 +9,6 @@ from KDconfig import getYmlConfig, send
 
 class Cloud:
     def __init__(self, cookie):
-        self.dio = StringIO()
         self.sio = StringIO()
         self.Cookies = cookie
 
@@ -27,7 +26,7 @@ class Cloud:
         s = requests.get(url0, headers=header) #签到
         s1 = requests.get(url1, headers=header) #抽奖1
         s2 = requests.get(url2, headers=header) #抽奖2
-        self.dio.write("\n"+ str(name) +": \n"+ s.text +"\n"+ s1.text)
+        print("\n"+ str(name) +": \n"+ s.text +"\n"+ s1.text)
         if "User_Not_Chance" in str(s1.json()):
             s = "签到得"+ str(s.json()["netdiskBonus"]) +"M，两次抽奖机会已用完"
             self.sio.write("\n"+ str(name) +": "+ s)
@@ -46,7 +45,7 @@ class Cloud:
     def Sign_in_TV(self, name, familyId, header):
         url = f"http://api.cloud.189.cn/family/manage/exeFamilyUserSign.action?familyId={familyId}"
         res = requests.get(url, headers=header)
-        self.dio.write("\n"+ name +" TV: \n"+ res.text)
+        print("\n"+ name +" TV: \n"+ res.text)
         Obj = re.search(r"<bonusSpace>(.*)</bonusSpace>", res.text, re.M|re.I)
         if Obj:
             text = name + " TV: 签到得" + Obj.group(1) + "M"
@@ -55,21 +54,21 @@ class Cloud:
         self.sio.write("\n" + text)
 
     def SignIn(self):
-        self.dio.write("【天翼云盘 日志】")
+        print("【天翼云盘 日志】")
         self.sio.write("【天翼云盘】")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
             except BaseException as e:
-                self.dio.write(f"\n{cookie.get('name')}: {e}")
+                print(f"\n{cookie.get('name')}: {e}")
             if cookie.get('TV') != None:
                 try:
                     cookie = cookie.get('TV')
                     self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), json.loads(cookie.get('header')))
                 except BaseException as e:
-                    self.dio.write(f"\n{cookie.get('name')}: {e}")
-        return self.dio, self.sio
+                    print(f"\n{cookie.get('name')}: {e}")
+        return self.sio
 
 if __name__ == '__main__':
     config = getYmlConfig('Cookie.yml')
@@ -77,8 +76,7 @@ if __name__ == '__main__':
     if Cookies != None:
         if Cookies.get('cookies') != None:
             cloud = Cloud(Cookies['cookies'])
-            dio, sio = cloud.SignIn()
-            print(dio.getvalue())
+            sio = cloud.SignIn()
             print("\n\n")
             print(sio.getvalue())
             if Cookies.get('send') != None and Cookies['send'] == 1:

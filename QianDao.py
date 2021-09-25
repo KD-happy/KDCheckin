@@ -9,8 +9,7 @@ config = getYmlConfig()
 for name, sign in map.items():
     if config.get(name):
         print(f'{sign[0]} 开始签到...\n')
-        dio, sio = sign[1](config.get(name).get('cookies')).SignIn()
-        print(dio.getvalue())
+        sio = sign[1](config.get(name).get('cookies')).SignIn()
         print(sio.getvalue())
         all.write('\n'+sio.getvalue())
     print()
