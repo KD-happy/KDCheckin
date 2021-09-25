@@ -63,7 +63,7 @@ class Cloud:
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
             except BaseException as e:
-                print(e)
+                self.dio.write(f"\n{cookie.get('name')}: {e}")
             if cookie.get('TV') != None:
                 try:
                     self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), cookie.get('header'))

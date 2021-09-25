@@ -21,3 +21,9 @@ ql repo <repourl> <path> <blacklist> <dependence> <branch>
 ```
 docker exec -it qinglong bash
 ```
+
+退出容器
+
+```
+exit
+```
