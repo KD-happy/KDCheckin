@@ -71,3 +71,12 @@ DuoKan:
             name: ''
             # user_id, token, user_gender, device_id, app_id, build, short_version
             cookie: ''
+
+# AcFun
+AcFun:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # acPasstoken, auth_key
+            cookie: ''

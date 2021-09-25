@@ -356,7 +356,7 @@ class DuoKan:
 
     def SignIn(self):
         print("【多看阅读 日志】")
-        self.sio.write("【多看阅读】")
+        self.sio.write("【多看阅读】\n")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             try:

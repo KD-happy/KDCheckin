@@ -4,7 +4,7 @@
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
@@ -67,3 +67,4 @@ exit
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 🟢️ |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie、token | [🟢️](https://github.com/silence4u/lenovo_auto_signin) |
 | [多看阅读](https://www.duokan.com/) | 签到、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
+| [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
