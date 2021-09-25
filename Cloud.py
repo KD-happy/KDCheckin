@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-cron: 0 7 * * *
+cron: 55 7 * * *
 new Env('天翼云盘');
 """
+
 import requests, time, re
 from io import StringIO
 from KDconfig import getYmlConfig
