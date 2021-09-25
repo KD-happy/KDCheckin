@@ -23,7 +23,8 @@ class HeytapSleep:
         self.brand = "iPhone"  # 初始化设置为iPhone，会从cookie获取实际机型
     
     def SignIn(self):
-        self.sio.write("【欢太商城】")
+        self.sio.write("【欢太商城】\n")
+        print("【欢太商城】")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             self.ua = cookie.get("ua")
@@ -32,13 +33,13 @@ class HeytapSleep:
             self.get_cookie_data()
             try:
                 if self.get_infouser() == False:
-                    self.sio.write(f'{self.name}: Cookie失效')
+                    self.sio.write(f'{self.name}: Cookie失效\n')
                     continue
                 else:
-                    self.sio.write(f'\n{self.name}\n')
+                    self.sio.write(f'{self.name}\n')
                     self.zaoshui_task()
             except BaseException as e:
-                self.sio.write(f"\n{self.name}: {e}")
+                self.sio.write(f"{self.name}: {e}\n")
         return self.sio
     
     # 获取cookie里的一些参数，部分请求需要使用到————hss修改
@@ -55,10 +56,7 @@ class HeytapSleep:
             self.s_version = re.findall("s_version=(.*?);", self.cookie)[0]
             self.s_channel = re.findall("s_channel=(.*?);", self.cookie)[0]
         except Exception as e:
-            print(
-                "获取Cookie部分数据失败，将采用默认设置，请检查Cookie是否包含s_channel，s_version，source_type，sa_distinct_id\n",
-                e
-            )
+            print("获取Cookie部分数据失败，将采用默认设置，请检查Cookie是否包含s_channel，s_version，source_type，sa_distinct_id\n", e)
             self.s_channel = "ios_oppostore"
             self.source_type = "505"
 
@@ -86,7 +84,7 @@ class HeytapSleep:
             else:
                 print('【登录失败】: ' + result['errorMessage'])
         except Exception as e:
-            print('【登录】: 发生错误，原因为: ' + str(e))
+            print('【登录】: 异常 发生错误，原因为: ' + str(e) + '\n')
         if flag:
             return True
         else:
@@ -127,25 +125,25 @@ class HeytapSleep:
             }
             res = self.session.get("https://store.oppo.com/cn/oapi/credits/web/clockin/applyOrClockIn", headers=headers).json()
             if "余额不足" in str(res):
-                self.sio.write("\n【早睡打卡】: 申请失败，积分余额不足")
-                print("【早睡打卡】\n申请失败，积分余额不足\n")
+                self.sio.write("【早睡打卡】: 申请失败，积分余额不足\n")
+                print("【早睡打卡】\n申请失败，积分余额不足")
             else:
                 applyStatus = res["data"]["applyStatus"]
                 if applyStatus == 1:
                     self.sio.write("【早睡打卡】: 申请成功，请当天19:30-22:00手动打卡\n")
-                    print("【早睡打卡】申请成功，请当天19:30-22:00手动打卡\n")
+                    print("【早睡打卡】申请成功，请当天19:30-22:00手动打卡")
                 if applyStatus == 0:
                     self.sio.write("【早睡打卡】: 申请失败，积分不足或报名时间已过\n")
-                    print("【早睡打卡】申请失败，积分不足或报名时间已过\n")
+                    print("【早睡打卡】申请失败，积分不足或报名时间已过")
                 if applyStatus == 2:
-                    self.sio.write("【早睡打卡】: 打卡成功，积分将于24:00前到账")
-                    print("【早睡打卡】\n打卡成功，积分将于24:00前到账\n")
+                    self.sio.write("【早睡打卡】: 打卡成功，积分将于24:00前到账\n")
+                    print("【早睡打卡】\n打卡成功，积分将于24:00前到账")
             # 打卡记录
             res = self.session.get("https://store.oppo.com/cn/oapi/credits/web/clockin/getMyRecord", headers=headers).json()
             if res["code"] == 200:
                 record = res["data"]["everydayRecordForms"]
                 self.sio.write("【早睡打卡记录】\n")
-                print("【早睡打卡记录】\n")
+                print("【早睡打卡记录】")
                 i = 0
                 for data in record:
                     self.sio.write(data["everydayDate"] + "——" +\
@@ -158,8 +156,8 @@ class HeytapSleep:
                     if i == 4:  # 最多显示最近2条记录
                         break
         except Exception as e:
-            self.sio.write("【早睡打卡】: 错误，原因为: " + str(e))
-            print("【早睡打卡】: 错误，原因为: " + str(e) + "\n")
+            self.sio.write("【早睡打卡】: 错误，原因为: " + str(e) + '\n')
+            print("【早睡打卡】: 异常 错误，原因为: " + str(e) + "\n")
 
 if __name__ == '__main__':
     config = getYmlConfig('Cookie.yml')
@@ -168,13 +166,13 @@ if __name__ == '__main__':
         if Cookies.get('cookies') != None:
             heytapSleep = HeytapSleep(Cookies['cookies'])
             sio = heytapSleep.SignIn()
-            print(sio.getvalue())
+            print(f'\n{sio.getvalue()}')
             if Cookies.get('send') != None and Cookies['send'] == 1:
                 send('欢太签到', sio.getvalue())
             else:
-                print('\n推送失败: 关闭了推送 or send配置问题')
+                print('推送失败: 关闭了推送 or send配置问题')
         else:
-            print('\n配置文件 欢太签到 没有 "cookies"')
+            print('配置文件 欢太签到 没有 "cookies"')
             sys.exit()
     else:
-        print('\n配置文件没有 欢太签到')
+        print('配置文件没有 欢太签到')

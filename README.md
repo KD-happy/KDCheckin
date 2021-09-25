@@ -4,7 +4,7 @@
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
@@ -41,6 +41,8 @@ exit
 │  HeytapSleep.py      # 欢太早睡打卡
 │  HLX.py              # 葫芦侠
 │  KDconfig.py         # 文件读取、推送
+│  Lenovo.py           # 联想
+│  PTA.py              # PTA
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
@@ -58,7 +60,8 @@ exit
 | 名称 | 备注 | 签到方式 | 当前状态 |
 | ---- | ---- | ---- | ---- |
 | 天翼云盘 | 手机签到+抽奖、天翼云TV端 | cookie | 🟢️ |
-| 欢太商城 | 每日签到、浏览商品、分享商品 | cookie | 🟢️ |
-| 欢太早睡打卡 | 自动报名、自动打卡 | cookie | 🟢️ |
-| 葫芦侠 | 签到所有的模板 | 手机号、密码 | 🟢️ |
+| 欢太商城 | 每日签到、浏览商品、分享商品 | cookie | [🟢️](https://github.com/hwkxk/HeytapTask) |
+| 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [🟢️](https://github.com/Mashiro2000/HeyTapTask) |
+| 葫芦侠 | 签到所有的模板 | 手机号、密码 | [🟢️](https://github.com/luck-ying01/3floor_sign) |
 | PTA | 每日签到 | cookie | 🟢️ |
+| 联想 | 每日签到 | 手机号、密码 | [🟡](https://github.com/silence4u/lenovo_auto_signin) |

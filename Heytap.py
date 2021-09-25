@@ -17,8 +17,8 @@ class Heytap:
         self.cookie = ''
     
     def SignIn(self):
-        self.sio.write("【欢太商城】")
-        print(self.sio.getvalue())
+        self.sio.write("【欢太商城】\n")
+        print("【欢太商城】")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             self.ua = cookie.get("ua")
@@ -26,15 +26,15 @@ class Heytap:
             self.cookie = cookie.get("cookie")
             try:
                 if self.get_infouser() == False:
-                    self.sio.write(f'{self.name}: Cookie失效')
+                    self.sio.write(f'{self.name}: Cookie失效\n')
                     continue
                 else:
-                    self.sio.write(f'\n{self.name}')
+                    self.sio.write(f'{self.name}: \n')
                     self.daySign_task() #执行每日签到
                     self.daily_viewgoods() #执行每日商品浏览任务
                     self.daily_sharegoods() #执行每日商品分享任务
             except BaseException as e:
-                self.sio.write(f"\n{self.name}: {e}")
+                self.sio.write(f"{self.name}: {e}\n")
         return self.sio
     
     # 获取Cookie状态和用户个人信息
@@ -113,10 +113,10 @@ class Heytap:
                     res1 = self.session.post('https://store.oppo.com/cn/oapi/credits/web/report/immediately', headers=headers,data=data)
                     res1 = res1.json()
                     if res1['code'] == 200:
-                        self.sio.write('\n【每日签到成功】: ' + res1['data']['message'])
+                        self.sio.write('【每日签到成功】: ' + res1['data']['message'])
                         print('【每日签到成功】: ' + res1['data']['message'])
                     else:
-                        self.sio.write('\n【每日签到失败】: ' + str(res1))
+                        self.sio.write('【每日签到失败】: ' + str(res1))
                         print('【每日签到失败】: ' + str(res1))
                 else:
                     print(str(qd['credits']),str(qd['type']),str(qd['gift']))
@@ -127,17 +127,17 @@ class Heytap:
                     res1 = self.session.post('https://store.oppo.com/cn/oapi/credits/web/report/immediately',  headers=headers,data=data)
                     res1 = res1.json()
                     if res1['code'] == 200:
-                        self.sio.write('\n【每日签到成功】: ' + res1['data']['message'])
+                        self.sio.write('【每日签到成功】: ' + res1['data']['message'] + '\n')
                         print('【每日签到成功】: ' + res1['data']['message'])
                     else:
-                        self.sio.write('\n【每日签到失败】: ' + str(res1))
+                        self.sio.write('【每日签到失败】: ' + str(res1) + '\n')
                         print('【每日签到失败】: ' + str(res1))
             else:
-                self.sio.write('\n【每日签到】: 已经签到过了！' )   
+                self.sio.write('【每日签到】: 已经签到过了！' )   
                 print('【每日签到】: 已经签到过了！' )   
             time.sleep(1)
         except Exception as e:
-            self.sio.write('\n【每日签到】: 错误，原因为: ' + str(e))
+            self.sio.write('【每日签到】: 错误，原因为: ' + str(e))
             print('【每日签到】: 错误，原因为: ' + str(e))
 
     #执行完成任务领取奖励
@@ -197,27 +197,27 @@ class Heytap:
                     res2 = self.cashingCredits(qd['marking'],qd['type'],qd['credits'])
                     if res2 == True:
                         print('【每日浏览商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
-                        self.sio.write('\n【每日浏览商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
+                        self.sio.write('【每日浏览商品】: ' + '任务完成！积分领取+' + str(qd['credits']) + '\n')
                     else:
-                        self.sio.write('\n【每日浏览商品】: ' + "领取积分奖励出错！")
+                        self.sio.write('【每日浏览商品】: ' + "领取积分奖励出错！\n")
                         print('【每日浏览商品】: ' + "领取积分奖励出错！")
                 else:
-                    self.sio.write('\n【每日浏览商品】: ' + '错误，获取商品列表失败')
+                    self.sio.write('【每日浏览商品】: ' + '错误，获取商品列表失败' + '\n')
                     print('【每日浏览商品】: ' + '错误，获取商品列表失败')
             elif qd['completeStatus'] == 1:
                 res2 = self.cashingCredits(qd['marking'],qd['type'],qd['credits'])
                 if res2 == True:
-                    self.sio.write('\n【每日浏览商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
+                    self.sio.write('【每日浏览商品】: ' + '任务完成！积分领取+' + str(qd['credits']) + '\n')
                     print('【每日浏览商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
                 else:
-                    self.sio.write('\n【每日浏览商品】: ' + '领取积分奖励出错！')
+                    self.sio.write('【每日浏览商品】: ' + '领取积分奖励出错！\n')
                     print('【每日浏览商品】: ' + '领取积分奖励出错！')
             else:
-                self.sio.write('\n【每日浏览商品】: ' + '任务已完成！')
+                self.sio.write('【每日浏览商品】: ' + '任务已完成！\n')
                 print('【每日浏览商品】: ' + '任务已完成！')
         except Exception as e:
-            self.sio.write('\n【每日浏览任务】: 错误，原因为: ' + str(e))
-            print('【每日浏览任务】: 错误，原因为: ' + str(e))
+            self.sio.write('【每日浏览任务】: 错误，原因为: ' + str(e) + '\n')
+            print('【每日浏览任务】: 错误，原因为: ' + str(e) + '\n')
 
     # 执行每日商品分享任务
     def daily_sharegoods(self):
@@ -246,25 +246,25 @@ class Heytap:
                     count += 1
                 res2 = self.cashingCredits(qd['marking'],qd['type'],qd['credits'])
                 if res2 == True:
-                    self.sio.write('\n【每日分享商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
+                    self.sio.write('【每日分享商品】: ' + '任务完成！积分领取+' + str(qd['credits']) + '\n')
                     print('【每日分享商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
                 else:
-                    self.sio.write('\n【每日分享商品】: ' + '领取积分奖励出错！')
+                    self.sio.write('【每日分享商品】: ' + '领取积分奖励出错！' + '\n')
                     print('【每日分享商品】: ' + '领取积分奖励出错！')
             elif qd['completeStatus'] == 1:
                 res2 = self.cashingCredits(qd['marking'],qd['type'],qd['credits'])
                 if res2 == True:
-                    self.sio.write('\n【每日分享商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
+                    self.sio.write('【每日分享商品】: ' + '任务完成！积分领取+' + str(qd['credits']) + '\n')
                     print('【每日分享商品】: ' + '任务完成！积分领取+' + str(qd['credits']))
                 else:
-                    self.sio.write('\n【每日分享商品】: ' + '领取积分奖励出错！')
+                    self.sio.write('【每日分享商品】: ' + '领取积分奖励出错！' + '\n')
                     print('【每日分享商品】: ' + '领取积分奖励出错！')
             else:
-                self.sio.write('\n【每日分享商品】: ' + '任务已完成！')
+                self.sio.write('【每日分享商品】: ' + '任务已完成！' + '\n')
                 print('【每日分享商品】: ' + '任务已完成！')
         except Exception as e:
-            self.sio.write('\n【每日分享商品】: 错误，原因为: ' + str(e))
-            print('【每日分享商品】: 错误，原因为: ' + str(e))
+            self.sio.write('【每日分享商品】: 错误，原因为: ' + str(e) + '\n')
+            print('【每日分享商品】: 异常 错误，原因为: ' + str(e) + '\n')
 
 
 if __name__ == '__main__':
@@ -274,13 +274,13 @@ if __name__ == '__main__':
         if Cookies.get('cookies') != None:
             heytap = Heytap(Cookies['cookies'])
             sio = heytap.SignIn()
-            print(sio.getvalue())
+            print(f'\n{sio.getvalue()}')
             if Cookies.get('send') != None and Cookies['send'] == 1:
                 send('欢太签到', sio.getvalue())
             else:
-                print('\n推送失败: 关闭了推送 or send配置问题')
+                print('推送失败: 关闭了推送 or send配置问题')
         else:
-            print('\n配置文件 欢太签到 没有 "cookies"')
+            print('配置文件 欢太签到 没有 "cookies"')
             sys.exit()
     else:
-        print('\n配置文件没有 欢太签到')
+        print('配置文件没有 欢太签到')

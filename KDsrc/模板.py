@@ -14,14 +14,14 @@ class Cloud:
         self.Cookies = cookie
 
     def SignIn(self):
-        print("【天翼云盘 日志】")
-        self.sio.write("【天翼云盘】")
+        print("【{签到的标题} 日志】")
+        self.sio.write("【{签到的标题}】")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
             except BaseException as e:
-                print(f"\n{cookie.get('name')}: {e}")
+                print(f"{cookie.get('name')}: 异常 {e}\n")
         return self.sio
 
 if __name__ == '__main__':
@@ -31,13 +31,13 @@ if __name__ == '__main__':
         if Cookies.get('cookies') != None:
             cloud = Cloud(Cookies['cookies'])
             sio = cloud.SignIn()
-            print(sio.getvalue())
+            print(f'\n{sio.getvalue()}')
             if Cookies.get('send') != None and Cookies['send'] == 1:
                 send('{签到的标题}', sio.getvalue())
             else:
-                print('\n推送失败: 关闭了推送 or send配置问题')
+                print('推送失败: 关闭了推送 or send配置问题')
         else:
-            print('\n配置文件 {签到的标题} 没有 "cookies"')
+            print('配置文件 {签到的标题} 没有 "cookies"')
             sys.exit()
     else:
-        print('\n配置文件没有 {签到的标题}')
+        print('配置文件没有 {签到的标题}')

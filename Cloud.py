@@ -26,10 +26,10 @@ class Cloud:
         s = requests.get(url0, headers=header) #签到
         s1 = requests.get(url1, headers=header) #抽奖1
         s2 = requests.get(url2, headers=header) #抽奖2
-        print("\n"+ str(name) +": \n"+ s.text +"\n"+ s1.text)
+        print(str(name) + ": \n"+ s.text + "\n"+ s1.text)
         if "User_Not_Chance" in str(s1.json()):
             s = "签到得"+ str(s.json()["netdiskBonus"]) +"M，两次抽奖机会已用完"
-            self.sio.write("\n"+ str(name) +": "+ s)
+            self.sio.write(str(name) + ": " + s + "\n")
         else:
             if "天翼云盘" in str(s1.json()):
                 Obj = re.search(r"天翼云盘(.*)空间", s1.text, re.M|re.I)
@@ -37,37 +37,37 @@ class Cloud:
                 Obj = re.search(r"天翼云盘(.*)空间", s2.text, re.M|re.I)
                 s2 = Obj.group(1)
                 text = "签到得" + str(s.json()["netdiskBonus"]) +"M, 抽奖得: "+ s1 +"+"+ s2
-                self.sio.write("\n"+ str(name) +": "+text)
+                self.sio.write(str(name) +": "+text + "\n")
             else:
                 text = "Cookie失效"
-                self.sio.write("\n"+ str(name) +": "+text)
+                self.sio.write(str(name) +": "+ text + "\n")
 
     def Sign_in_TV(self, name, familyId, header):
         url = f"http://api.cloud.189.cn/family/manage/exeFamilyUserSign.action?familyId={familyId}"
         res = requests.get(url, headers=header)
-        print("\n"+ name +" TV: \n"+ res.text)
+        print(name +" TV: \n"+ res.text)
         Obj = re.search(r"<bonusSpace>(.*)</bonusSpace>", res.text, re.M|re.I)
         if Obj:
             text = name + " TV: 签到得" + Obj.group(1) + "M"
         else:
             text = name + " TV: Cookie失效"
-        self.sio.write("\n" + text)
+        self.sio.write(text + "\n")
 
     def SignIn(self):
         print("【天翼云盘 日志】")
-        self.sio.write("【天翼云盘】")
+        self.sio.write("【天翼云盘】\n")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
             except BaseException as e:
-                print(f"\n{cookie.get('name')}: {e}")
+                print(f"{cookie.get('name')}: 异常 {e}\n")
             if cookie.get('TV') != None:
                 try:
                     cookie = cookie.get('TV')
                     self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), json.loads(cookie.get('header')))
                 except BaseException as e:
-                    print(f"\n{cookie.get('name')}: {e}")
+                    print(f"{cookie.get('name')}: 异常 {e}\n")
         return self.sio
 
 if __name__ == '__main__':
@@ -77,14 +77,13 @@ if __name__ == '__main__':
         if Cookies.get('cookies') != None:
             cloud = Cloud(Cookies['cookies'])
             sio = cloud.SignIn()
-            print("\n\n")
-            print(sio.getvalue())
+            print(f'\n{sio.getvalue()}')
             if Cookies.get('send') != None and Cookies['send'] == 1:
                 send('天翼云签到', sio.getvalue())
             else:
-                print('\n推送失败: 关闭了推送 or send配置问题')
+                print('推送失败: 关闭了推送 or send配置问题')
         else:
-            print('\n配置文件 天翼云盘 没有 "cookies"')
+            print('配置文件 天翼云盘 没有 "cookies"')
             sys.exit()
     else:
-        print('\n配置文件没有 天翼云盘')
+        print('配置文件没有 天翼云盘')

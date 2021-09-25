@@ -71,29 +71,29 @@ class HLX:
             if status == 1:
                 count += 1
                 print('[+]板块' + str(count) + '：' + title + ' 签到成功')
-        self.sio.write(': 共计签到' + str(count) + '个板块')
+        self.sio.write(': 共计签到' + str(count) + '个板块\n')
         print('[+]共计签到' + str(count) + '个板块')
 
     def SignIn(self):
         print("【葫芦侠 日志】")
-        self.sio.write("【葫芦侠】")
+        self.sio.write("【葫芦侠】\n")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
-            self.sio.write(f'\n{cookie["name"]}')
+            self.sio.write(f'{cookie["name"]}')
             try:
                 self.username = cookie['username']
                 self.password = cookie['password']
                 self.login()
             except BaseException as e:
                 print('[+]登录失败，请检测账号密码')
+                self.sio.write(': 登录失败，请检测账号密码\n')
                 continue
             self.get_level()
-            print('---结束【登录，查询用户信息】---\n')
+            print('---结束【登录，查询用户信息】---')
 
             print('---开始【签到】---')
             self.sign()
             print('---结束【签到】---')
-            print('[+]选择不推送信息')
         return self.sio
 
 if __name__ == '__main__':
@@ -103,13 +103,13 @@ if __name__ == '__main__':
         if Cookies.get('cookies') != None:
             hlx = HLX(Cookies['cookies'])
             sio = hlx.SignIn()
-            print(sio.getvalue())
+            print(f'\n{sio.getvalue()}')
             if Cookies.get('send') != None and Cookies['send'] == 1:
                 send('葫芦侠', sio.getvalue())
             else:
-                print('\n推送失败: 关闭了推送 or send配置问题')
+                print('推送失败: 关闭了推送 or send配置问题')
         else:
-            print('\n配置文件 葫芦侠 没有 "cookies"')
+            print('配置文件 葫芦侠 没有 "cookies"')
             sys.exit()
     else:
-        print('\n配置文件没有 葫芦侠')
+        print('配置文件没有 葫芦侠')
