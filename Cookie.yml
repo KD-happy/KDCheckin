@@ -1,0 +1,11 @@
+spkey: ''
+# 天翼云盘
+Cloud:
+    # 用户1
+    - user:
+        name: ''
+        cookie: ''
+        TV:
+            name: ''
+            familyId: ''
+            header: ''
