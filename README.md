@@ -4,7 +4,7 @@
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DouKan" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
