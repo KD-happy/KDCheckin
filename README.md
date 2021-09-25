@@ -2,7 +2,7 @@
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud" "" "KDconfig.py"
+ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
