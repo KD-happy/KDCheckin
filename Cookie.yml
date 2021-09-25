@@ -31,3 +31,13 @@ Heytap:
             name: ''
             cookie: ''
             ua: ''
+
+# 葫芦侠
+HLX:
+    # 是否推送
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            username: ''
+            password: ''
