@@ -35,6 +35,8 @@ class PTA:
         self.sio.write("【PTA签到】\n")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
+            self.cookie = cookie['cookie']
+            self.name = cookie['name']
             try:
                 self.Sign_in()
             except BaseException as e:
