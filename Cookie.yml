@@ -41,3 +41,12 @@ HLX:
             name: ''
             username: ''
             password: ''
+
+# PTA
+PTA:
+    # 是否推送
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            cookie: ''
