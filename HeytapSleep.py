@@ -3,7 +3,7 @@ cron: 45 17,19 * * *
 new Env('欢太早睡打卡')
 """
 
-import requests, time, re, json, sys
+import requests, re, json, sys
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -151,7 +151,7 @@ class HeytapSleep:
                         data["credits"] + "\n")
                     print(data["everydayDate"] + "——" +
                             data["applyClockInStatus"] + "——" +
-                            data["credits"] + "\n")
+                            data["credits"])
                     i += 1
                     if i == 4:  # 最多显示最近2条记录
                         break

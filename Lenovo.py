@@ -17,36 +17,19 @@ class Lenovo:
     def __init__(self, cookie):
         self.sio = StringIO()
         self.Cookies = cookie
-        self.username = ''
-        self.password = ''
+        self.token = ''
+        self.cookie = ''
 
-    def login(self):       #登录过程
-        url = "https://reg.lenovo.com.cn/auth/v3/dologin"
-        header = {
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-            "Host": "reg.lenovo.com.cn",
-            "Referer": "https://www.lenovo.com.cn/"
+    def signin(self):
+        url = 'https://club.lenovo.com.cn/sign'
+        headers = {
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+            'referer': 'https://club.lenovo.com.cn/signlist/',
+            'cookie': self.cookie,
         }
-        data = {"account": self.username, "password": self.password, "ticket": "e40e7004-4c8a-4963-8564-31271a8337d8", "ps": 1}
-        session = requests.Session()
-        session.get('https://club.lenovo.com.cn/', headers=header)
-        r = session.post(url, headers=header, data=data)
-        if '账号或密码错误' not in r.text:       #若未找到相关cookie则返回空值
-            return None
-        return session
-
-    def getContinuousDays(self, session):
-        url = "https://club.lenovo.com.cn/signlist/"
-        c = session.get(url, headers=HEADER_COUNT)
-        soup = BeautifulSoup(c.text,"html.parser")
-        day = soup.select("body > div.signInMiddleWrapper > div > div.signInTimeInfo > div.signInTimeInfoMiddle > p.signInTimeMiddleBtn")
-        day = day[0].get_text()
-        print(f'已连续签到 {day} 天')
-        self.sio.write(f'已连续签到 {day} 天\n')
-
-    def signin(self, session):
-        signin = session.get("https://i.lenovo.com.cn/signIn/add.jhtml?sts=e40e7004-4c8a-4963-8564-31271a8337d8", headers=HEADER_GET)
-        check = str(signin.text)
+        res = requests.post(url, headers=headers, data={'_token': self.token})
+        check = str(res.text)
+        print(check[:200])
         if "true" in check:
             if "乐豆" in check:
                 print("签到成功")
@@ -64,16 +47,10 @@ class Lenovo:
         for cookie in self.Cookies:
             try:
                 cookie = cookie.get("user")
-                self.username = cookie["username"]
-                self.password = cookie["password"]
-                self.sio.write(f'{cookie["username"]}: \n')
-                s = self.login()
-                if not s:
-                    self.sio.write('登录失败, 请检查账号密码\n')
-                    print('登录失败, 请检查账号密码')
-                else:
-                    self.signin(s)
-                    self.getContinuousDays(s)
+                self.token = cookie['token']
+                self.cookie = cookie['cookie']
+                self.sio.write(f'{cookie["name"]}: ')
+                self.signin()
             except BaseException as e:
                 print(f"{cookie.get('name')}: 异常 {e}\n")
         return self.sio

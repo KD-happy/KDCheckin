@@ -26,7 +26,7 @@ class Cloud:
         s = requests.get(url0, headers=header) #签到
         s1 = requests.get(url1, headers=header) #抽奖1
         s2 = requests.get(url2, headers=header) #抽奖2
-        print(str(name) + ": \n"+ s.text + "\n"+ s1.text)
+        print(str(name) + ": \n"+ s.text[:200] + "\n"+ s1.text[:200])
         if "User_Not_Chance" in str(s1.json()):
             s = "签到得"+ str(s.json()["netdiskBonus"]) +"M，两次抽奖机会已用完"
             self.sio.write(str(name) + ": " + s + "\n")

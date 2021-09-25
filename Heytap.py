@@ -83,7 +83,7 @@ class Heytap:
         }
         res1 = self.session.get('https://store.oppo.com/cn/oapi/credits/web/credits/show', headers=headers)
         res1 = res1.json()
-        print(res1)
+        print(str(res1)[:200])
         return res1
 
     # 每日签到
@@ -91,15 +91,15 @@ class Heytap:
         try:
             dated = time.strftime("%Y-%m-%d")
             headers = {
-            'Host': 'store.oppo.com',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Connection': 'keep-alive',
-            'User-Agent': self.ua,
-            'Accept-Language': 'zh-cn',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'cookie': self.cookie,
-            'referer':'https://store.oppo.com/cn/app/taskCenter/index'
+                'Host': 'store.oppo.com',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Connection': 'keep-alive',
+                'User-Agent': self.ua,
+                'Accept-Language': 'zh-cn',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'cookie': self.cookie,
+                'referer':'https://store.oppo.com/cn/app/taskCenter/index'
             }
             res = self.taskCenter()
             status = res['data']['userReportInfoForm']['status']
@@ -117,9 +117,9 @@ class Heytap:
                         print('【每日签到成功】: ' + res1['data']['message'])
                     else:
                         self.sio.write('【每日签到失败】: ' + str(res1))
-                        print('【每日签到失败】: ' + str(res1))
+                        print('【每日签到失败】: ' + str(res1)[:200])
                 else:
-                    print(str(qd['credits']),str(qd['type']),str(qd['gift']))
+                    print(str(qd['credits']), str(qd['type']), str(qd['gift']))
                     if len(str(qd['type'])) < 1 :
                         data = "amount=" + str(qd['credits'])
                     else:
@@ -133,28 +133,28 @@ class Heytap:
                         self.sio.write('【每日签到失败】: ' + str(res1) + '\n')
                         print('【每日签到失败】: ' + str(res1))
             else:
-                self.sio.write('【每日签到】: 已经签到过了！' )   
+                self.sio.write('【每日签到】: 已经签到过了！\n')   
                 print('【每日签到】: 已经签到过了！' )   
             time.sleep(1)
         except Exception as e:
-            self.sio.write('【每日签到】: 错误，原因为: ' + str(e))
+            self.sio.write('【每日签到】: 错误，原因为: ' + str(e) + '\n')
             print('【每日签到】: 错误，原因为: ' + str(e))
 
     #执行完成任务领取奖励
     def cashingCredits(self, info_marking, info_type, info_credits):
         headers = {
-        'Host': 'store.oppo.com',
-        'clientPackage': 'com.oppo.store',
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Connection': 'keep-alive',
-        'User-Agent': self.ua,
-        'Accept-Language': 'zh-cn',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'cookie': self.cookie,
-        'Origin': 'https://store.oppo.com',
-        'X-Requested-With': 'com.oppo.store',
-        'referer':'https://store.oppo.com/cn/app/taskCenter/index?us=gerenzhongxin&um=hudongleyuan&uc=renwuzhongxin'
+            'Host': 'store.oppo.com',
+            'clientPackage': 'com.oppo.store',
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Connection': 'keep-alive',
+            'User-Agent': self.ua,
+            'Accept-Language': 'zh-cn',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'cookie': self.cookie,
+            'Origin': 'https://store.oppo.com',
+            'X-Requested-With': 'com.oppo.store',
+            'referer':'https://store.oppo.com/cn/app/taskCenter/index?us=gerenzhongxin&um=hudongleyuan&uc=renwuzhongxin'
         }
 
         data = "marking=" + str(info_marking) + "&type=" + str(info_type) + "&amount=" + str(info_credits)
@@ -170,14 +170,14 @@ class Heytap:
     def daily_viewgoods(self):
         try:
             headers = {
-            'clientPackage': 'com.oppo.store',
-            'Host': 'msec.opposhop.cn',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Connection': 'keep-alive',
-            'User-Agent': 'okhttp/3.12.12.200sp1',
-            'Accept-Encoding': 'gzip',
-            'cookie': self.cookie,
+                'clientPackage': 'com.oppo.store',
+                'Host': 'msec.opposhop.cn',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Connection': 'keep-alive',
+                'User-Agent': 'okhttp/3.12.12.200sp1',
+                'Accept-Encoding': 'gzip',
+                'cookie': self.cookie,
             }
             res = self.taskCenter()
             res = res['data']['everydayList']
@@ -223,14 +223,14 @@ class Heytap:
     def daily_sharegoods(self):
         try:
             headers = {
-            'clientPackage': 'com.oppo.store',
-            'Host': 'msec.opposhop.cn',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Connection': 'keep-alive',
-            'User-Agent': 'okhttp/3.12.12.200sp1',
-            'Accept-Encoding': 'gzip',
-            'cookie': self.cookie,
+                'clientPackage': 'com.oppo.store',
+                'Host': 'msec.opposhop.cn',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Connection': 'keep-alive',
+                'User-Agent': 'okhttp/3.12.12.200sp1',
+                'Accept-Encoding': 'gzip',
+                'cookie': self.cookie,
             }
             daySignList = self.taskCenter()
             res = daySignList

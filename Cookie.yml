@@ -16,10 +16,12 @@ Cloud:
         # 用户1
         - user:
             name: ''
+            # COOKIE_LOGIN_USER
             cookie: ''
             TV:
                 name: ''
                 familyId: ''
+                # {"SessionKey": "_____", "Signature": "_____", "Date": "_____"}
                 header: ''
 
 # 欢太商城
@@ -28,6 +30,7 @@ Heytap:
     cookies:
         - user:
             name: ''
+            # TOKENSID, sa_distinct_id, source_type, s_version, s_channel, app_param
             cookie: ''
             ua: ''
 
@@ -46,6 +49,7 @@ PTA:
     cookies:
         - user:
             name: ''
+            # PTASession, JSESSIONID
             cookie: ''
 
 # 联想
@@ -54,5 +58,16 @@ Lenovo:
     cookies:
         - user:
             name: ''
-            username: ''
-            password: ''
+            # $CONFIG.token
+            token: ''
+            # laravel_session
+            cookie: ''
+
+# 多看阅读
+DuoKan:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # user_id, token, user_gender, device_id, app_id, build, short_version
+            cookie: ''
