@@ -37,6 +37,7 @@ class PTA:
             cookie = cookie.get("user")
             self.cookie = cookie['cookie']
             self.name = cookie['name']
+            print(f'{self.name} 开始签到...')
             try:
                 self.Sign_in()
             except BaseException as e:

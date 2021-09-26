@@ -2,19 +2,10 @@
 cron: 2 6 * * *
 new Env('联想商城');
 """
+
 import requests, sys, re
 from io import StringIO
 from KDconfig import getYmlConfig, send
-
-dio = StringIO()
-
-HEADER_GET = {
-    "user-agent": "Mozilla/5.0 (Linux; Android 11; Mi 10 Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.185 Mobile Safari/537.36/lenovoofficialapp/16112154380982287_10181446134/newversion/versioncode-124/"
-}
-
-HEADER_COUNT = {
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-}
 
 class Lenovo:
     def __init__(self, cookie):
@@ -51,6 +42,8 @@ class Lenovo:
             try:
                 cookie = cookie.get("user")
                 self.cookie = cookie['cookie']
+                self.sio.write(f'{cookie["name"]}: ')
+                print(f'{cookie.get("name")} 开始签到...')
                 headers = {
                     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
                     'referer': 'https://club.lenovo.com.cn/signlist/',
@@ -59,7 +52,9 @@ class Lenovo:
                 res = requests.get('https://club.lenovo.com.cn/signlist/', headers=headers)
                 self.token = re.findall('\$CONFIG\.token = "(.*)";', res.text)[0]
                 print(self.token)
-                self.sio.write(f'{cookie["name"]}: ')
+                if self.token == '':
+                    self.sio.write('Cookie失效\n')
+                    continue
                 self.signin()
             except BaseException as e:
                 print(f"{cookie.get('name')}: 异常 {e}\n")

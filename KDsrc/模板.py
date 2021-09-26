@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 cron: 55 7 * * *
-new Env('天翼云盘');
+new Env('{签到的标题}');
 """
 
 import requests, time, re, json, sys
@@ -15,11 +15,13 @@ class Cloud:
 
     def SignIn(self):
         print("【{签到的标题} 日志】")
-        self.sio.write("【{签到的标题}】")
+        self.sio.write("【{签到的标题}】\n")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
+            print(f"{cookie.get('name')} 开始签到...")
+            self.sio.write(f"{cookie.get('name')}: ")
             try:
-                self.Sign_in(cookie.get('name'), cookie.get('cookie'))
+                self.Sign_in()
             except BaseException as e:
                 print(f"{cookie.get('name')}: 异常 {e}\n")
         return self.sio

@@ -1,9 +1,14 @@
+"""
+cron: 0 6 * * *
+new Env('签到集合')
+"""
+
 from io import StringIO
 from KDconfig import getYmlConfig, send
 from KDsrc.more import map
 
 all = StringIO()
-all.write('今日签到\n')
+all.write('【今日签到】\n')
 config = getYmlConfig()
 
 for name, sign in map.items():

@@ -1,15 +1,15 @@
-# 青龙签到
+# KD签到
 
 ##  简单的操作
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/QingLongCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
 ```
-cp /ql/repo/KD-happy_QingLongCheckin/Cookie.yml /ql/config/Cookie.yml
+cp /ql/repo/KD-happy_KDCheckin/Cookie.yml /ql/config/Cookie.yml
 ```
 
 ```
@@ -48,6 +48,7 @@ exit
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
+│  W2PJ.py             # 吾爱破解
 │  
 └─KDsrc                # 多文件签到的程序文件夹
         Cloud.py
@@ -66,6 +67,7 @@ exit
 | 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [🟢️](https://github.com/Mashiro2000/HeyTapTask) |
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [🟢️](https://github.com/luck-ying01/3floor_sign) |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 🟢️ |
-| [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie、token | [🟡](https://github.com/silence4u/lenovo_auto_signin) |
+| [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [🟡](https://github.com/silence4u/lenovo_auto_signin) |
 | [多看阅读](https://www.duokan.com/) | 签到、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
+| [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 🟢️ |

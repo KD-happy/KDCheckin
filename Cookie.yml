@@ -78,3 +78,12 @@ AcFun:
             name: ''
             # acPasstoken, auth_key
             cookie: ''
+
+# 吾爱破解
+W2PJ:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # htVD_2132_saltkey, htVD_2132_auth
+            cookie: ''

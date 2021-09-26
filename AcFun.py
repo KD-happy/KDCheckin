@@ -2,6 +2,7 @@
 cron: 0 6 * * *
 new Env('AcFun');
 """
+
 import requests, sys
 from io import StringIO
 from KDconfig import getYmlConfig, send
