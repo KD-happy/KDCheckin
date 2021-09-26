@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-cron: 55 7 * * *
+cron: 55 5 * * *
 new Env('CCAVA');
 """
 
