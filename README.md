@@ -4,7 +4,7 @@
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
@@ -33,13 +33,18 @@ exit
 
 1. 支持根目录下的所有的签到单独执行
 2. 支持由一个签到函数来调动其他的程序
+
+> 由于技术限制，未实现的
+> * 可以通过 Cookie.yml 配置文件中 signList 的参数来选取哪些需要签到
   
 ```
 │  AcFun.py            # AcFun
 │  AZG.py              # 爱助攻
+│  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
 │  Duokan.py           # 多看阅读
+│  Egame.py            # 企鹅电竞
 │  Heytap.py           # 欢太商城
 │  HeytapSleep.py      # 欢太早睡打卡
 │  HLX.py              # 葫芦侠
@@ -73,3 +78,5 @@ exit
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 🟢️ |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 🟢 |
+| [企鹅电竞](https://egame.qq.com/) | 签到（后续任务未完成） | cookie | 🟢 |
+| [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 🟢 |

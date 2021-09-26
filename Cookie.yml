@@ -94,5 +94,23 @@ AZG:
     cookies:
         - user:
             name: ''
-            # BvH6_2132_saltkey BvH6_2132_auth
+            # BvH6_2132_saltkey, BvH6_2132_auth
+            cookie: ''
+
+# 企鹅电竞
+Egame:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # pgg_type, pgg_openid, pgg_appid, pgg_access_token
+            cookie: ''
+
+# CCAVA
+CCAVA:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # token_53f2e3eb, username_53f2e3eb
             cookie: ''
