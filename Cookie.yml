@@ -87,3 +87,12 @@ W2PJ:
             name: ''
             # htVD_2132_saltkey, htVD_2132_auth
             cookie: ''
+
+# 爱助攻
+AZG:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # BvH6_2132_saltkey BvH6_2132_auth
+            cookie: ''

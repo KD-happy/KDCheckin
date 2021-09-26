@@ -4,7 +4,7 @@
 
 拉取本站
 ```
-ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
@@ -36,6 +36,7 @@ exit
   
 ```
 │  AcFun.py            # AcFun
+│  AZG.py              # 爱助攻
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
 │  Duokan.py           # 多看阅读
@@ -71,3 +72,4 @@ exit
 | [多看阅读](https://www.duokan.com/) | 签到、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 🟢️ |
+| [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 🟢 |
