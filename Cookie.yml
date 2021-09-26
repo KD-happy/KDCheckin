@@ -58,9 +58,7 @@ Lenovo:
     cookies:
         - user:
             name: ''
-            # $CONFIG.token
-            token: ''
-            # laravel_session
+            # laravel_session, cerpreg-passport, XSRF-TOKEN
             cookie: ''
 
 # 多看阅读

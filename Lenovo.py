@@ -2,8 +2,7 @@
 cron: 2 6 * * *
 new Env('联想商城');
 """
-import requests, sys
-from bs4 import BeautifulSoup
+import requests, sys, re
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -32,8 +31,8 @@ class Lenovo:
             'cookie': self.cookie,
         }
         res = requests.post(url, headers=headers, data={'_token': self.token})
-        check = str(res.text)
-        print(check[:200])
+        check = res.json()
+        print(check)
         if "true" in check:
             if "乐豆" in check:
                 print("签到成功")
@@ -51,8 +50,15 @@ class Lenovo:
         for cookie in self.Cookies:
             try:
                 cookie = cookie.get("user")
-                self.token = cookie['token']
                 self.cookie = cookie['cookie']
+                headers = {
+                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+                    'referer': 'https://club.lenovo.com.cn/signlist/',
+                    'cookie': self.cookie,
+                }
+                res = requests.get('https://club.lenovo.com.cn/signlist/', headers=headers)
+                self.token = re.findall('\$CONFIG\.token = "(.*)";', res.text)[0]
+                print(self.token)
                 self.sio.write(f'{cookie["name"]}: ')
                 self.signin()
             except BaseException as e:

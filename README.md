@@ -35,6 +35,7 @@ exit
 2. 支持由一个签到函数来调动其他的程序
   
 ```
+│  AcFun.py            # AcFun
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
 │  Duokan.py           # 多看阅读
@@ -65,6 +66,6 @@ exit
 | 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [🟢️](https://github.com/Mashiro2000/HeyTapTask) |
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [🟢️](https://github.com/luck-ying01/3floor_sign) |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 🟢️ |
-| [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie、token | [🟢️](https://github.com/silence4u/lenovo_auto_signin) |
+| [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie、token | [🟡](https://github.com/silence4u/lenovo_auto_signin) |
 | [多看阅读](https://www.duokan.com/) | 签到、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
