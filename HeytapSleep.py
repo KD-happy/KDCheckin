@@ -23,8 +23,8 @@ class HeytapSleep:
         self.brand = "iPhone"  # 初始化设置为iPhone，会从cookie获取实际机型
     
     def SignIn(self):
-        self.sio.write("【欢太商城】\n")
-        print("【欢太商城】")
+        self.sio.write("【欢太早睡打卡】\n")
+        print("【欢太早睡打卡】")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             self.ua = cookie.get("ua")
@@ -33,13 +33,13 @@ class HeytapSleep:
             self.get_cookie_data()
             try:
                 if self.get_infouser() == False:
-                    self.sio.write(f'{self.name}: Cookie失效\n')
+                    self.sio.write(f'【用户信息】: {self.name}: Cookie失效\n')
                     continue
                 else:
-                    self.sio.write(f'{self.name}\n')
+                    self.sio.write(f'【用户信息】: {self.name}\n')
                     self.zaoshui_task()
             except BaseException as e:
-                self.sio.write(f"{self.name}: {e}\n")
+                self.sio.write(f"【用户信息】: {self.name}: {e}\n")
         return self.sio
     
     # 获取cookie里的一些参数，部分请求需要使用到————hss修改

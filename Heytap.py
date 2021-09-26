@@ -26,15 +26,15 @@ class Heytap:
             self.cookie = cookie.get("cookie")
             try:
                 if self.get_infouser() == False:
-                    self.sio.write(f'{self.name}: Cookie失效\n')
+                    self.sio.write(f'【用户信息】: {self.name}: Cookie失效\n')
                     continue
                 else:
-                    self.sio.write(f'{self.name}: \n')
+                    self.sio.write(f'【用户信息】: {self.name}\n')
                     self.daySign_task() #执行每日签到
                     self.daily_viewgoods() #执行每日商品浏览任务
                     self.daily_sharegoods() #执行每日商品分享任务
             except BaseException as e:
-                self.sio.write(f"{self.name}: {e}\n")
+                self.sio.write(f"【用户信息】: {self.name}: {e}\n")
         return self.sio
     
     # 获取Cookie状态和用户个人信息
