@@ -24,8 +24,8 @@ class Lenovo:
         res = requests.post(url, headers=headers, data={'_token': self.token})
         check = res.json()
         print(check)
-        if "success" in check:
-            if "乐豆" in check:
+        if "success" in str(check):
+            if "乐豆" in str(check):
                 print(f"签到成功\n连续签到{check['data']['continueCount']}天")
                 print(f"获得{check['data']['ledouValue']}乐豆, {check['data']['scoreValue']}积分")
                 self.sio.write("签到成功\n")
