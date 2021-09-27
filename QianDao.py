@@ -16,7 +16,7 @@ for name, sign in map.items():
         print(f'{sign[0]} 开始签到...')
         sio = sign[1](config.get(name).get('cookies')).SignIn()
         print(sio.getvalue())
-        all.write('\n'+sio.getvalue())
+        all.write(sio.getvalue())
     print()
 print(all.getvalue())
 send('今日签到', all.getvalue())

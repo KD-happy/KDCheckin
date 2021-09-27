@@ -18,6 +18,7 @@ class CCAVA:
         url = "https://pc.ccava.net/zb_users/plugin/mochu_us/cmd.php?act=qiandao"
         res = requests.get(url, headers={"Cookie": self.cookie})
         data = res.json()
+        print(data)
         if '登录' in data['msg']:
             self.sio.write('Cookie失效\n')
         elif '今天' in data['msg']:

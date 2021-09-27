@@ -362,6 +362,7 @@ class DuoKan:
             try:
                 self.name = cookie.get('name')
                 self.cookie = cookie.get('cookie')
+                print(f'{self.name} 开始签到...')
                 cookies = {
                     item.split("=")[0]: item.split("=")[1]
                     for item in self.cookie.split("; ")
@@ -386,7 +387,7 @@ class DuoKan:
                     f"{self.name}签到: {sign_msg}\n{free_msg}\n{gift_msg}\n"
                     f"{add_draw_msg}\n{draw_msg}\n{download_msg}\n{task_msg}\n{info_msg}"
                 )
-                self.sio.write(msg)
+                self.sio.write(f'{msg}\n')
                 print(msg)
             except BaseException as e:
                 print(f"{self.name}: 异常 {e}\n")

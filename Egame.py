@@ -33,6 +33,9 @@ class Egame:
         if data.get('uid') == 0:
             print('Cookie失效')
             self.sio.write('Cookie失效\n')
+        elif data['data']['key']['retMsg'] == '成功':
+            print(f"签到成功, 获得{data['data']['key']['retBody']['data']['award']['description']}")
+            self.sio.write(f"签到成功, 获得{data['data']['key']['retBody']['data']['award']['description']}\n")
         else:
             print(data['data']['key']['retMsg'])
             self.sio.write(f"{data['data']['key']['retMsg']}\n")    
