@@ -114,3 +114,12 @@ CCAVA:
             name: ''
             # token_53f2e3eb, username_53f2e3eb
             cookie: ''
+
+# CSDN
+CSDN:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # UserNam
+            cookie: ''

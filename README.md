@@ -3,30 +3,96 @@
 ##  简单的操作
 
 拉取本站
-```
-ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA" "KDsrc" "KDconfig.py"
+```shell
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
-```
+```shell
 cp /ql/repo/KD-happy_KDCheckin/Cookie.yml /ql/config/Cookie.yml
 ```
 
-```
+```shell
 ql repo <repourl> <path> <blacklist> <dependence> <branch>
         <库地址>   <拉哪些> <不拉哪些> <依赖文件>    <分支>
 ```
 
 进入容器
-
-```
+```shell
 docker exec -it qinglong bash
 ```
 
 退出容器
-
-```
+```shell
 exit
+```
+
+## 详细操作
+
+**1.安装 docer**
+
+更新 yum, 确保 yum 包更新到最新
+``` shell
+sudo yum update
+```
+
+安装的yum工具集
+```shell
+yum install -y yum-utils
+```
+
+安装docker-ce的yum源:
+```shell
+yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/   linux/centos/docker-ce.repo
+```
+
+安装docker-ce
+```shell
+dnf install docker-ce
+```
+或者yum安装
+```shell
+yum install docker-ce
+```
+
+查看docker服务状态
+```shell
+systemctl status docker.service
+```
+
+开启自启动
+```shell
+systemctl enable docker.service
+```
+
+开启服务
+```shell
+systemctl start docker.service
+```
+
+**2.安装**
+
+拉取镜像文件
+```shell
+docker pull whyour/qinglong:latest
+```
+
+创建容器
+```shell
+docker run -dit \
+-v $pwd/ql/config:/ql/config \
+-v $pwd/ql/log:/ql/log \
+-v $pwd/ql/db:/ql/db \
+-v $pwd/ql/scripts:/ql/scripts \
+-v $pwd/ql/jbot:/ql/jbot \
+-v $pwd/ql/repo:/ql/repo \
+-p 5700:5700 \
+-e ENABLE_HANGUP=true \
+-e ENABLE_WEB_PANEL=true \
+--name qinglong \
+--hostname qinglong \
+--restart always \
+whyour/qinglong:latest
 ```
 
 ## 本仓库的文件配合
@@ -43,6 +109,7 @@ exit
 │  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
+│  CSDN.py             # CSDN
 │  Duokan.py           # 多看阅读
 │  Egame.py            # 企鹅电竞
 │  Heytap.py           # 欢太商城
@@ -80,3 +147,4 @@ exit
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 🟢 |
 | [企鹅电竞](https://egame.qq.com/) | 签到（后续任务未完成） | cookie | 🟢 |
 | [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 🟢 |
+| [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 🟢 |
