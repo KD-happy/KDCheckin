@@ -4,7 +4,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN|AiHao|EnShan" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
@@ -105,6 +105,7 @@ whyour/qinglong:latest
   
 ```
 │  AcFun.py            # AcFun
+│  AiHao.py            # 爱好论坛
 │  AZG.py              # 爱助攻
 │  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
@@ -112,6 +113,7 @@ whyour/qinglong:latest
 │  CSDN.py             # CSDN
 │  Duokan.py           # 多看阅读
 │  Egame.py            # 企鹅电竞
+│  EnShan.py           # 恩山论坛
 │  Heytap.py           # 欢太商城
 │  HeytapSleep.py      # 欢太早睡打卡
 │  HLX.py              # 葫芦侠
@@ -140,7 +142,7 @@ whyour/qinglong:latest
 | 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [🟢️](https://github.com/Mashiro2000/HeyTapTask) |
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [🟢️](https://github.com/luck-ying01/3floor_sign) |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 🟢️ |
-| [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [🟡](https://github.com/silence4u/lenovo_auto_signin) |
+| [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [🟢](https://github.com/silence4u/lenovo_auto_signin) |
 | [多看阅读](https://www.duokan.com/) | 签到、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 🟢️ |
@@ -148,3 +150,5 @@ whyour/qinglong:latest
 | [企鹅电竞](https://egame.qq.com/) | 签到（后续任务未完成） | cookie | 🟢 |
 | [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 🟢 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 🟢 |
+| [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 🟢 |
+| [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 🟢 |

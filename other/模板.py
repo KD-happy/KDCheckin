@@ -30,7 +30,7 @@ class Cloud:
 
 if __name__ == '__main__':
     config = getYmlConfig('Cookie.yml')
-    Cookies = config.get('{签到的标题}')
+    Cookies = config.get('Cloud')
     if Cookies != None:
         if Cookies.get('cookies') != None:
             cloud = Cloud(Cookies['cookies'])

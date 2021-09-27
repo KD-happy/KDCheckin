@@ -123,3 +123,21 @@ CSDN:
             name: ''
             # UserNam
             cookie: ''
+
+# 爱好论坛
+AiHao:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # 95hf_2132_saltkey, 95hf_2132_auth
+            cookie: ''
+
+# 恩山论坛
+EnShan:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # DJyZ_2132_saltkey, DJyZ_2132_auth, 
+            cookie: ''
