@@ -57,11 +57,11 @@ class AiHao:
             self.sio.write(f"{cookie.get('name')}: ")
             self.cookie = cookie.get('cookie')
             t = datetime.datetime.now()
-            if t.hour > 8 and t.hour < 9:
+            if t.hour == 8:
                 self.daka = {'button1': ''}
-            elif t.hour > 13 and t.hour < 14:
+            elif t.hour == 13:
                 self.data = {'button2': ''}
-            elif t.hour > 18 and t.hour < 19:
+            elif t.hour == 18:
                 self.data = {'button3': ''}
             else:
                 self.sio.write('不在打卡时间\n')
