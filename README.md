@@ -143,7 +143,7 @@ whyour/qinglong:latest
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [🟢️](https://github.com/luck-ying01/3floor_sign) |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 🟢️ |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [🟢](https://github.com/silence4u/lenovo_auto_signin) |
-| [多看阅读](https://www.duokan.com/) | 签到、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
+| [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 🟢️ |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 🟢 |

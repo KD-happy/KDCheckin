@@ -238,6 +238,7 @@ class DuoKan:
         data = f"_t={t}&_c={c}"
         return data
 
+    # 签到
     def sign(self, cookies):
         url = "https://www.duokan.com/checkin/v0/checkin"
         data = self.get_data(cookies=cookies)
@@ -247,21 +248,25 @@ class DuoKan:
         msg = result.get("msg")
         return msg
 
+    # 查询豆子
     def info(self, cookies):
         url = "https://www.duokan.com/store/v0/award/coin/list"
         data = f"sandbox=0&{self.get_data(cookies=cookies)}&withid=1"
         response = requests.post(
             url=url, data=data, cookies=cookies, headers=self.headers)
         result = response.json()
+        print(response.json())
         if "尚未登录" not in result.get("msg"):
-            coin = sum([one.get('coin')
-                        for one in result.get("data", {}).get("award")])
-            msg = f"当前书豆: {coin}\n" + "\n".join(
-                [f"{one.get('expire')} 到期，{one.get('coin')} 书豆" for one in result.get("data", {}).get("award")])
+            coin = sum([one.get('coin') for one in result.get("data", {}).get("award")])
+            msg = f"当前书豆: {coin}\n" + "\n".join([f"{one.get('expire')} 到期，{one.get('coin')} 书豆" for one in result.get("data", {}).get("award")])
+            for one in result.get("data", {}).get("award"):
+                if one.get("delay") == 1: # 判断是否有可延迟的豆子
+                    self.delay(one.get("expire"), cookies=cookies)
             return msg
         else:
             return "账号异常: Cookie 失效"
 
+    # 领取限免
     def free(self, cookies):
         url = "https://www.duokan.com/hs/v4/channel/query/2027"
         response = requests.get(url=url, cookies=cookies, headers=self.headers)
@@ -279,6 +284,7 @@ class DuoKan:
         else:
             return "今日限免: Cookie 失效"
 
+    # 体验任务
     def gift(self, cookies):
         url = "https://www.duokan.com/events/common_task_gift_check"
         data = f"code=KYKJF7LL0G&{self.get_data(cookies=cookies)}&withid=1"
@@ -307,6 +313,7 @@ class DuoKan:
             msg = f"体验任务: {response.text}"
         return msg
 
+    # 增加大转盘次数
     def add_draw(self, cookies):
         success_count = 0
         for one in range(6):
@@ -320,6 +327,7 @@ class DuoKan:
         msg = f"添加抽奖: {success_count} 次"
         return msg
 
+    # 大转盘抽奖
     def draw(self, cookies):
         success_count = 0
         for one in range(6):
@@ -333,6 +341,7 @@ class DuoKan:
         msg = f"成功抽奖: {success_count} 次"
         return msg
 
+    # 下载任务
     def download(self, cookies):
         url = "https://www.duokan.com/events/common_task_gift"
         data = f"code=J18UK6YYAY&chances=17&{self.get_data(cookies=cookies)}&withid=1"
@@ -342,6 +351,7 @@ class DuoKan:
         msg = "下载任务: " + result.get("msg")
         return msg
 
+    # 日常任务
     def task(self, cookies):
         success_count = 0
         url = "https://www.duokan.com/events/tasks_gift"
@@ -353,6 +363,15 @@ class DuoKan:
             if result.get("result") == 0:
                 success_count += 1
         return f"其他任务: 完成 {success_count} 个"
+
+    # 豆子延期
+    def delay(self, date, cookies):
+        url = 'https://www.duokan.com/store/v0/award/coin/delay'
+        data = f'date={date}&{self.get_data(cookies=cookies)}&withid=1'
+        res = requests.post(url=url, data=data, headers=self.headers, cookies=cookies)
+        print(res.json())
+        if res.json().get("result") == 0 and '豆子延期: 完成' in self.sio.getvalue():
+            self.sio.write('豆子延期: 完成\n')
 
     def SignIn(self):
         print("【多看阅读 日志】")
@@ -367,27 +386,43 @@ class DuoKan:
                     item.split("=")[0]: item.split("=")[1]
                     for item in self.cookie.split("; ")
                 }
+                # 签到
                 sign_msg = self.sign(cookies)
                 print(sign_msg)
+                self.sio.write(f'{self.name} 签到: {sign_msg}\n')
+                # 领取限免
                 free_msg = self.free(cookies)
                 print(free_msg)
+                self.sio.write(free_msg + '\n')
+                # 体验任务
                 gift_msg = self.gift(cookies)
                 print(gift_msg)
+                self.sio.write(gift_msg + '\n')
+                # 增加大转盘次数
                 add_draw_msg = self.add_draw(cookies)
                 print(add_draw_msg)
+                self.sio.write(add_draw_msg + '\n')
+                # 大转盘抽奖
                 draw_msg = self.draw(cookies)
                 print(draw_msg)
+                self.sio.write(draw_msg + '\n')
+                # 下载任务
                 download_msg = self.download(cookies)
                 print(download_msg)
+                self.sio.write(download_msg + '\n')
+                # 日常任务
                 task_msg = self.task(cookies)
                 print(task_msg)
+                self.sio.write(task_msg + '\n')
+                # 查询豆子
                 info_msg = self.info(cookies)
                 print(info_msg)
+                self.sio.write(info_msg + '\n')
+                
                 msg = (
                     f"{self.name}签到: {sign_msg}\n{free_msg}\n{gift_msg}\n"
                     f"{add_draw_msg}\n{draw_msg}\n{download_msg}\n{task_msg}\n{info_msg}"
                 )
-                self.sio.write(f'{msg}\n')
                 print(msg)
             except:
                 print(f"{self.name}: 异常 {traceback.format_exc()}")
