@@ -42,7 +42,12 @@ class CSDN:
         data = res.json()
         print(data)
         if data['code'] == 200:
-            self.sio.write(f", {data.get('data').get('msg')}\n")
+            if data.get('data').get('prize_title') != None:
+                self.sio.write(f", {data.get('data').get('prize_title')}\n")
+                print(f"{data.get('data').get('prize_title')}")
+            else:
+                self.sio.write(f", {data.get('data').get('msg')}\n")
+                print(f"{data.get('data').get('msg')}")
         else:
             self.sio.write('抽奖失败\n')
 

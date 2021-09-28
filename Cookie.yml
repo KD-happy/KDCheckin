@@ -121,7 +121,7 @@ CSDN:
     cookies:
         - user:
             name: ''
-            # UserNam
+            # 关键 cookie 未知
             cookie: ''
 
 # 爱好论坛
