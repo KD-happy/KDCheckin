@@ -141,3 +141,21 @@ EnShan:
             name: ''
             # DJyZ_2132_saltkey, DJyZ_2132_auth, 
             cookie: ''
+
+# 哔哩哔哩
+BLBL:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # SESSDATA
+            cookie: ''
+            bili_jct: ''
+
+# 有道云笔记
+NoteYouDao:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            cookie: ''

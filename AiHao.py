@@ -17,12 +17,12 @@ class AiHao:
 
     def daka(self):
         url = 'https://www.aihao.cc/plugin.php?id=daka'
-        header = {
+        headers = {
             "referer": "https://www.aihao.cc/plugin.php?id=daka",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
         }
-        res = requests.post(url, headers=header, data=self.data)
+        res = requests.post(url, headers=headers, data=self.data)
         if '未到打卡时间' in res.text:
             print('未到打卡时间')
         elif '打卡成功' in res.text:
@@ -42,7 +42,7 @@ class AiHao:
             self.sio.write('未知错误\n')
             print('未知错误')
         self.data = {'button4': ''}
-        res = requests.post(url, headers=header, data=self.data)
+        res = requests.post(url, headers=headers, data=self.data)
         if '您本月还未打卡' in res.text or '无法获得全勤奖励' in res.text:
             print('月打卡次数不满足要求')
         else:

@@ -16,11 +16,11 @@ class AZG:
 
     def k_misign(self):
         url = 'https://www.aizhugong.com/plugin.php?id=k_misign:sign&operation=qiandao&formhash=76f8716f'
-        header = {
+        headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
         }
-        res = requests.get(url, headers=header)
+        res = requests.get(url, headers=headers)
         print(res.text[:200])
         if '已签' in res.text:
             self.sio.write('重复签到\n')

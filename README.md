@@ -4,7 +4,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN|AiHao|EnShan" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN|AiHao|EnShan|BLBL|NoteYouDao" "KDsrc" "KDconfig.py"
 ```
 
 将配置文件复制到指定位置
@@ -107,6 +107,7 @@ whyour/qinglong:latest
 │  AcFun.py            # AcFun
 │  AiHao.py            # 爱好论坛
 │  AZG.py              # 爱助攻
+│  BLBL.py             # 哔哩哔哩
 │  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
@@ -119,17 +120,19 @@ whyour/qinglong:latest
 │  HLX.py              # 葫芦侠
 │  KDconfig.py         # 文件读取、推送
 │  Lenovo.py           # 联想
+│  NoteYouDao.py       # 有道云笔记
 │  PTA.py              # PTA
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
 │  W2PJ.py             # 吾爱破解
-│  
-└─KDsrc                # 多文件签到的程序文件夹
-        Cloud.py
-        HeytapTask.py
-        more.py        # map变量程序
-        模板.py         # 签到模板文件
+│
+├─KDsrc                # 多文件签到的程序文件夹
+│      more.py         # map变量程序
+│
+└─other
+        ql.sh          # 青龙一键部署
+        模板.py         # 模板文件
 ```
 
 ## 支持的签到
@@ -152,3 +155,6 @@ whyour/qinglong:latest
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 🟢 |
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 🟢 |
+| [哔哩哔哩](https://www.bilibili.com/) | 签到、分享 | cookie | 🟢 |
+| [哔哩哔哩](https://www.bilibili.com/) | 签到、分享 | cookie | 🟢 |
+| [有道云笔记](https://note.youdao.com/web/) | 签到、看广告 | cookie | 🟢 |
