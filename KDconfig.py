@@ -69,7 +69,6 @@ def pd(send, no):
     return False
 
 def send(title, message):
-    print()
     send = getYmlConfig()
     if send.get('send') != None:
         send = send['send']
