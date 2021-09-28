@@ -370,8 +370,9 @@ class DuoKan:
         data = f'date={date}&{self.get_data(cookies=cookies)}&withid=1'
         res = requests.post(url=url, data=data, headers=self.headers, cookies=cookies)
         print(res.json())
-        if res.json().get("result") == 0 and '豆子延期: 完成' in self.sio.getvalue():
+        if res.json().get("result") == 0 and '豆子延期: 完成' not in self.sio.getvalue():
             self.sio.write('豆子延期: 完成\n')
+            print('豆子延期: 完成')
 
     def SignIn(self):
         print("【多看阅读 日志】")

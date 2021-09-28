@@ -59,8 +59,8 @@ class BLBL:
             self.money1 = data.get('data', {}).get('money')
             self.current_exp1 = data.get('data', {}).get('level_info', {}).get('current_exp')
             print(f'硬币比: {self.money0}/{self.money1}')
-            self.sio.write(f'硬币比: {self.money0}/{self.money1}')
-            print(f'经验比: {self.current_exp0}/{self.current_exp1}\n')
+            self.sio.write(f'硬币比: {self.money0}/{self.money1}\n')
+            print(f'经验比: {self.current_exp0}/{self.current_exp1}')
             self.sio.write(f'经验比: {self.current_exp0}/{self.current_exp1}\n')
         return True
 

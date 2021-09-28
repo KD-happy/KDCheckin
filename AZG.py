@@ -21,7 +21,7 @@ class AZG:
             "cookie": self.cookie
         }
         res = requests.get(url, headers=headers)
-        print(res.text[:200])
+        print(res.text[:500])
         if '已签' in res.text:
             self.sio.write('重复签到\n')
         elif '未定义' in res.text:

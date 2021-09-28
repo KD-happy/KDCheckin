@@ -17,7 +17,7 @@ class NoteYouDao:
 
     def Sign_in(self):
         c = ''
-        logs = message = self.name+': '
+        logs = message = ''
         ad = 0
         headers = {'Cookie': self.cookie}
         r = requests.get('http://note.youdao.com/login/acc/pe/getsess?product=YNOTE', headers=headers)
@@ -31,6 +31,7 @@ class NoteYouDao:
             for _ in range(3):
                 resp = requests.post("https://note.youdao.com/yws/mapi/user?method=adRandomPrompt", headers=headers)
                 ad += resp.json()['space'] // 1048576
+                time.sleep(2)
             logs += "\n"+ re.text +"\n"+ res.text +"\n"+ resp.text
             if 'reward' in re.text:
                 sync = re.json()['rewardSpace'] // 1048576

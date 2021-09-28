@@ -29,7 +29,7 @@ class Lenovo:
                 print(f"签到成功\n连续签到{check['data']['continueCount']}天")
                 print(f"获得{check['data']['ledouValue']}乐豆, {check['data']['scoreValue']}积分")
                 self.sio.write("签到成功\n")
-                self.sio.writable(f"连续签到{check['data']['continueCount']}天\n获得{check['data']['ledouValue']}乐豆, {check['data']['scoreValue']}积分\n")
+                self.sio.write(f"连续签到{check['data']['continueCount']}天\n获得{check['data']['ledouValue']}乐豆, {check['data']['scoreValue']}积分\n")
             else:
                 print("重复签到")
                 self.sio.write("重复签到\n")
