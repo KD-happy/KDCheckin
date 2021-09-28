@@ -3,7 +3,7 @@ cron: 6 6 * * *
 new Env('PTA')
 """
 
-import requests, sys
+import requests, sys, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -40,8 +40,10 @@ class PTA:
             print(f'{self.name} 开始签到...')
             try:
                 self.Sign_in()
-            except BaseException as e:
-                print(f"{self.name}: 异常 {e}\n")
+            except:
+                print(f"{self.name}: 异常 {traceback.format_exc()}\n")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 

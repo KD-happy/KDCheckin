@@ -3,7 +3,7 @@ cron: 55 7 * * *
 new Env('天翼云盘');
 """
 
-import requests, time, re, json, sys
+import requests, time, re, json, sys, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -60,14 +60,18 @@ class Cloud:
             cookie = cookie.get("user")
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
-            except BaseException as e:
-                print(f"{cookie.get('name')}: 异常 {e}\n")
+            except:
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
             if cookie.get('TV') != None:
                 try:
                     cookie = cookie.get('TV')
                     self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), json.loads(cookie.get('header')))
-                except BaseException as e:
-                    print(f"{cookie.get('name')}: 异常 {e}\n")
+                except:
+                    print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                    if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                        self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 if __name__ == '__main__':

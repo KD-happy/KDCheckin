@@ -4,7 +4,7 @@ cron: 23 8,13,18 * * *
 new Env('爱好论坛');
 """
 
-import requests, time, re, json, sys, datetime
+import requests, sys, datetime, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -58,7 +58,7 @@ class AiHao:
             self.cookie = cookie.get('cookie')
             t = datetime.datetime.now()
             if t.hour == 8:
-                self.daka = {'button1': ''}
+                self.data = {'button1': ''}
             elif t.hour == 13:
                 self.data = {'button2': ''}
             elif t.hour == 18:
@@ -69,8 +69,11 @@ class AiHao:
                 continue
             try:
                 self.daka()
-            except BaseException as e:
-                print(f"{cookie.get('name')}: 异常 {e}\n")
+            except:
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
+            print('kdsf')
         return self.sio
 
 if __name__ == '__main__':

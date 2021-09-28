@@ -3,7 +3,7 @@ cron: 45 17,19 * * *
 new Env('欢太早睡打卡')
 """
 
-import requests, re, json, sys
+import requests, re, json, sys, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -40,6 +40,9 @@ class HeytapSleep:
                     self.zaoshui_task()
             except BaseException as e:
                 self.sio.write(f"【用户信息】: {self.name}: {e}\n")
+                print(traceback.format_exc())
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
     
     # 获取cookie里的一些参数，部分请求需要使用到————hss修改
@@ -57,8 +60,11 @@ class HeytapSleep:
             self.s_channel = re.findall("s_channel=(.*?);", self.cookie)[0]
         except Exception as e:
             print("获取Cookie部分数据失败，将采用默认设置，请检查Cookie是否包含s_channel，s_version，source_type，sa_distinct_id\n", e)
+            print(traceback.format_exc())
             self.s_channel = "ios_oppostore"
             self.source_type = "505"
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
 
     # 获取Cookie状态和用户个人信息
     def get_infouser(self):
@@ -85,6 +91,9 @@ class HeytapSleep:
                 print('【登录失败】: ' + result['errorMessage'])
         except Exception as e:
             print('【登录】: 异常 发生错误，原因为: ' + str(e) + '\n')
+            print(traceback.format_exc())
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
         if flag:
             return True
         else:
@@ -157,7 +166,9 @@ class HeytapSleep:
                         break
         except Exception as e:
             self.sio.write("【早睡打卡】: 错误，原因为: " + str(e) + '\n')
-            print("【早睡打卡】: 异常 错误，原因为: " + str(e) + "\n")
+            print("【早睡打卡】: 异常 错误，原因为: " + str(traceback.format_exc()) + "\n")
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
 
 if __name__ == '__main__':
     config = getYmlConfig('Cookie.yml')

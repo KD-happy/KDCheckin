@@ -3,7 +3,7 @@ cron: 10 6 * * *
 new Env('欢太签到')
 """
 
-import requests, time, re, json, sys
+import requests, time, traceback, sys
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -35,6 +35,9 @@ class Heytap:
                     self.daily_sharegoods() #执行每日商品分享任务
             except BaseException as e:
                 self.sio.write(f"【用户信息】: {self.name}: {e}\n")
+                print(traceback.format_exc())
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
     
     # 获取Cookie状态和用户个人信息
@@ -62,7 +65,9 @@ class Heytap:
             else:
                 print('【登录失败】: ' + result['errorMessage'])
         except Exception as e:
-            print('【登录】: 发生错误，原因为: ' + str(e))
+            print('【登录】: 发生错误，原因为: ' + str(traceback.format_exc()))
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
         if flag:
             return True
         else:
@@ -138,7 +143,9 @@ class Heytap:
             time.sleep(1)
         except Exception as e:
             self.sio.write('【每日签到】: 错误，原因为: ' + str(e) + '\n')
-            print('【每日签到】: 错误，原因为: ' + str(e))
+            print('【每日签到】: 错误，原因为: ' + str(traceback.format_exc()))
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
 
     #执行完成任务领取奖励
     def cashingCredits(self, info_marking, info_type, info_credits):
@@ -218,6 +225,8 @@ class Heytap:
         except Exception as e:
             self.sio.write('【每日浏览任务】: 错误，原因为: ' + str(e) + '\n')
             print('【每日浏览任务】: 错误，原因为: ' + str(e) + '\n')
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
 
     # 执行每日商品分享任务
     def daily_sharegoods(self):
@@ -265,6 +274,8 @@ class Heytap:
         except Exception as e:
             self.sio.write('【每日分享商品】: 错误，原因为: ' + str(e) + '\n')
             print('【每日分享商品】: 异常 错误，原因为: ' + str(e) + '\n')
+            if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                self.sio.write('签到存在异常, 请自行查看签到日志\n')
 
 
 if __name__ == '__main__':

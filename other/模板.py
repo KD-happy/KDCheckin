@@ -4,7 +4,7 @@ cron: 55 7 * * *
 new Env('{签到的标题}');
 """
 
-import requests, time, re, json, sys
+import requests, time, re, json, sys, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -24,8 +24,10 @@ class Cloud:
             self.cookie = cookie.get('cookie')
             try:
                 self.Sign_in()
-            except BaseException as e:
-                print(f"{cookie.get('name')}: 异常 {e}\n")
+            except:
+                self.sio.write(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 if __name__ == '__main__':

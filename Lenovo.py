@@ -3,7 +3,7 @@ cron: 2 6 * * *
 new Env('联想商城');
 """
 
-import requests, sys, re
+import requests, sys, re, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -58,8 +58,10 @@ class Lenovo:
                     self.sio.write('Cookie失效\n')
                     continue
                 self.signin()
-            except BaseException as e:
-                print(f"{cookie.get('name')}: 异常 {e}\n")
+            except:
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ cron: 55 5 * * *
 new Env('CCAVA');
 """
 
-import requests, time, re, json, sys
+import requests, traceback, sys
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -36,8 +36,10 @@ class CCAVA:
             self.cookie = cookie.get('cookie')
             try:
                 self.Sign_in()
-            except BaseException as e:
-                print(f"{cookie.get('name')}: 异常 {e}\n")
+            except:
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 if __name__ == '__main__':

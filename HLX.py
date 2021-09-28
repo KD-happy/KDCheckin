@@ -3,7 +3,7 @@ cron: 11 6 * * *
 new Env('葫芦侠')
 """
 
-import requests, json, sys, hashlib
+import requests, json, sys, hashlib, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 from bs4 import BeautifulSoup
@@ -84,9 +84,12 @@ class HLX:
                 self.username = cookie['username']
                 self.password = cookie['password']
                 self.login()
-            except BaseException as e:
+            except:
                 print('[+]登录失败，请检测账号密码')
                 self.sio.write(': 登录失败，请检测账号密码\n')
+                print('异常: ' + traceback.format_exc())
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
                 continue
             self.get_level()
             print('---结束【登录，查询用户信息】---')

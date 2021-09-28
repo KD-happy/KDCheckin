@@ -81,11 +81,14 @@ def send(title, message):
         print('配置文件有问题')
         return
     for i in range(len(sendList)):
-        if pd(send, i) and sendList[i](title, message, send[sendTokenList[i]]):
-            print(f'{sendMes[i]} 推送完成')
-            if send.get('all') == None:
-                return
-            if send['all'] == 0:
-                return
-        else:
-            print(f'{sendMes[i]} 推送失败')
+        try:
+            if pd(send, i) and sendList[i](title, message, send[sendTokenList[i]]):
+                print(f'{sendMes[i]} 推送完成')
+                if send.get('all') == None:
+                    return
+                if send['all'] == 0:
+                    return
+            else:
+                print(f'{sendMes[i]} 推送失败')
+        except Exception as e:
+            print('异常: ' + e)
