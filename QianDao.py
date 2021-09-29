@@ -19,10 +19,11 @@ for name, sign in map.items():
             if config.get(name).get('cookies') == None:
                 sio = sign[1](config.get(name).get('cookies', {})).SignIn()
                 print(sio.getvalue())
-                all.write(sio.getvalue())
-            print(f'{sign[0]} 没有配置文件')
-            all.write(f'{sign[0]} 没有配置文件\n')
+                all.write(sio.getvalue() + '\n')
+            else:
+                print(f'{sign[0]} 没有配置文件')
+                all.write(f'{sign[0]} 没有配置文件\n')
     except:
         print(traceback.format_exc())
 print(all.getvalue())
-send('今日签到', all.getvalue())
+send('今日签到', all.getvalue().replace('\n\n', ''))
