@@ -4,7 +4,8 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN|AiHao|EnShan|BLBL|NoteYouDao" "KDsrc" "KDconfig.py"
+ql repo https://github.com/KD-happy/KDCheckin.git "Cloud|Heytap|HLX|PTA|Lenovo|DuoKan|AcFun|W2PJ|AZG|Egame|CCAVA|CSDN|AiHao|EnShan|BLBL|NoteYouDao" "" "KD"
+cp -f /ql/repo/KD-happy_KDCheckin/*.py /ql/scripts/KDsrc
 ```
 
 将配置文件复制到指定位置
@@ -154,7 +155,6 @@ whyour/qinglong:latest
 | [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 🟢 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 🟢 |
-| [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 🟢 |
-| [哔哩哔哩](https://www.bilibili.com/) | 签到、分享 | cookie | 🟢 |
+| [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 🟢
 | [哔哩哔哩](https://www.bilibili.com/) | 签到、分享 | cookie | 🟢 |
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告 | cookie | 🟢 |
