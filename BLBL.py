@@ -45,7 +45,7 @@ class BLBL:
         }
         res = requests.get(url=url, headers=headers)
         data = res.json()
-        print(data)
+        print(data[:500])
         if data.get('code') != 0:
             self.sio.write(f'{self.name}: Cookie失效\n')
             print(f'{self.name}: Cookie失效')

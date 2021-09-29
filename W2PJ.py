@@ -23,7 +23,7 @@ class W2PJ:
             "Cookie": self.cookie
         }
         res = requests.get(url, headers=header)
-        print(res.text)
+        print(res.text[:500])
         if '恭喜' in res.text:
             self.sio.write('签到成功')
             self.getCB()
