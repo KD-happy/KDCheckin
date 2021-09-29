@@ -22,6 +22,8 @@ class NoteYouDao:
         }
         res = requests.get(url=url, headers=headers)
         print(res.text)
+        if res.json().get('q') == None:
+            return 0
         return res.json().get('q')
 
     def Sign_in(self):
