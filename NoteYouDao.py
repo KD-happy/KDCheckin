@@ -4,7 +4,7 @@ cron: 2 6 * * *
 new Env('有道云');
 """
 
-import requests, time, re, json, sys, traceback
+import requests, time, sys, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -15,7 +15,17 @@ class NoteYouDao:
         self.cookie = ''
         self.name = ''
 
+    def getSpace(self):
+        url = 'https://note.youdao.com/yws/mapi/user?method=get'
+        headers = {
+            'Cookie': self.cookie
+        }
+        res = requests.get(url=url, headers=headers)
+        print(res.text)
+        return res.json().get('q')
+
     def Sign_in(self):
+        print(f'签到前空间: {self.getSpace()}')
         c = ''
         logs = message = ''
         ad = 0
@@ -34,13 +44,15 @@ class NoteYouDao:
                 time.sleep(2)
             logs += "\n"+ re.text +"\n"+ res.text +"\n"+ resp.text
             if 'reward' in re.text:
+                s = self.getSpace()
+                print(f'签到后空间: {s}')
                 sync = re.json()['rewardSpace'] // 1048576
                 checkin = res.json()['space'] // 1048576
                 space = str(sync + checkin + ad)
-                message += '获得空间'+ space +'M'
+                message += f'获得空间{space}M, 总空间{int(s)//1048576}M'
         else:
             message += "Cookie失效"
-        print(logs)
+        print(logs, message)
         self.sio.write(message + '\n')
 
     def SignIn(self):
