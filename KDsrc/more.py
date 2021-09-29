@@ -19,7 +19,7 @@ from KDsrc.W2PJ import W2PJ
 map = {
     "AcFun": ["AcFun", AcFun],
     "AZG": ["爱助攻", AZG],
-    "BLBL": ["哔哩哔哩", BLBL],
+    "AZG": ["哔哩哔哩", BLBL],
     "CCAVA": ["CCAVA", CCAVA],
     "Cloud": ["天翼云盘", Cloud],
     "CSDN": ["CSDN", CSDN],
