@@ -161,4 +161,5 @@ NoteYouDao:
     cookies:
         - user:
             name: ''
+            # YNOTE_LOGIN, YNOTE_SESS, YNOTE_PERS
             cookie: ''
