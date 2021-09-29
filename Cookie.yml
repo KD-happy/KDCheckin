@@ -8,6 +8,9 @@ send:
     # https://pushplus.hxtrip.com/
     push+Token: ''
 
+# 签到列表
+signList: ''
+
 # 天翼云盘
 Cloud:
     # 是否推送
