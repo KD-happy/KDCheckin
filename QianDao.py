@@ -16,7 +16,7 @@ for name, sign in map.items():
     try:
         if config.get(name) != None:
             print(f'{sign[0]} 开始签到...')
-            if config.get(name).get('cookies') == None:
+            if config.get(name).get('cookies') != None:
                 sio = sign[1](config.get(name).get('cookies', {})).SignIn()
                 print(sio.getvalue())
                 all.write(sio.getvalue() + '\n')
