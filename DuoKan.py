@@ -262,6 +262,10 @@ class DuoKan:
             for one in result.get("data", {}).get("award"):
                 if one.get("delay") == 1: # 判断是否有可延迟的豆子
                     self.delay(one.get("expire"), cookies=cookies)
+            else:
+                if '豆子延期' not in self.sio.getvalue():
+                    self.sio.write('豆子延期: 没有\n')
+                    print('豆子延期: 没有')
             return msg
         else:
             return "账号异常: Cookie 失效"
@@ -370,7 +374,7 @@ class DuoKan:
         data = f'date={date}&{self.get_data(cookies=cookies)}&withid=1'
         res = requests.post(url=url, data=data, headers=self.headers, cookies=cookies)
         print(res.json())
-        if res.json().get("result") == 0 and '豆子延期: 完成' not in self.sio.getvalue():
+        if res.json().get("result") == 0 and '豆子延期' not in self.sio.getvalue():
             self.sio.write('豆子延期: 完成\n')
             print('豆子延期: 完成')
 
