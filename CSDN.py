@@ -24,10 +24,10 @@ class CSDN:
         data = res.json()
         print(data)
         if data['code'] == 200:
-            if '已签到' in data['data']['msg']:
-                self.sio.write('重复签到')
-            else:
+            if '用户已签到' in data['data']['msg']:
                 self.sio.write('签到成功')
+            else:
+                self.sio.write('重复签到')
             self.goodluck()
         else:
             self.sio.write('Cookie失效\n')
