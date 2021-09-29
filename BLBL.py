@@ -158,7 +158,7 @@ class BLBL:
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             print(f"{cookie.get('name')} 开始签到...")
-            self.sio.write(f"{cookie.get('name')}: ")
+            # self.sio.write(f"{cookie.get('name')}: ")
             self.name = cookie.get('name')
             self.cookie = cookie.get('cookie')
             self.bili_jct = cookie.get('bili_jct')   
