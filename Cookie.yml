@@ -124,7 +124,7 @@ CSDN:
     cookies:
         - user:
             name: ''
-            # 关键 cookie 未知
+            # UserName, UserToken, ssxmod_itna
             cookie: ''
 
 # 爱好论坛
