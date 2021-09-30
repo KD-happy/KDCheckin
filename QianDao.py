@@ -16,8 +16,8 @@ signList = config.get('signList', '')
 # for name, sign in map.items():
 for name in signList.split(', '):
     try:
-        sign = map.get(name)
-        if config.get(name) != None:
+        sign = map.get(name, [])
+        if config.get(name) != None and len(sign) == 2:
             print(f'{sign[0]} 开始签到...')
             if config.get(name).get('cookies') != None:
                 sio = sign[1](config.get(name).get('cookies', {})).SignIn()
