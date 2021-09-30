@@ -28,6 +28,7 @@ class BLBL:
         self.money1 = 0
         self.current_exp0 = 0
         self.current_exp1 = 0
+        self.can = True
 
     # 获取基本信息
     def nav(self):
@@ -45,12 +46,13 @@ class BLBL:
         }
         res = requests.get(url=url, headers=headers)
         data = res.json()
-        print(data[:500])
+        print(str(data)[:500])
         if data.get('code') != 0:
             self.sio.write(f'{self.name}: Cookie失效\n')
             print(f'{self.name}: Cookie失效')
             return False
-        elif '账号信息' not in self.sio.getvalue():
+        elif self.can:
+            self.can = False
             name = data.get('data', {}).get('uname')
             self.sio.write(f'账号信息: {name}\n')
             self.money0 = data.get('data', {}).get('money')
