@@ -11,6 +11,52 @@ send:
 # 签到列表
 signList: ''
 
+# AcFun
+AcFun:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # acPasstoken, auth_key
+            cookie: ''
+
+# 爱好论坛
+AiHao:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # 95hf_2132_saltkey, 95hf_2132_auth
+            cookie: ''
+
+# 爱助攻
+AZG:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # BvH6_2132_saltkey, BvH6_2132_auth
+            cookie: ''
+
+# 哔哩哔哩
+BLBL:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # SESSDATA
+            cookie: ''
+            bili_jct: ''
+
+# CCAVA
+CCAVA:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # token_53f2e3eb, username_53f2e3eb
+            cookie: ''
+
 # 天翼云盘
 Cloud:
     # 是否推送
@@ -26,6 +72,42 @@ Cloud:
                 familyId: ''
                 # {"SessionKey": "_____", "Signature": "_____", "Date": "_____"}
                 header: ''
+
+# CSDN
+CSDN:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # UserName, UserToken, ssxmod_itna
+            cookie: ''
+
+# 多看阅读
+DuoKan:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # user_id, token, device_id, app_id
+            cookie: ''
+
+# 企鹅电竞
+Egame:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # pgg_type, pgg_openid, pgg_appid, pgg_access_token
+            cookie: ''
+
+# 恩山论坛
+EnShan:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # DJyZ_2132_saltkey, DJyZ_2132_auth, 
+            cookie: ''
 
 # 欢太商城
 Heytap:
@@ -46,15 +128,6 @@ HLX:
             username: ''
             password: ''
 
-# PTA
-PTA:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # PTASession, JSESSIONID
-            cookie: ''
-
 # 联想
 Lenovo:
     send: 0
@@ -64,22 +137,22 @@ Lenovo:
             # laravel_session, cerpreg-passport, XSRF-TOKEN
             cookie: ''
 
-# 多看阅读
-DuoKan:
+# 有道云笔记
+NoteYouDao:
     send: 0
     cookies:
         - user:
             name: ''
-            # user_id, token, user_gender, device_id, app_id, build, short_version
+            # YNOTE_LOGIN, YNOTE_SESS, YNOTE_PERS
             cookie: ''
 
-# AcFun
-AcFun:
+# PTA
+PTA:
     send: 0
     cookies:
         - user:
             name: ''
-            # acPasstoken, auth_key
+            # PTASession, JSESSIONID
             cookie: ''
 
 # 吾爱破解
@@ -89,77 +162,4 @@ W2PJ:
         - user:
             name: ''
             # htVD_2132_saltkey, htVD_2132_auth
-            cookie: ''
-
-# 爱助攻
-AZG:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # BvH6_2132_saltkey, BvH6_2132_auth
-            cookie: ''
-
-# 企鹅电竞
-Egame:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # pgg_type, pgg_openid, pgg_appid, pgg_access_token
-            cookie: ''
-
-# CCAVA
-CCAVA:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # token_53f2e3eb, username_53f2e3eb
-            cookie: ''
-
-# CSDN
-CSDN:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # UserName, UserToken, ssxmod_itna
-            cookie: ''
-
-# 爱好论坛
-AiHao:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # 95hf_2132_saltkey, 95hf_2132_auth
-            cookie: ''
-
-# 恩山论坛
-EnShan:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # DJyZ_2132_saltkey, DJyZ_2132_auth, 
-            cookie: ''
-
-# 哔哩哔哩
-BLBL:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # SESSDATA
-            cookie: ''
-            bili_jct: ''
-
-# 有道云笔记
-NoteYouDao:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # YNOTE_LOGIN, YNOTE_SESS, YNOTE_PERS
             cookie: ''
