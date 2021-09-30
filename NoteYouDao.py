@@ -29,7 +29,6 @@ class NoteYouDao:
     def Sign_in(self):
         print(f'签到前空间: {self.getSpace()}')
         c = ''
-        logs = message = ''
         ad = 0
         headers = {'Cookie': self.cookie}
         r = requests.get('http://note.youdao.com/login/acc/pe/getsess?product=YNOTE', headers=headers)
@@ -44,16 +43,16 @@ class NoteYouDao:
                 resp = requests.post("https://note.youdao.com/yws/mapi/user?method=adRandomPrompt", headers=headers)
                 ad += resp.json()['space'] // 1048576
                 time.sleep(2)
-            logs += "\n"+ re.text +"\n"+ res.text +"\n"+ resp.text
+            logs = re.text +"\n"+ res.text +"\n"+ resp.text
             if 'reward' in re.text:
                 s = self.getSpace()
                 print(f'签到后空间: {s}')
                 sync = re.json()['rewardSpace'] // 1048576
                 checkin = res.json()['space'] // 1048576
                 space = str(sync + checkin + ad)
-                message += f'获得空间{space}M, 总空间{int(s)//1048576}M'
+                message = f'获得空间{space}M, 总空间{int(s)//1048576}M'
         else:
-            message += "Cookie失效"
+            message = "Cookie失效"
         print(logs, message)
         self.sio.write(message + '\n')
 
