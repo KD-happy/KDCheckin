@@ -23,7 +23,6 @@ class W2PJ:
             "Cookie": self.cookie
         }
         res = requests.get(url, headers=header)
-        print(res.text[:500])
         if '恭喜' in res.text:
             self.sio.write('签到成功')
             self.getCB()
@@ -31,6 +30,7 @@ class W2PJ:
             self.sio.write('重复签到')
             self.getCB()
         else:
+            print(res.text[:1000])
             self.sio.write('Cookie失效\n')
 
     # 获取 CB
