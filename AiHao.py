@@ -73,7 +73,6 @@ class AiHao:
                 print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
                     self.sio.write('签到存在异常, 请自行查看签到日志\n')
-            print('kdsf')
         return self.sio
 
 if __name__ == '__main__':
