@@ -26,11 +26,11 @@ class W2PJ:
         if '恭喜' in res.text:
             self.sio.write('签到成功')
             self.getCB()
-        elif '已申请过此任务' in res.text:
+        elif '已申请过此任务' in res.text or '不是进行中的任务' in res.text:
             self.sio.write('重复签到')
             self.getCB()
         else:
-            print(res.text[:1000])
+            print(res.text[1500:2000])
             self.sio.write('Cookie失效\n')
 
     # 获取 CB
