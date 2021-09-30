@@ -26,6 +26,8 @@ for name in signList.split(', '):
             else:
                 print(f'{sign[0]} 没有配置文件')
                 all.write(f'{sign[0]} 没有配置文件\n')
+        else:
+            all.write(f'没有 {name} 相关签到\n\n')
     except:
         print(traceback.format_exc())
 else:
