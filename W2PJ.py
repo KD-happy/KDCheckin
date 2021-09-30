@@ -16,7 +16,8 @@ class W2PJ:
 
     # 签到
     def task(self):
-        url = 'https://www.52pojie.cn/home.php?mod=task&do=draw&id=2'
+        # url = 'https://www.52pojie.cn/home.php?mod=task&do=draw&id=2'
+        url = 'https://www.52pojie.cn/home.php?mod=task&do=apply&id=2'
         header = {
             "Referer": "https://www.52pojie.cn",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
