@@ -25,9 +25,9 @@ class CSDN:
         print(data)
         if data['code'] == 200:
             if '用户已签到' in data['data']['msg']:
-                self.sio.write('签到成功')
-            else:
                 self.sio.write('重复签到')
+            else:
+                self.sio.write('签到成功')
             self.goodluck()
         else:
             self.sio.write('Cookie失效\n')
