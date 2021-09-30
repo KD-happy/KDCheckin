@@ -15,6 +15,7 @@ class DuoKan:
         self.Cookies = cookie
         self.check_items = cookie
         self.sio = StringIO()
+        self.can = False
         self.gift_code_list = [
             "d16ad58199c69518a4afd87b5cf0fe67",
             "828672d6bc39ccd25e1f6ad34e00b86c",
@@ -263,7 +264,10 @@ class DuoKan:
                 if one.get("delay") == 1: # 判断是否有可延迟的豆子
                     self.delay(one.get("expire"), cookies=cookies)
             else:
-                if '豆子延期' not in self.sio.getvalue():
+                if self.can:
+                    self.sio.write('豆子延期: 完成\n')
+                    print('豆子延期: 完成')
+                else:
                     self.sio.write('豆子延期: 没有\n')
                     print('豆子延期: 没有')
             return msg
@@ -374,9 +378,8 @@ class DuoKan:
         data = f'date={date}&{self.get_data(cookies=cookies)}&withid=1'
         res = requests.post(url=url, data=data, headers=self.headers, cookies=cookies)
         print(res.json())
-        if res.json().get("result") == 0 and '豆子延期' not in self.sio.getvalue():
-            self.sio.write('豆子延期: 完成\n')
-            print('豆子延期: 完成')
+        if res.json().get("result") == 0:
+            self.can = True
 
     def SignIn(self):
         print("【多看阅读 日志】")
@@ -386,6 +389,7 @@ class DuoKan:
             try:
                 self.name = cookie.get('name')
                 self.cookie = cookie.get('cookie')
+                self.can = False
                 print(f'{self.name} 开始签到...')
                 cookies = {
                     item.split("=")[0]: item.split("=")[1]
