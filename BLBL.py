@@ -4,16 +4,13 @@ cron: 5 6 * * *
 new Env('哔哩哔哩');
 """
 
-"""
-后续会弄: 投币, 直播弹幕, 直播礼物, 分区的使用
-"""
-
 from datetime import date
 import requests, time, re, json, sys, traceback
 from io import StringIO
 from requests.api import head
 
 from requests.models import cookiejar_from_dict
+from requests.sessions import merge_setting
 from KDconfig import getYmlConfig, send
 
 class BLBL:
@@ -158,6 +155,105 @@ class BLBL:
                     break
         print(self.bvid, self.title)
 
+    # 获取牌子亲密度等消息
+    def get_list_in_room(self):
+        url = 'https://api.live.bilibili.com/fans_medal/v1/FansMedal/get_list_in_room'
+        headers = {
+            "cookie": self.cookie,
+            "origin": "https://live.bilibili.com",
+            "referer": "https://live.bilibili.com/",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+        }
+        res = requests.get(url=url, headers=headers).json()
+        if res.get('code') == 0:
+            data_list = [
+                {
+                    "target_name": one.get("target_name"), # 主播名称
+                    "target_id": one.get("target_id"), # 主播id
+                    "medal_name": one.get("medal_name"), # 徽章名称
+                    "room_id": one.get("room_id"), # 房间id
+                    "today_intimacy": one.get("today_intimacy"), # 今日亲密度
+                }
+                for one in res.get("data", {})
+            ]
+        return data_list
+
+    # 发送直播弹幕
+    def send_danmu(self, medal):
+        # medal: json 主播相关消息
+        url = 'https://api.live.bilibili.com/msg/send'
+        data = {
+            "bubble": "0", # 不知道的模式
+            "msg": ".", # 内容
+            "color": "16777215", # 字体颜色 默认普通弹幕 16777215
+            "mode": "1", # 不知道的模式
+            "fontsize": "25", # 字体大小
+            "rnd": str(int(time.time())), # 时间戳
+            "roomid": str(medal.get('room_id')), # 房间号
+            "csrf": self.bili_jct, # cookie 中的bili_jct
+            "csrf_token": self.bili_jct,
+        }
+        headers = {
+            "cookie": self.cookie,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+        }
+        res = requests.post(url=url, data=data, headers=headers).json()
+        print(res)
+        if res.get('code') == 0:
+            return True
+        else:
+            return False
+
+    # 获得背包中礼物
+    def bag_list(self):
+        url = 'https://api.live.bilibili.com/xlive/web-room/v1/gift/bag_list'
+        headers = {
+            "cookie": self.cookie,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+        }
+        res = requests.get(url=url, headers=headers).json()
+        data_list = []
+        if res.get('code') == 0:
+            data_list = [
+                {
+                    "bag_id": one.get("bag_id"), # 礼物再礼物栏中的id
+                    "gift_id": one.get("gift_id"), # 礼物的id
+                    "gift_name": one.get("gift_name"), # 礼物名称
+                    "gift_num": one.get("gift_num"), # 礼物数量
+                    "corner_mark": one.get("corner_mark"), # 礼物下标, 显示到期时间 
+                }
+                for one in res.get("data", {}).get('list', [])
+            ]
+        return data_list
+
+    # 送礼物
+    def sendBag(self, bag, gift_num, medal):
+        # bag: json 礼物列表, gitf_num: int 礼物个数, medal: json 主播相关信息
+        url = 'https://api.live.bilibili.com/xlive/revenue/v1/gift/sendBag'
+        data = {
+            "uid": str(self.mid), # 用户的id
+            "gift_id": str(bag.get('gift_id')), # 礼物的id
+            "ruid": str(medal.get('target_id')), # 主播的id
+            "send_ruid": "0", # 不知道
+            "gift_num": str(gift_num), # 礼物数量
+            "bag_id": str(bag.get('bag_id')), # 礼物再礼物栏中的id
+            "platform": "pc", # 送礼端
+            "biz_code": "Live", # 直播状态
+            "biz_id": str(medal.get('room_id')), # 主播直播间id
+            "rnd": str(int(time.time()*1000)), # 时间戳 毫秒级
+            "storm_beat_id": "0", # 不知道
+            "metadata": "", # 不知道
+            "price": "0", # 不知道
+            "csrf_token": self.bili_jct, # cookie 中的bili_jct
+            "csrf": self.bili_jct,
+        }
+        headers = {
+            "cookie": self.cookie,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+        }
+        res = requests.post(url=url, data=data, headers=headers).json()
+        
+
     # 直播签到
     def live_sign(self):
         url = "https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign"
@@ -220,6 +316,16 @@ class BLBL:
                     self.share() # 分享视频
                     time.sleep(1)
                     self.reward() # 获取今日获得经验
+                    dataList = self.get_list_in_room()
+                    for one in dataList:
+                        if one.get('today_intimacy') < 100:
+                            if self.send_danmu(one):
+                                mes = f"弹幕发送: 成功 {one.get('target_name')}"
+                            else:
+                                mes = f"弹幕发送: 失败 {one.get('target_name')}"
+                            print(mes)
+                            self.sio.write(mes+'\n')
+                            time.sleep(1)
             except:
                 self.sio.write(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
