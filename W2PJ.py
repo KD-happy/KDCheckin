@@ -16,21 +16,24 @@ class W2PJ:
 
     # 签到
     def task(self):
-        url = 'https://www.52pojie.cn/home.php?mod=task&do=draw&id=2'
-        header = {
+        session = requests.session()
+        headers = {
             "Referer": "https://www.52pojie.cn",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "Cookie": self.cookie
         }
-        res = requests.get(url, headers=header)
-        if '恭喜' in res.text:
+        session.get(url="https://www.52pojie.cn/home.php?mod=task&do=apply&id=2", headers=headers)
+        resp = session.get(url="https://www.52pojie.cn/home.php?mod=task&do=draw&id=2", headers=headers)
+        content = re.findall(r'<div id="messagetext".*?\n<p>(.*?)</p>', resp.text)[0]
+        print(content)
+        if '恭喜' in resp.text:
             self.sio.write('签到成功')
             self.getCB()
-        elif '已申请过此任务' in res.text or '不是进行中的任务' in res.text:
+        elif '已申请过此任务' in resp.text or '不是进行中的任务' in resp.text:
             self.sio.write('重复签到')
             self.getCB()
         else:
-            print(res.text[1500:2000])
+            print(resp.text[1500:2000])
             self.sio.write('Cookie失效\n')
 
     # 获取 CB
