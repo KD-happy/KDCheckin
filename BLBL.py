@@ -23,22 +23,18 @@ class BLBL:
         self.cookie = ''
         self.bili_jct = ''
         self.title = ''
-        self.bvid = ''
-        self.money0 = 0
-        self.money1 = 0
-        self.current_exp0 = 0
-        self.current_exp1 = 0
-        self.can = True
+        self.aid = ''
+        self.mid = 0
 
     # 获取基本信息
     def nav(self):
-        # uname：名字
-        # mid：用户id
-        # isLogin：判断是否登录
-        # money：硬币
-        # vipType：会员类型
-        # current_exp：经验
-        # bcoin_balance：B币
+        # uname: 名字
+        # mid: 用户id
+        # isLogin: 判断是否登录
+        # money: 硬币
+        # vipType: 会员类型
+        # current_exp: 经验
+        # bcoin_balance: B币
         url = 'https://api.bilibili.com/x/web-interface/nav'
         headers = {
             "cookie": self.cookie,
@@ -46,25 +42,40 @@ class BLBL:
         }
         res = requests.get(url=url, headers=headers)
         data = res.json()
+        self.mid = data.get('mid')
         print(str(data)[:500])
         if data.get('code') != 0:
             self.sio.write(f'{self.name}: Cookie失效\n')
             print(f'{self.name}: Cookie失效')
             return False
-        elif self.can:
-            self.can = False
+        else:
             name = data.get('data', {}).get('uname')
             self.sio.write(f'账号信息: {name}\n')
-            self.money0 = data.get('data', {}).get('money')
-            self.current_exp0 = data.get('data', {}).get('level_info', {}).get('current_exp')
-        else:
-            self.money1 = data.get('data', {}).get('money')
-            self.current_exp1 = data.get('data', {}).get('level_info', {}).get('current_exp')
-            print(f'硬币比: {self.money0}/{self.money1}')
-            self.sio.write(f'硬币比: {self.money0}/{self.money1}\n')
-            print(f'经验比: {self.current_exp0}/{self.current_exp1}')
-            self.sio.write(f'经验比: {self.current_exp0}/{self.current_exp1}\n')
         return True
+
+    # 获得今日获得的经验
+    def reward(self):
+        url = 'https://account.bilibili.com/home/reward'
+        headers = {
+            "cookie": f'DedeUserID={self.mid}; '+self.cookie,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+        }
+        res = requests.get(url=url, headers=headers).json()
+        print(res)
+        if res.get('code') == 0:
+            data = res.get('data', {})
+            login = data.get("login") # 登陆B站
+            watch_av = data.get("watch_av") # 看视频
+            coins_av = data.get("coins_av", 0) # 投币 +10 显示的是获得的经验
+            share_av = data.get("share_av") # 分享视频
+            today_exp = len([one for one in [login, watch_av, share_av] if one]) * 5
+            today_exp += coins_av
+            mes = f'今日经验: {today_exp}'
+        else:
+            mes = '今日经验: 获得失败'
+        print(mes)
+        self.sio.write(mes+'\n')
+        
 
     # *分享视频
     def share(self):
@@ -75,7 +86,7 @@ class BLBL:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
         }
         data = {
-            "bvid": self.bvid,
+            "aid": self.aid,
             "csrf": self.bili_jct
         }
         res = requests.post(url=url, headers=headers, data=data)
@@ -85,16 +96,50 @@ class BLBL:
             print(f'分享任务: 分享《{self.title}》成功')
             return True
         return False
-
+    
     # 获取分区视频的相关消息
     def newlist(self):
-        # ps: 一页显示的视频数, rid: 分区号, 
-        url = 'https://api.bilibili.com/x/web-interface/newlist?rid=20&type=0&pn=3&ps=20'
+        num = 6 # 获取视频数量
+        rid = 1 # 分区号
+        url = "https://api.bilibili.com/x/web-interface/dynamic/region?ps=" + str(num) + "&rid=" + str(rid)
         headers = {
             "cookie": self.cookie,
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
         }
+        res = requests.get(url=url, headers=headers).json()
+        data_list = [
+            {
+                "aid": one.get("aid"),
+                "cid": one.get("cid"),
+                "title": one.get("title"),
+                "owner": one.get("owner", {}).get("name"),
+            }
+            for one in res.get("data", {}).get("archives", [])
+        ]
+        return data_list
     
+    # 看视频
+    def report(self):
+        url = "http://api.bilibili.com/x/v2/history/report"
+        aid_list = self.newlist()
+        aid = aid_list[0].get("aid")
+        cid = aid_list[0].get("cid")
+        title = aid_list[0].get("title")
+        headers = {
+            "cookie": self.cookie,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+        }
+        post_data = {"aid": aid, "cid": cid, "progres": 300, "csrf": self.bili_jct}
+        report_ret = requests.post(url=url, headers=headers, data=post_data).json()
+        self.aid, self.title = aid, title
+        print(report_ret)
+        if report_ret.get("code") == 0:
+            mes = f"观看视频: 观看《{title}》300秒"
+        else:
+            mes = "观看视频: 任务失败"
+        print(mes)
+        self.sio.write(mes+'\n')
+
     # 获取动态的视频
     def dynamic_new(self):
         # 视频动态的获取链接
@@ -163,16 +208,18 @@ class BLBL:
             # self.sio.write(f"{cookie.get('name')}: ")
             self.name = cookie.get('name')
             self.cookie = cookie.get('cookie')
-            self.bili_jct = cookie.get('bili_jct')   
+            self.bili_jct = cookie.get('bili_jct')
             try:
                 if self.nav():
-                    self.live_sign()
+                    self.live_sign() # 直播签到
                     time.sleep(1)
-                    self.manga_sign()
+                    self.manga_sign() # 漫画签到
                     time.sleep(1)
-                    self.dynamic_new()
+                    self.report() # 看视频
                     time.sleep(1)
-                    self.nav()
+                    self.share() # 分享视频
+                    time.sleep(1)
+                    self.reward() # 获取今日获得经验
             except:
                 self.sio.write(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
