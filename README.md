@@ -148,7 +148,7 @@ whyour/qinglong:latest
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 🟢️ |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [🟢](https://github.com/silence4u/lenovo_auto_signin) |
 | [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [🟢️](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) |
-| [AcFun](https://www.acfun.cn/) | 签到、点赞、~~弹幕、香蕉、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
+| [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉~~、分享~~ | cookie | [🟢]([http](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py)) |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 🟢️ |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 🟢 |
 | [企鹅电竞](https://egame.qq.com/) | 签到（后续任务未完成） | cookie | 🟢 |
@@ -156,7 +156,7 @@ whyour/qinglong:latest
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 🟢 |
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 🟢
-| [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频 | cookie | [🟢](https://github.com/Oreomeow/checkinpanel/blob/master/ck_bilibili.py) |
+| [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、发送直播弹幕 | cookie | [🟢](https://github.com/Oreomeow/checkinpanel/blob/master/ck_bilibili.py) |
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告 | cookie | 🟢 |
 
 ## 特别说明
