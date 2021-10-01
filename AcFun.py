@@ -54,11 +54,13 @@ class AcFun:
             "Content-Type": "application/x-www-form-urlencoded",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.70"
         }
-        response = self.session.post(
-            url=url, data=data, headers=headers, verify=False)
+        response = self.session.post(url=url, data=data, headers=headers, verify=False)
+        with open('ww.json', encoding='utf-8', mode='w') as file:
+            file.write(response.text)
         self.contentid = response.json().get("rankList")[0].get("contentId")
         return self.contentid
 
+    # 签到
     def sign(self, cookies):
         url = "https://www.acfun.cn/rest/pc-direct/user/signIn"
         headers = {
@@ -68,36 +70,57 @@ class AcFun:
             url=url, cookies=cookies, headers=headers, verify=False)
         return response.json().get("msg")
 
-    def danmu(self, cookies):
+    # 弹幕 修改版
+    def danmu(self):
         url = "https://www.acfun.cn/rest/pc-direct/new-danmaku/add"
         body = "body=sitoi&color=16777215&id=27259341&mode=1&position=5019&size=25&subChannelId=84&subChannelName=%E4%B8%BB%E6%9C%BA%E5%8D%95%E6%9C%BA&type=douga&videoId=22898696"
-        headers = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.70"
+        data = {
+            'mode': '1',
+            'color': '16777215',
+            'size': '25',
+            'body': '123321',
+            'videoId': '26113662',
+            'position': '2719',
+            'type': 'douga',
+            'id': '31224739',
+            'subChannelId': '1',
+            'subChannelName': '动画',
         }
-        response = self.session.post(url=url, cookies=cookies,
-                                data=body, headers=headers, verify=False)
+        headers = {
+            "cookie": self.cookie,
+            'referer': 'https://www.acfun.cn/',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+        }
+        response = requests.post(url=url, data=data, headers=headers, verify=False)
         if response.json().get("result") == 0:
             msg = "弹幕成功"
         else:
             msg = "弹幕失败"
         return msg
 
-    def throwbanana(self, cookies):
+    # 投蕉 修复版
+    def throwbanana(self):
         url = "https://www.acfun.cn/rest/pc-direct/banana/throwBanana"
-        body = f"count=1&resourceId={self.contentid}&resourceType=2"
-        headers = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.70"
+        data = {
+            "resourceId": self.contentid,
+            "count": "1",
+            "resourceType": "2"
         }
-        response = self.session.post(url=url, cookies=cookies,
-                                data=body, headers=headers, verify=False)
+        headers = {
+            "cookie": self.cookie,
+            'referer': 'https://www.acfun.cn/',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+        }
+        response = self.session.post(url=url, data=data, headers=headers, verify=False)
+        print(self.contentid)
+        print(response.text)
         if response.json().get("result") == 0:
             msg = "香蕉成功"
         else:
             msg = "香蕉失败"
         return msg
 
+    # 点赞
     def like(self, token):
         like_url = "https://api.kuaishouzt.com/rest/zt/interact/add"
         unlike_url = "https://api.kuaishouzt.com/rest/zt/interact/delete"
@@ -117,11 +140,15 @@ class AcFun:
             msg = "点赞失败"
         return msg
 
-    def share(self, cookies):
-        url = "https://api-ipv6.acfunchina.com/rest/app/task/reportTaskAction?taskType=1&market=tencent&product=ACFUN_APP&appMode=0"
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        response = self.session.get(
-            url=url, cookies=cookies, headers=headers, verify=False)
+    # 分享
+    def share(self):
+        url = "https://api-ipv6.app.acfun.cn/rest/app/task/reportTaskAction?taskType=1&market=tencent&product=ACFUN_APP&sys_version=8.0.0&app_version=6.42.0.1119&ftt=K-F-T&boardPlatform=hi3650&sys_name=android&socName=%3A%20HiSilicon%20Kirin%20950&ks_ipv6_cellular=2408%3A8470%3A8a03%3A526d%3A8017%3Acdeb%3A414%3Acbec&appMode=0"
+        headers = {
+            'cookie': self.cookie,
+            'referer': 'https://www.acfun.cn/',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+        }
+        response = requests.get(url=url, headers=headers, verify=False)
         if response.json().get("result") == 0:
             msg = "分享成功"
         else:
@@ -145,15 +172,15 @@ class AcFun:
                 self.get_video()
                 token = self.get_token(cookies)
 
-                sign_msg = self.sign(cookies)
+                sign_msg = self.sign(cookies) # 签到
                 print(sign_msg)
-                like_msg = self.like(token)
+                like_msg = self.like(token) # 点赞
                 print(like_msg)
-                share_msg = self.share(cookies)
+                share_msg = self.share() # 分享 失效
                 print(share_msg)
-                danmu_msg = self.danmu(cookies)
+                danmu_msg = self.danmu() # 弹幕
                 print(danmu_msg)
-                throwbanana_msg = self.throwbanana(cookies)
+                throwbanana_msg = self.throwbanana() # 投香蕉
                 print(throwbanana_msg)
 
                 msg = (
