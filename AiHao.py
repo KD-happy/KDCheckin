@@ -4,7 +4,7 @@ cron: 23 8,13,18 * * *
 new Env('爱好论坛');
 """
 
-import requests, sys, datetime, traceback
+import requests, sys, datetime, traceback, re
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -44,7 +44,8 @@ class AiHao:
         self.data = {'button4': ''}
         res = requests.post(url, headers=headers, data=self.data)
         if '您本月还未打卡' in res.text or '无法获得全勤奖励' in res.text:
-            print('月打卡次数不满足要求')
+            print(re.findall('您本月打卡次数：\d+', res.text)[0])
+            # print('月打卡次数不满足要求')
         else:
             print(res.text)
 
