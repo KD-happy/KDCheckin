@@ -127,6 +127,7 @@ whyour/qinglong:latest
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
+│  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
 │  W2PJ.py             # 吾爱破解
 │
@@ -162,6 +163,7 @@ whyour/qinglong:latest
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告 | cookie | 🟢 |
 | [Tool工具](https://tool.lu/) | 签到 | cookie | 🟢 |
 | [百度贴吧](https://tieba.baidu.com/) | 签到 | cookie | [🟢](https://github.com/Sitoi/dailycheckin) |
+| [什么值得买](https://www.smzdm.com/) | 签到 | cookie | [🟡](https://github.com/Sitoi/dailycheckin) |
 
 ## 特别说明
 
