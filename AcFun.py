@@ -55,8 +55,6 @@ class AcFun:
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.70"
         }
         response = self.session.post(url=url, data=data, headers=headers, verify=False)
-        with open('ww.json', encoding='utf-8', mode='w') as file:
-            file.write(response.text)
         self.contentid = response.json().get("rankList")[0].get("contentId")
         return self.contentid
 
