@@ -27,7 +27,7 @@ class NoteYouDao:
         return res.json().get('q')
 
     def Sign_in(self):
-        print(f'签到前空间: {self.getSpace()//1048576}')
+        print(f'签到前空间: {int(self.getSpace())//1048576}M')
         c = ''
         ad = 0
         headers = {'Cookie': self.cookie}
@@ -46,7 +46,7 @@ class NoteYouDao:
             print(logs)
             if 'reward' in re.text:
                 s = self.getSpace()
-                print(f'签到后空间: {s}')
+                print(f'签到后空间: {int(self.getSpace())//1048576}M')
                 sync = re.json()['rewardSpace'] // 1048576
                 checkin = res.json()['space'] // 1048576
                 space = str(sync + checkin + ad)
