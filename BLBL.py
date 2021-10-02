@@ -24,6 +24,7 @@ class BLBL:
         self.mid = 0
         self.tx = True # 提醒过期礼物
         self.free = True # 送免费礼物
+        self.lt = False # 免费辣条
         self.room_id = '0'
 
     # 获取基本信息
@@ -257,8 +258,10 @@ class BLBL:
         res = requests.post(url=url, data=data, headers=headers).json()
         if res.get('code') == 0:
             print(res.get('data', {}).get('send_tips'))
+            return True
         else:
             print('赠送失败')
+            return False
         
 
     # 直播签到
@@ -314,6 +317,7 @@ class BLBL:
             self.bili_jct = cookie.get('bili_jct')
             self.room_id = cookie.get('room_id', '5294')
             self.free = self.tx = True
+            self.lt = False
             try:
                 if self.nav():
                     self.live_sign() # 直播签到
@@ -327,6 +331,8 @@ class BLBL:
                     self.reward() # 获取今日获得经验
                     dataList = self.get_list_in_room()
                     tosend = {}
+
+                    # 徽章列表直播间 发送弹幕
                     for one in dataList:
                         if str(one.get('room_id')) == self.room_id:
                             tosend = one
@@ -339,20 +345,31 @@ class BLBL:
                             self.sio.write(msg+'\n')
                             time.sleep(1)
                     bagList = self.bag_list()
+
+                    # 获取快过期的礼物 赠送免费礼物
                     for one in bagList:
                         if one.get('gift_name') == '辣条':
-                            self.sendBag(one, one.get('gift_num'), tosend)
-                            if self.free:
-                                self.sio.write('免费礼物: 赠送成功\n')
-                                print('免费礼物: 赠送成功')
-                                self.free = False
-                            time.sleep(1)
-                            continue
-                        if one.get('corner_mark') == '1天':
+                            self.lt = True
+                            if self.sendBag(one, one.get('gift_num'), tosend):
+                                if self.free:
+                                    self.sio.write('免费礼物: 赠送成功\n')
+                                    print('免费礼物: 赠送成功')
+                                    self.free = False
+                                time.sleep(1)
+                                continue
+                        if one.get('corner_mark') == '1天' and one.get('gift_name') != '辣条':
                             if self.tx:
                                 self.sio.write('礼物提醒: 有快过期的礼物\n')
                                 print('礼物提醒: 有快过期的礼物')
                                 self.tx = False
+                    else:
+                        if self.free:
+                            if self.lt:
+                                print('免费礼物: 赠送失败')
+                                self.sio.write('免费礼物: 赠送失败\n')
+                            else:
+                                print('免费礼物: 没有辣条')
+                                self.sio.write('免费礼物: 没有辣条\n')
             except:
                 self.sio.write(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
