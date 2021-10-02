@@ -93,6 +93,15 @@ CSDN:
             # UserName, UserToken, ssxmod_itna
             cookie: ''
 
+# 网易读书
+Du163:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # X-Auth-Token, _xsrf
+            cookie: ''
+
 # 多看阅读
 DuoKan:
     send: 0

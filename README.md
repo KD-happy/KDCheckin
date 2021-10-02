@@ -113,6 +113,7 @@ whyour/qinglong:latest
 │  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
+│  Du163.py            # 网易读书
 │  CSDN.py             # CSDN
 │  Duokan.py           # 多看阅读
 │  Egame.py            # 企鹅电竞
@@ -164,6 +165,7 @@ whyour/qinglong:latest
 | [Tool工具](https://tool.lu/) | 签到 | cookie | 自制 | 🟢 |
 | [百度贴吧](https://tieba.baidu.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 | [什么值得买](https://www.smzdm.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
+| [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) | 🟢 |
 
 ## 特别说明
 
@@ -173,3 +175,4 @@ whyour/qinglong:latest
 4. 可通过指令 `python QianDao.py -h` 查看参数的使用
 5. `--include` : 签到包含什么, 其他的都不包含
 6. `--exclude` : 签到不包含什么, 包含的都是剩余的
+7. `Cookie.yml` 文件中的cookie格式一定要符合条件, 用 `; ` 作为两个变量中间的分隔符
