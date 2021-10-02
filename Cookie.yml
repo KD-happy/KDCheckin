@@ -157,6 +157,14 @@ PTA:
             # PTASession, JSESSIONID
             cookie: ''
 
+ToolLu:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # laravel_session
+            cookie: ''
+
 # 吾爱破解
 W2PJ:
     send: 0
