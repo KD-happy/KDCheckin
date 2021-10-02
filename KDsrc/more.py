@@ -14,6 +14,7 @@ from KDsrc.HLX import HLX
 from KDsrc.Lenovo import Lenovo
 from KDsrc.NoteYouDao import NoteYouDao
 from KDsrc.PTA import PTA
+from KDsrc.ToolLu import ToolLu
 from KDsrc.W2PJ import W2PJ
 
 map = {
@@ -30,5 +31,6 @@ map = {
     "Lenovo": ["联想商城", Lenovo],
     "NoteYouDao": ["有道云笔记", NoteYouDao],
     "PTA": ["PTA", PTA],
+    "ToolLu": ["Tool工具", ToolLu],
     "W2PJ": ["吾爱破解", W2PJ]
 }

@@ -158,6 +158,7 @@ whyour/qinglong:latest
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 🟢
 | [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、发送直播弹幕、送免费辣条、礼物过期提醒 | cookie | [🟢](https://github.com/Oreomeow/checkinpanel/blob/master/ck_bilibili.py) |
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告 | cookie | 🟢 |
+| [Tool工具](https://tool.lu/) | 签到 | cookie | 🟢 |
 
 ## 特别说明
 
