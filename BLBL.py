@@ -70,11 +70,11 @@ class BLBL:
             share_av = data.get("share_av") # 分享视频
             today_exp = len([one for one in [login, watch_av, share_av] if one]) * 5
             today_exp += coins_av
-            mes = f'今日经验: {today_exp}'
+            msg = f'今日经验: {today_exp}'
         else:
-            mes = '今日经验: 获得失败'
-        print(mes)
-        self.sio.write(mes+'\n')
+            msg = '今日经验: 获得失败'
+        print(msg)
+        self.sio.write(msg+'\n')
         
 
     # *分享视频
@@ -134,11 +134,11 @@ class BLBL:
         self.aid, self.title = aid, title
         print(report_ret)
         if report_ret.get("code") == 0:
-            mes = f"观看视频: 观看《{title}》300秒"
+            msg = f"观看视频: 观看《{title}》300秒"
         else:
-            mes = "观看视频: 任务失败"
-        print(mes)
-        self.sio.write(mes+'\n')
+            msg = "观看视频: 任务失败"
+        print(msg)
+        self.sio.write(msg+'\n')
 
     # 获取动态的视频
     def dynamic_new(self):
@@ -332,11 +332,11 @@ class BLBL:
                             tosend = one
                         if one.get('today_intimacy') < 100:
                             if self.send_danmu(one):
-                                mes = f"弹幕发送: 成功 {one.get('target_name')}"
+                                msg = f"弹幕发送: 成功 {one.get('target_name')}"
                             else:
-                                mes = f"弹幕发送: 失败 {one.get('target_name')}"
-                            print(mes)
-                            self.sio.write(mes+'\n')
+                                msg = f"弹幕发送: 失败 {one.get('target_name')}"
+                            print(msg)
+                            self.sio.write(msg+'\n')
                             time.sleep(1)
                     bagList = self.bag_list()
                     for one in bagList:
