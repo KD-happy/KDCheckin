@@ -166,6 +166,14 @@ PTA:
             # PTASession, JSESSIONID
             cookie: ''
 
+# 什么值得买
+SMZDM:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            cookie: ''
+
 # Tool工具
 ToolLu:
     send: 0
