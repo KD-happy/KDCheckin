@@ -108,6 +108,7 @@ whyour/qinglong:latest
 │  AcFun.py            # AcFun
 │  AiHao.py            # 爱好论坛
 │  AZG.py              # 爱助攻
+│  BDTieBa.py          # 百度贴吧
 │  BLBL.py             # 哔哩哔哩
 │  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
@@ -126,6 +127,7 @@ whyour/qinglong:latest
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
+│  ToolLu.py           # Tool工具
 │  W2PJ.py             # 吾爱破解
 │
 ├─KDsrc                # 多文件签到的程序文件夹
@@ -159,6 +161,7 @@ whyour/qinglong:latest
 | [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、发送直播弹幕、送免费辣条、礼物过期提醒 | cookie | [🟢](https://github.com/Oreomeow/checkinpanel/blob/master/ck_bilibili.py) |
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告 | cookie | 🟢 |
 | [Tool工具](https://tool.lu/) | 签到 | cookie | 🟢 |
+| [百度贴吧](https://tieba.baidu.com/) | 签到 | cookie | [🟢](https://github.com/Sitoi/dailycheckin) |
 
 ## 特别说明
 

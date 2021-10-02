@@ -38,6 +38,15 @@ AZG:
             # BvH6_2132_saltkey, BvH6_2132_auth
             cookie: ''
 
+# 百度贴吧
+BDTieBa:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # BDUSS STOKEN
+            cookie: ''
+
 # 哔哩哔哩
 BLBL:
     send: 0
