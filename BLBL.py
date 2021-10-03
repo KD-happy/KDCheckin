@@ -203,10 +203,10 @@ class BLBL:
         }
         res = requests.post(url=url, data=data, headers=headers).json()
         print(res)
-        if res.get('code') == 0:
-            return True
-        else:
+        if res.get('data') == None:
             return False
+        else:
+            return True
 
     # 获得背包中礼物
     def bag_list(self):

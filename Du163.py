@@ -46,7 +46,6 @@ class Du163:
             self.sio.write(f"{cookie.get('name')}: ")
             self.cookie = cookie.get('cookie')
             du163_cookie = {item.split("=")[0]: item.split("=")[1] for item in self.cookie.split("; ")}
-            print(du163_cookie)
             self.xsrf = du163_cookie.get('_xsrf')
             try:
                 self.Sign_in()
