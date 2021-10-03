@@ -138,6 +138,7 @@ whyour/qinglong:latest
 │      more.py         # map变量程序
 │
 └─other
+        bt.sh          # 宝塔一键部署
         ql.sh          # 青龙一键部署
         模板.py         # 模板文件
 ```
