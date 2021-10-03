@@ -146,7 +146,7 @@ whyour/qinglong:latest
 | 名称 | 备注 | 签到方式 | 来源 | 当前状态 |
 | ---- | ---- | ---- | ---- | ---- |
 | [天翼云盘](https://cloud.189.cn/web/main/) | 手机签到+抽奖、天翼云TV端 | cookie | 找不到 + 自制 | 🟢️ |
-| 欢太商城 | 每日签到、浏览商品、分享商品 | cookie | [hwkxk](https://github.com/hwkxk/HeytapTask) | 🟢️ |
+| [欢太商城](https://www.heytap.com/cn/m/ucenter/index) | 每日签到、浏览商品、分享商品 | cookie | [hwkxk](https://github.com/hwkxk/HeytapTask) | 🟢️ |
 | 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [Mashiro2000](https://github.com/Mashiro2000/HeyTapTask) | 🟢️ |
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [luck-ying01](https://github.com/luck-ying01/3floor_sign) | 🟢️ |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 自制 | 🟢️ |
@@ -166,6 +166,7 @@ whyour/qinglong:latest
 | [百度贴吧](https://tieba.baidu.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 | [什么值得买](https://www.smzdm.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
 | [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) | 🟢 |
+| 小米运动 | 刷步数 | 手机号、密码 | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
 
 ## 特别说明
 
