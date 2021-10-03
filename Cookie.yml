@@ -3,6 +3,8 @@ send:
     send: 0
     # 0 只要一个成功就不发送, 1 写了配置的都要发送, 默认0
     all: 0
+    # go-cqhttp http:/****/send_private_msg?user_id=*****
+    gocq: ''
     # https://www.pushplus.plus/
     pushplusToken: ''
     # https://pushplus.hxtrip.com/
