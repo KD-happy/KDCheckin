@@ -212,6 +212,7 @@ W2PJ:
             # htVD_2132_saltkey, htVD_2132_auth
             cookie: ''
 
+# 小米运动
 XMYD:
     send: 0
     cookies:

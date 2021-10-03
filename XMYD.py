@@ -72,8 +72,8 @@ class XMYD:
             # self.sio.write(f"{cookie.get('name')}: ")
             phone = str(cookie.get('phone'))
             password = str(cookie.get('password'))
-            min_step = int(cookie.get('min_step'), 1000)
-            max_step = int(cookie.get('max_step'), 10000)
+            min_step = int(cookie.get('min_step', 1000))
+            max_step = int(cookie.get('max_step', 10000))
             step = str(random.randint(min_step, max_step))
             try:
                 login_token, userid = self.login(phone, password)

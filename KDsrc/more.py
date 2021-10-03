@@ -20,6 +20,7 @@ from KDsrc.PTA import PTA
 from KDsrc.SMZDM import SMZDM
 from KDsrc.ToolLu import ToolLu
 from KDsrc.W2PJ import W2PJ
+from KDsrc.XMYD import XMYD
 
 map = {
     "AcFun": ["AcFun", AcFun],
@@ -40,5 +41,6 @@ map = {
     "PTA": ["PTA", PTA],
     "SMZDM": ["什么值得买", SMZDM],
     "ToolLu": ["Tool工具", ToolLu],
-    "W2PJ": ["吾爱破解", W2PJ]
+    "W2PJ": ["吾爱破解", W2PJ],
+    "XMYD": ["小米运动", XMYD]
 }
