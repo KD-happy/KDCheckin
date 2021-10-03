@@ -21,15 +21,6 @@ def getYmlConfig(yaml_file='Cookie.yml'):
     return dict(config)
 
 # ======================= 自定义推送函数 =============================
-# https://docs.go-cqhttp.org/
-def gocq(title, message, url):
-    url += f'&message={title}\n{message}'
-    res = requests.get(url=url)
-    if '"status":"ok"' in res.text:
-        return True
-    else:
-        return False
-
 # https://www.pushplus.plus/
 def pushplus(title, message, token):
     url = 'http://www.pushplus.plus/send'
@@ -62,9 +53,9 @@ def push(title, message, token):
     else:
         return False
 
-sendList = [gocq, pushplus, push] # 函数名
-sendTokenList = ['gocq', 'pushplusToken', 'push+Token'] # 配置文件中的相关要素
-sendMes = ['gocq', 'pushplus', 'push+'] # 未配置对的提示
+sendList = [pushplus, push] # 函数名
+sendTokenList = ['pushplusToken', 'push+Token'] # 配置文件中的相关要素
+sendMes = ['pushplus', 'push+'] # 未配置对的提示
 
 # =============== 判断函数 和 发送入口 ======================
 
