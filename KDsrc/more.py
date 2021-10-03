@@ -14,6 +14,7 @@ from KDsrc.EnShan import EnShan
 from KDsrc.Heytap import Heytap
 from KDsrc.HLX import HLX
 from KDsrc.Lenovo import Lenovo
+from KDsrc.Music163 import Music163
 from KDsrc.NoteYouDao import NoteYouDao
 from KDsrc.PTA import PTA
 from KDsrc.SMZDM import SMZDM
@@ -34,6 +35,7 @@ map = {
     "Heytap": ["欢太商城", Heytap],
     "HLX": ["葫芦侠", HLX],
     "Lenovo": ["联想商城", Lenovo],
+    "Music163": ["网易云音乐", Music163],
     "NoteYouDao": ["有道云笔记", NoteYouDao],
     "PTA": ["PTA", PTA],
     "SMZDM": ["什么值得买", SMZDM],

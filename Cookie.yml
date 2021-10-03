@@ -157,6 +157,15 @@ Lenovo:
             # laravel_session, cerpreg-passport, XSRF-TOKEN
             cookie: ''
 
+# 网易云音乐
+Music163:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # MUSIC_U
+            cookie: ''
+
 # 有道云笔记
 NoteYouDao:
     send: 0

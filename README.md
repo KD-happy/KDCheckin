@@ -123,6 +123,7 @@ whyour/qinglong:latest
 │  HLX.py              # 葫芦侠
 │  KDconfig.py         # 文件读取、推送
 │  Lenovo.py           # 联想
+│  Music163.py         # 网易云音乐
 │  NoteYouDao.py       # 有道云笔记
 │  PTA.py              # PTA
 │  QianDao.py          # 多文件签到的入口程序
@@ -131,6 +132,7 @@ whyour/qinglong:latest
 │  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
 │  W2PJ.py             # 吾爱破解
+│  XMYD.py             # 小米运动
 │
 ├─KDsrc                # 多文件签到的程序文件夹
 │      more.py         # map变量程序
@@ -167,6 +169,7 @@ whyour/qinglong:latest
 | [什么值得买](https://www.smzdm.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
 | [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) | 🟢 |
 | 小米运动 | 刷步数 | 手机号、密码 | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
+| [网易云音乐](https://music.163.com/) | 签到 | cookie | 自制 | 🟢 |
 
 ## 特别说明
 
