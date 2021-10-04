@@ -25,7 +25,6 @@ class IQIYI:
         """
         用户信息查询
         """
-        time.sleep(3)
         url = "http://serv.vip.iqiyi.com/vipgrowth/query.action"
         params = {"P00001": p00001}
         res = requests.get(url=url, params=params).json()
@@ -211,7 +210,7 @@ class IQIYI:
         )
         msg = "\n".join([f"{one.get('name')}: {one.get('value')}" for one in msg])
         self.sio.write(msg+'\n')
-        print(msg)
+        print(msg+'\n')
 
     def SignIn(self):
         print("【爱奇艺 日志】")

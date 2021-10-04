@@ -132,6 +132,7 @@ whyour/qinglong:latest
 │  requirements.txt    # 导包依赖库
 │  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
+│  VQQ.py              # 腾讯视频
 │  W2PJ.py             # 吾爱破解
 │  Weather.py          # 天气预报
 │  XMYD.py             # 小米运动
@@ -175,6 +176,7 @@ whyour/qinglong:latest
 | [网易云音乐](https://music.163.com/) | 签到 | cookie | 自制 | 🟢 |
 | [天气预报](https://www.qweather.com/) | 每日天气推送、奇怪的知识 | city_id | 自制 | 🟢 |
 | [爱奇艺](https://www.iqiyi.com/) | 签7天奖1天，14天奖2天，28天奖7天；日常任务4成长值；随机成长值；三次抽奖 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
+| [腾讯视频](https://v.qq.com/) | 每日两次腾讯视频签到获取成长值 | cookie、auth_refresh | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 
 ## 特别说明
 

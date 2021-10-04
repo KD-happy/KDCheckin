@@ -156,7 +156,7 @@ IQIYI:
     cookies:
         - user:
             name: ''
-            # P00001, P00002, P00003
+            # P00001, P00002, P00003 最后一个必须加 ;
             cookie: ''
 
 # 联想
@@ -211,6 +211,17 @@ ToolLu:
             name: ''
             # laravel_session
             cookie: ''
+
+# 腾讯视频
+VQQ:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # vqq_vusession, vqq_vuserid, main_login, vqq_openid, vqq_appid, vqq_access_token
+            cookie: ''
+            # 带有 auth_refresh 的URL
+            auth_refresh: ''
 
 # 吾爱破解
 W2PJ:

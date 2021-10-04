@@ -26,8 +26,7 @@ class XMYD:
         app_token = response["token_info"]["app_token"]
         return app_token
 
-    @staticmethod
-    def login(phone, password):
+    def login(self, phone, password):
         url1 = f"https://api-user.huami.com/registrations/+86{phone}/tokens"
         headers = {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
