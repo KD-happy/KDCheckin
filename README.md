@@ -113,14 +113,15 @@ whyour/qinglong:latest
 │  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
-│  Du163.py            # 网易读书
 │  CSDN.py             # CSDN
+│  Du163.py            # 网易读书
 │  Duokan.py           # 多看阅读
 │  Egame.py            # 企鹅电竞
 │  EnShan.py           # 恩山论坛
 │  Heytap.py           # 欢太商城
 │  HeytapSleep.py      # 欢太早睡打卡
 │  HLX.py              # 葫芦侠
+│  IQIYI.py            # 爱奇艺
 │  KDconfig.py         # 文件读取、推送
 │  Lenovo.py           # 联想
 │  Music163.py         # 网易云音乐
@@ -172,7 +173,8 @@ whyour/qinglong:latest
 | [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) | 🟢 |
 | 小米运动 | 刷步数 | 手机号、密码 | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 | [网易云音乐](https://music.163.com/) | 签到 | cookie | 自制 | 🟢 |
-| [天气预报](https://www.qweather.com/) | 每日天气推送 | city_id | 自制 | 🟢 |
+| [天气预报](https://www.qweather.com/) | 每日天气推送、奇怪的知识 | city_id | 自制 | 🟢 |
+| [爱奇艺](https://www.iqiyi.com/) | 签7天奖1天，14天奖2天，28天奖7天；日常任务4成长值；随机成长值；三次抽奖 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 
 ## 特别说明
 

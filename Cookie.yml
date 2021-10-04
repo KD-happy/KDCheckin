@@ -150,6 +150,15 @@ HLX:
             username: ''
             password: ''
 
+# 爱奇艺
+IQIYI:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # P00001, P00002, P00003
+            cookie: ''
+
 # 联想
 Lenovo:
     send: 0
