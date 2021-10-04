@@ -4,7 +4,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao" "" "KD"
+ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather" "" "KD"
 cp -f /ql/repo/KD-happy_KDCheckin/*.py /ql/scripts/KDsrc
 ```
 
@@ -132,6 +132,7 @@ whyour/qinglong:latest
 │  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
 │  W2PJ.py             # 吾爱破解
+│  Weather.py          # 天气预报
 │  XMYD.py             # 小米运动
 │
 ├─KDsrc                # 多文件签到的程序文件夹
@@ -171,6 +172,7 @@ whyour/qinglong:latest
 | [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) | 🟢 |
 | 小米运动 | 刷步数 | 手机号、密码 | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 | [网易云音乐](https://music.163.com/) | 签到 | cookie | 自制 | 🟢 |
+| [天气预报](https://www.qweather.com/) | 每日天气推送 | city_id | 自制 | 🟢 |
 
 ## 特别说明
 
