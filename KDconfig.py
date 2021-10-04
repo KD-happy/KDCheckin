@@ -24,7 +24,7 @@ def getYmlConfig(yaml_file='Cookie.yml'):
 # https://docs.go-cqhttp.org/
 def gocq(title, message, url):
     url += f'&message={message}'
-    res = requests.get(url=url)
+    res = requests.get(url=url, timeout=3)
     if '"status":"ok"' in res.text:
         return True
     else:
