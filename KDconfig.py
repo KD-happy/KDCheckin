@@ -23,7 +23,7 @@ def getYmlConfig(yaml_file='Cookie.yml'):
 # ======================= 自定义推送函数 =============================
 # https://docs.go-cqhttp.org/
 def gocq(title, message, url):
-    url += f'&message={title}\n{message}'
+    url += f'&message={message}'
     res = requests.get(url=url)
     if '"status":"ok"' in res.text:
         return True
