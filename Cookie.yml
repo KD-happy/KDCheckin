@@ -3,7 +3,7 @@ send:
     send: 0
     # 0 只要一个成功就不发送, 1 写了配置的都要发送, 默认0
     all: 0
-    # go-cqhttp http:/****/send_private_msg?user_id=*****
+    # go-cqhttp http://****/send_private_msg?user_id=*****
     gocq: ''
     # https://www.pushplus.plus/
     pushplusToken: ''
@@ -211,6 +211,14 @@ W2PJ:
             name: ''
             # htVD_2132_saltkey, htVD_2132_auth
             cookie: ''
+
+# 天气预报
+Weather:
+    send: 0
+    cookies:
+        - user:
+            # https://where.heweather.com/index.html
+            city_id: ''
 
 # 小米运动
 XMYD:
