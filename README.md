@@ -96,6 +96,22 @@ docker run -dit \
 whyour/qinglong:latest
 ```
 
+创建第二个容器
+```shell
+docker run -dit \
+-v $PWD/config:/ql/config \
+-v $PWD/log:/ql/log \
+-v $PWD/db:/ql/db \
+-v $PWD/scripts:/ql/scripts \
+-v $PWD/jbot:/ql/jbot \
+-v $PWD/repo:/ql/repo \
+-p 5800:5700 \
+--name kd \
+--hostname kd \
+--restart unless-stopped \
+whyour/qinglong:latest
+```
+
 ## 本仓库的文件配合
 
 1. 支持根目录下的所有的签到单独执行
