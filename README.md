@@ -32,6 +32,8 @@ exit
 
 **1.安装 docer**
 
+[可以看一下](https://zhuanlan.zhihu.com/p/387337954)
+
 更新 yum, 确保 yum 包更新到最新
 ``` shell
 sudo yum update
@@ -44,9 +46,9 @@ yum install -y yum-utils
 
 安装docker-ce的yum源:
 ```shell
-yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/   linux/centos/docker-ce.repo
+yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
-
+[可以看一下](https://blog.csdn.net/weixin_46152207/article/details/111354882)
 安装docker-ce
 ```shell
 dnf install docker-ce
