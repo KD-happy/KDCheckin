@@ -340,7 +340,10 @@ class BLBL:
                             if self.send_danmu(one):
                                 msg = f"弹幕发送: 成功 {one.get('target_name')}"
                             else:
-                                msg = f"弹幕发送: 失败 {one.get('target_name')}"
+                                if self.send_danmu(one):
+                                    msg = f"弹幕发送: 成功 {one.get('target_name')}"
+                                else:
+                                    msg = f"弹幕发送: 失败 {one.get('target_name')}"
                             print(msg)
                             self.sio.write(msg+'\n')
                             time.sleep(1)
