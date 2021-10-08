@@ -177,6 +177,14 @@ Music163:
             # MUSIC_U
             cookie: ''
 
+# 每天新闻
+News:
+    send: 0
+    cookies:
+        - user:
+            # https://cloud.189.cn/ip/getIp.do 可不填
+            ip: ''
+
 # 有道云笔记
 NoteYouDao:
     send: 0

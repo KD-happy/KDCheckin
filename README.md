@@ -143,6 +143,7 @@ whyour/qinglong:latest
 │  KDconfig.py         # 文件读取、推送
 │  Lenovo.py           # 联想
 │  Music163.py         # 网易云音乐
+│  News.py             # 每日新闻
 │  NoteYouDao.py       # 有道云笔记
 │  PTA.py              # PTA
 │  QianDao.py          # 多文件签到的入口程序
@@ -195,6 +196,7 @@ whyour/qinglong:latest
 | [天气预报](https://www.qweather.com/) | 每日天气推送、奇怪的知识 | city_id | 自制 | 🟢 |
 | [爱奇艺](https://www.iqiyi.com/) | 签7天奖1天，14天奖2天，28天奖7天；日常任务4成长值；随机成长值；三次抽奖 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
 | [腾讯视频](https://v.qq.com/) | 每日两次腾讯视频签到获取成长值 | cookie、auth_refresh | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
+| 每日新闻 | 每日新闻、历史上的今天 | ip（可无） | 自制 | 🟢 |
 
 ## 特别说明
 
