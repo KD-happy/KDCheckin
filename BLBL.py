@@ -188,7 +188,7 @@ class BLBL:
         url = 'https://api.live.bilibili.com/msg/send'
         data = {
             "bubble": "0", # 不知道的模式
-            "msg": ".", # 内容
+            "msg": "打卡", # 内容
             "color": "16777215", # 字体颜色 默认普通弹幕 16777215
             "mode": "1", # 不知道的模式
             "fontsize": "25", # 字体大小
@@ -340,6 +340,7 @@ class BLBL:
                             if self.send_danmu(one):
                                 msg = f"弹幕发送: 成功 {one.get('target_name')}"
                             else:
+                                time.sleep(1)
                                 if self.send_danmu(one):
                                     msg = f"弹幕发送: 成功 {one.get('target_name')}"
                                 else:
