@@ -4,7 +4,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather" "" "KD"
+ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather|News|Egame" "" "KD"
 cp -f /ql/repo/KD-happy_KDCheckin/*.py /ql/scripts/KDsrc
 ```
 
@@ -180,7 +180,7 @@ whyour/qinglong:latest
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Oreomeow](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py) + 自制修改 | 🟢 |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🟢 |
-| [企鹅电竞](https://egame.qq.com/) | 签到（后续任务未完成） | cookie | 自制 | 🟢 |
+| [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）（后续任务未完成） | cookie | 自制 | 🟢 |
 | [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🟢 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 自制 | 🟢 |
@@ -196,7 +196,7 @@ whyour/qinglong:latest
 | [天气预报](https://www.qweather.com/) | 每日天气推送、奇怪的知识 | city_id | 自制 | 🟢 |
 | [爱奇艺](https://www.iqiyi.com/) | 签7天奖1天，14天奖2天，28天奖7天；日常任务4成长值；随机成长值；三次抽奖 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
 | [腾讯视频](https://v.qq.com/) | 每日两次腾讯视频签到获取成长值 | cookie、auth_refresh | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
-| 每日新闻 | 每日新闻、历史上的今天 | ip（可无） | 自制 | 🟢 |
+| 每日新闻 | 每日新闻、历史上的今天 | ip（可无） | [自制](http://icheer.me/201910/1099/) | 🟢 |
 
 ## 特别说明
 

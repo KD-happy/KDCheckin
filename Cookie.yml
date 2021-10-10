@@ -121,6 +121,8 @@ Egame:
             name: ''
             # pgg_type, pgg_openid, pgg_appid, pgg_access_token
             cookie: ''
+            # 疯狂打卡报名
+            sign: ''
 
 # 恩山论坛
 EnShan:

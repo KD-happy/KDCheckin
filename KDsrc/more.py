@@ -23,6 +23,7 @@ from KDsrc.NoteYouDao import NoteYouDao
 from KDsrc.PTA import PTA
 from KDsrc.SMZDM import SMZDM
 from KDsrc.ToolLu import ToolLu
+from KDsrc.VQQ import VQQ
 from KDsrc.W2PJ import W2PJ
 from KDsrc.Weather import Weather
 from KDsrc.XMYD import XMYD
@@ -50,6 +51,7 @@ map = {
     "PTA": ["PTA", PTA],
     "SMZDM": ["什么值得买", SMZDM],
     "ToolLu": ["Tool工具", ToolLu],
+    "VQQ": ["腾讯视频", VQQ],
     "W2PJ": ["吾爱破解", W2PJ],
     "Weather": ["天气预报", Weather],
     "XMYD": ["小米运动", XMYD]
