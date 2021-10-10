@@ -47,7 +47,7 @@ for name in task_list:
                 print(sio.getvalue())
                 all.write(sio.getvalue() + '\n')
             else:
-                print(f'{sign[0]} 没有配置文件')
+                print(f'{sign[0]} 没有配置文件\n')
                 all.write(f'{sign[0]} 没有配置文件\n\n')
         else:
             all.write(f'没有 {name} 相关签到\n\n')
@@ -55,11 +55,9 @@ for name in task_list:
         print(traceback.format_exc())
 else:
     if len(task_list) == 0:
-        all.write('无签到\n\n\n')
-    else:
-        all.write('\n')
-print(all.getvalue().replace('\n\n\n', ''))
-send('每日签到', all.getvalue().replace('\n\n\n', ''))
+        all.write('无签到')
+print(all.getvalue())
+send('每日签到', all.getvalue())
 
 
 # for name, sign in map.items():

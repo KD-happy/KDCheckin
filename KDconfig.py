@@ -87,6 +87,10 @@ def send(title, message):
     else:
         print('配置文件有问题')
         return
+    no = -1
+    while(message[no] == '\n'):
+        no -= 1
+    message = message[0:no]
     for i in range(len(sendList)):
         try:
             if pd(send, i) and sendList[i](title, message, send[sendTokenList[i]]):
