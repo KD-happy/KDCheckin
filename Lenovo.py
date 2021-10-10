@@ -3,7 +3,7 @@ cron: 2 6 * * *
 new Env('联想商城');
 """
 
-import requests, sys, re, traceback
+import requests, sys, re, traceback, time
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -52,7 +52,16 @@ class Lenovo:
                     'cookie': self.cookie,
                 }
                 res = requests.get('https://club.lenovo.com.cn/signlist/', headers=headers)
-                self.token = re.findall('\$CONFIG\.token = "(.*)";', res.text)[0]
+                test = re.findall('\$CONFIG\.token = "(.*)";', res.text)
+                if test == []:
+                    print('第二次尝试\n')
+                    time.sleep(2)
+                    res = requests.get('https://club.lenovo.com.cn/signlist/', headers=headers)
+                    test = re.findall('\$CONFIG\.token = "(.*)";', res.text)
+                if test == []:
+                    self.token = ''
+                else:
+                    self.token = test[0]
                 print(self.token)
                 if self.token == '':
                     self.sio.write('Cookie失效\n')
