@@ -26,8 +26,10 @@ class Egame:
             "cookie": self.cookie
         }
         res = requests.post(url=url, data=data, headers=headers)
-        print(res.text)
+        # print(res.text)
         retMsg = res.json().get('data', {}).get('0', {}).get('retMsg', '')
+        if '余额不足' in retMsg:
+            retMsg = '失败, 余额不足'
         print(f'报名-{act_title}: {retMsg}')
         self.sio.write(f'报名-{act_title}: {retMsg}\n')
     
@@ -43,7 +45,7 @@ class Egame:
             "cookie": self.cookie
         }
         res = requests.post(url=url, data=data, headers=headers)
-        print(res.text)
+        # print(res.text)
         retMsg = res.json().get('data', {}).get('0', {}).get('retMsg', '')
         print(f'打卡-{act_title}: {retMsg}')
         self.sio.write(f'打卡-{act_title}: {retMsg}\n')
@@ -61,7 +63,7 @@ class Egame:
                 'app_info': '{"platform":4,"terminal_type":4,"version_code":"","version_name":"undefined","pvid":"907134976","ssid":"855127040","imei":"0","qimei":"0"}',
             }
             res = requests.post(url=url, data=data, headers=headers).json()
-            print(str(res))
+            # print(str(res))
             if res.get('uid') == 0:
                 print('Cookie失效 退出报名打卡')
                 return
@@ -107,6 +109,10 @@ class Egame:
             'app_info': '{"platform":4,"terminal_type":2,"egame_id":"egame_official","imei":"","version_code":"9.9.9.9","version_name":"9.9.9.9","ext_info":{"_qedj_t":"","ALG-flag_type":"","ALG-flag_pos":""},"pvid":"344111513621080422"}'
         }
         res = requests.get(url=url, headers=headers, params=params).json()
+        hour = datetime.datetime.now().hour
+        if hour in [12, 13, 18, 19, 20]:
+            time.sleep(1)
+            res = requests.get(url=url, headers=headers, params=params).json()
         if res.get('uid') == 0:
             print('Cookie失效')
         else:
