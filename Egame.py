@@ -71,8 +71,8 @@ class Egame:
                 data = res.get('data', {}).get('0', {}).get('retBody', {}).get('data', {})
                 prev = data.get('prev', {})
                 curr = data.get('curr', {})
-                if prev.get('join_status', 0) != 0 and datetime.datetime.now().hour == 8: # 0: 未报名, 1: 报名?, 2: 要打卡? ,3: 打卡了?
-                    print(f'打卡 加入状态:{prev.get("join_status")} 标题:{prev.get("act_title")} 时间戳:{prev.get("signup_ts")} 类型:{prev.get("class_type")}')
+                if prev.get('join_status', 0) == 1 and datetime.datetime.now().hour == 8: # 0: 未报名, 1: 报名?, 2: 要打卡? ,3: 打卡了?
+                    print(f'打卡 加入状态:{prev.get("join_status")} 标题:{prev.get("act_title")} 类型:{prev.get("class_type")}')
                     time.sleep(1)
                     self.attendance_mark(prev.get("signup_ts"), prev.get("class_type"), prev.get("act_title"))
                 else:
@@ -83,7 +83,7 @@ class Egame:
                     self.attendance_sign_up(prev.get("class_type"), prev.get("act_title"))
 
     # 领取奖励
-    def taskGift(self, id, award_desc):
+    def taskGift(self, id, award_desc, title):
         url = 'https://game.egame.qq.com/cgi-bin/pgg_async_fcgi'
         headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
@@ -95,7 +95,10 @@ class Egame:
         }
         res = requests.get(url=url, headers=headers, params=params).json()
         if res['data']['key']['retBody']['message'] == '成功': # 奖励已领取
-            self.sio.write(f'{award_desc} 领取成功')
+            print(f'{award_desc} 领取成功')
+            self.sio.write(f'{title} 完成\n')
+        else:
+            print(res['data']['key']['retBody']['message'])
 
     # 任务列表
     def taskList(self):
@@ -114,7 +117,7 @@ class Egame:
             time.sleep(1)
             res = requests.get(url=url, headers=headers, params=params).json()
         if res.get('uid') == 0:
-            print('Cookie失效')
+            print('Cookie失效 退出任务奖励领取')
         else:
             data = res.get('data', {}).get('key', {}).get('retBody', {}).get('data', {})
             task_list = data.get('task_list', [])
@@ -122,11 +125,11 @@ class Egame:
             for i in task_list:
                 if i.get('percent', 0) == 100 and i.get('acquired') == 0:
                     print(i.get('title') + ': 任务已完成, 开始领取奖励...')
-                    self.taskGift(i.get('id'), i.get('gift', {}).get('award_desc'))
+                    self.taskGift(i.get('id'), i.get('gift', {}).get('award_desc'), i.get('title'))
             for i in user_tab_tasks:
                 if i.get('percent', 0) == 100 and i.get('acquired') == 0:
                     print(i.get('title') + ': 任务已完成, 开始领取奖励...')
-                    self.taskGift(i.get('id'), i.get('gift', {}).get('award_desc'))
+                    self.taskGift(i.get('id'), i.get('gift', {}).get('award_desc'), i.get('title'))
 
     # 签到
     def signin(self):
