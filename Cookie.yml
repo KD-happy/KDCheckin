@@ -58,8 +58,8 @@ BLBL:
             # SESSDATA
             cookie: ''
             bili_jct: ''
-            # 徽章列表中想投喂的主播房间号 送免费的辣条
-            room_id: ''
+            # 主播的ID 送免费的辣条
+            mid: ''
 
 # CCAVA
 CCAVA:

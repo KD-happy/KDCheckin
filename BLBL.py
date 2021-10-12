@@ -22,6 +22,7 @@ class BLBL:
         self.title = ''
         self.aid = ''
         self.mid = 0
+        self.mID = 0
         self.tx = True # 提醒过期礼物
         self.free = True # 送免费礼物
         self.lt = False # 免费辣条
@@ -65,10 +66,10 @@ class BLBL:
         print(res)
         if res.get('code') == 0:
             data = res.get('data', {})
-            login = data.get("login") # 登陆B站
-            watch_av = data.get("watch_av") # 看视频
+            login = data.get("login")          # 登陆B站
+            watch_av = data.get("watch_av")    # 看视频
             coins_av = data.get("coins_av", 0) # 投币 +10 显示的是获得的经验
-            share_av = data.get("share_av") # 分享视频
+            share_av = data.get("share_av")    # 分享视频
             today_exp = len([one for one in [login, watch_av, share_av] if one]) * 5
             today_exp += coins_av
             msg = f'今日经验: {today_exp}'
@@ -147,7 +148,7 @@ class BLBL:
         url = 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_new?type_list=8'
         headers = {
             "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         }
         res = requests.get(url=url, headers=headers)
         data = res.json()
@@ -199,7 +200,7 @@ class BLBL:
         }
         headers = {
             "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         }
         res = requests.post(url=url, data=data, headers=headers).json()
         print(res)
@@ -213,17 +214,19 @@ class BLBL:
         url = 'https://api.live.bilibili.com/xlive/web-room/v1/gift/bag_list'
         headers = {
             "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         }
         res = requests.get(url=url, headers=headers).json()
         data_list = []
         if res.get('code') == 0:
+            if res.get('data', {}).get('list') == None:
+                return data_list
             data_list = [
                 {
-                    "bag_id": one.get("bag_id"), # 礼物再礼物栏中的id
-                    "gift_id": one.get("gift_id"), # 礼物的id
-                    "gift_name": one.get("gift_name"), # 礼物名称
-                    "gift_num": one.get("gift_num"), # 礼物数量
+                    "bag_id": one.get("bag_id"),           # 礼物再礼物栏中的id
+                    "gift_id": one.get("gift_id"),         # 礼物的id
+                    "gift_name": one.get("gift_name"),     # 礼物名称
+                    "gift_num": one.get("gift_num"),       # 礼物数量
                     "corner_mark": one.get("corner_mark"), # 礼物下标, 显示到期时间 
                 }
                 for one in res.get("data", {}).get('list', [])
@@ -231,29 +234,34 @@ class BLBL:
         return data_list
 
     # 送礼物
-    def sendBag(self, bag, gift_num, medal):
-        # bag: json 礼物列表, gitf_num: int 礼物个数, medal: json 主播相关信息
+    def sendBag(self, bag, gift_num):
+        # bag: json 礼物列表, gitf_num: int 礼物个数
+        headers = {
+            "cookie": self.cookie,
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+        }
+        # 获取主播的相关消息
+        res = requests.get(url=f'https://api.bilibili.com/x/space/acc/info?mid={self.mID}', headers=headers).json()
+        if res.get('code') != 0:
+            self.sio.write('主播ID错误\n')
+            return
         url = 'https://api.live.bilibili.com/xlive/revenue/v1/gift/sendBag'
         data = {
             "uid": str(self.mid), # 用户的id
             "gift_id": str(bag.get('gift_id')), # 礼物的id
-            "ruid": str(medal.get('target_id')), # 主播的id
+            "ruid": str(self.mID), # 主播的id
             "send_ruid": "0", # 不知道
             "gift_num": str(gift_num), # 礼物数量
             "bag_id": str(bag.get('bag_id')), # 礼物再礼物栏中的id
             "platform": "pc", # 送礼端
             "biz_code": "Live", # 直播状态
-            "biz_id": str(medal.get('room_id')), # 主播直播间id
+            "biz_id": str(res.get('data', {}).get('live_room', {}).get('roomid')), # 主播直播间id
             "rnd": str(int(time.time()*1000)), # 时间戳 毫秒级
             "storm_beat_id": "0", # 不知道
             "metadata": "", # 不知道
             "price": "0", # 不知道
             "csrf_token": self.bili_jct, # cookie 中的bili_jct
             "csrf": self.bili_jct,
-        }
-        headers = {
-            "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
         }
         res = requests.post(url=url, data=data, headers=headers).json()
         if res.get('code') == 0:
@@ -262,14 +270,13 @@ class BLBL:
         else:
             print('赠送失败')
             return False
-        
 
     # 直播签到
     def live_sign(self):
         url = "https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign"
         headers = {
             "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         }
         res = requests.get(url=url, headers=headers)
         data = res.json()
@@ -291,7 +298,7 @@ class BLBL:
         data = {"platform": "android"}
         headers = {
             "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36    ",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         }
         res = requests.post(url=url, headers=headers, data=data)
         data = res.json()
@@ -315,7 +322,7 @@ class BLBL:
             self.name = cookie.get('name')
             self.cookie = cookie.get('cookie')
             self.bili_jct = cookie.get('bili_jct')
-            self.room_id = cookie.get('room_id', '5294')
+            self.mID = cookie.get('mid', '271952780')
             self.free = self.tx = True
             self.lt = False
             try:
@@ -329,13 +336,11 @@ class BLBL:
                     self.share() # 分享视频
                     time.sleep(1)
                     self.reward() # 获取今日获得经验
-                    dataList = self.get_list_in_room()
-                    tosend = {}
+                    time.sleep(1)
+                    dataList = self.get_list_in_room() # 获得勋章列表
 
                     # 徽章列表直播间 发送弹幕
                     for one in dataList:
-                        if str(one.get('room_id')) == self.room_id:
-                            tosend = one
                         if one.get('today_intimacy') < 100:
                             if self.send_danmu(one):
                                 msg = f"弹幕发送: 成功 {one.get('target_name')}"
@@ -354,14 +359,14 @@ class BLBL:
                     for one in bagList:
                         if one.get('gift_name') == '辣条':
                             self.lt = True
-                            if self.sendBag(one, one.get('gift_num'), tosend):
+                            if self.sendBag(one, one.get('gift_num')):
                                 if self.free:
                                     self.sio.write('免费礼物: 赠送成功\n')
                                     print('免费礼物: 赠送成功')
                                     self.free = False
                                 time.sleep(1)
                                 continue
-                        if one.get('corner_mark') == '1天' and one.get('gift_name') != '辣条':
+                        if one.get('corner_mark') in ['1天', '2天'] and one.get('gift_name') != '辣条':
                             if self.tx:
                                 self.sio.write('礼物提醒: 有快过期的礼物\n')
                                 print('礼物提醒: 有快过期的礼物')
@@ -375,7 +380,7 @@ class BLBL:
                                 print('免费礼物: 没有辣条')
                                 self.sio.write('免费礼物: 没有辣条\n')
             except:
-                self.sio.write(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
                     self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
