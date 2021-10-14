@@ -170,6 +170,15 @@ Lenovo:
             # laravel_session, cerpreg-passport, XSRF-TOKEN
             cookie: ''
 
+# 乐同步
+LenovoLTB:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # GSESSIONID 或 lpsust
+            cookie: ''
+
 # 网易云音乐
 Music163:
     send: 0

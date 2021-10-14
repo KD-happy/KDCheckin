@@ -18,6 +18,7 @@ from KDsrc.HeytapSleep import HeytapSleep
 from KDsrc.HLX import HLX
 from KDsrc.IQIYI import IQIYI
 from KDsrc.Lenovo import Lenovo
+from KDsrc.LenovoLTB import LenovoLTB
 from KDsrc.Music163 import Music163
 from KDsrc.NoteYouDao import NoteYouDao
 from KDsrc.PTA import PTA
@@ -46,6 +47,7 @@ map = {
     "HLX": ["葫芦侠", HLX],
     "IQIYI": ["爱奇艺", IQIYI],
     "Lenovo": ["联想商城", Lenovo],
+    "LenovoLTB": ["乐同步", LenovoLTB],
     "Music163": ["网易云音乐", Music163],
     "NoteYouDao": ["有道云笔记", NoteYouDao],
     "PTA": ["PTA", PTA],
