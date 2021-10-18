@@ -43,7 +43,7 @@ class LenovoLTB:
             if 'lastspaceadd' in res.text:
                 msg = f'今日以获{data.get("lastspaceadd")}M, 总空间{self.totalSize}M'
             else:
-                msg = f'获得{data.get("spaceadd")}M, 总空间{self.totalSize}M'
+                msg = f'获得{data.get("spaceadd")}M, 总空间{self.totalSize + data.get("spaceadd")}M'
             self.sio.write(msg+'\n')
             print(msg)
 

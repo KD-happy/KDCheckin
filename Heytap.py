@@ -3,6 +3,7 @@ cron: 10 6 * * *
 new Env('欢太签到')
 """
 
+from random import randint
 import requests, time, traceback, sys
 from io import StringIO
 from KDconfig import getYmlConfig, send
@@ -192,14 +193,14 @@ class Heytap:
                 if data['name'] == '浏览商品':
                     qd = data
             if qd['completeStatus'] == 0:
-                shopList = self.session.get('https://msec.opposhop.cn/goods/v1/SeckillRound/goods/115?pageSize=10&currentPage=1')
+                shopList = self.session.get('https://msec.opposhop.cn/goods/v1/SeckillRound/goods/115?pageSize=12&currentPage=1')
                 res = shopList.json()
                 if res['meta']['code'] == 200:
                     for skuinfo in res['detail']:
                         skuid = skuinfo['skuid']
                         print('正在浏览商品ID：', skuid)
                         self.session.get('https://msec.opposhop.cn/goods/v1/info/sku?skuId='+ str(skuid), headers=headers)
-                        time.sleep(5)
+                        time.sleep(randint(1, 5))
                         
                     res2 = self.cashingCredits(qd['marking'],qd['type'],qd['credits'])
                     if res2 == True:
