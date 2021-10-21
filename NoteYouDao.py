@@ -36,20 +36,25 @@ class NoteYouDao:
             c += key + '=' + value + ';'
         headers = {'Cookie': c}
         re = requests.post("https://note.youdao.com/yws/api/daupromotion?method=sync", headers=headers)
+        print(re.text)
         if 'error' not in re.text:
             res = requests.post("https://note.youdao.com/yws/mapi/user?method=checkin", headers=headers)
+            print(res.text)
+            time.sleep(1)
+            res2 = requests.post("https://note.youdao.com/yws/mapi/user?method=checkin", headers=headers, data={'device_type':'android'})
+            print(res2.text)
             for _ in range(3):
                 resp = requests.post("https://note.youdao.com/yws/mapi/user?method=adRandomPrompt", headers=headers)
                 ad += resp.json()['space'] // 1048576
                 time.sleep(2)
-            logs = re.text +"\n"+ res.text +"\n"+ resp.text
-            print(logs)
+            print(resp.text)
             if 'reward' in re.text:
                 s = self.getSpace()
                 print(f'签到后空间: {int(self.getSpace())//1048576}M')
                 sync = re.json()['rewardSpace'] // 1048576
                 checkin = res.json()['space'] // 1048576
-                space = str(sync + checkin + ad)
+                checkin2 = res2.json()['space'] // 1048576
+                space = str(sync + checkin + checkin2 + ad)
                 message = f'获得空间{space}M, 总空间{int(s)//1048576}M'
         else:
             message = "Cookie失效"
