@@ -9,6 +9,11 @@ send:
     pushplusToken: ''
     # https://pushplus.hxtrip.com/
     push+Token: ''
+    dingToken:
+        # 钉钉的 Webhook 地址中的access_token
+        access_token: ''
+        # 钉钉的加密密钥 没有可不填
+        secret: ''
 
 # 签到列表
 signList: ''
@@ -258,6 +263,14 @@ Weather:
         - user:
             # https://where.heweather.com/index.html
             city_id: ''
+
+# WPS
+WPS:
+    send: 0
+    cookies:
+        - user:
+            # wps_sid
+            cookie: ''
 
 # 小米运动
 XMYD:

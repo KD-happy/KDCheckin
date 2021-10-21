@@ -1,4 +1,5 @@
 import yaml, os, requests, json
+import time, hmac, hashlib,  base64, urllib.parse
 
 def getYmlConfig(yaml_file='Cookie.yml'):
     ql_file = '/ql/config/env.sh'
@@ -62,9 +63,43 @@ def push(title, message, token):
     else:
         return False
 
-sendList = [gocq, pushplus, push] # 函数名
-sendTokenList = ['gocq', 'pushplusToken', 'push+Token'] # 配置文件中的相关要素
-sendMes = ['gocq', 'pushplus', 'push+'] # 未配置对的提示
+def ding(title, message, token):
+    url = 'https://oapi.dingtalk.com/robot/send'
+    params = {
+        'access_token': token.get('access_token')
+    }
+    if token.get('secret') != '':
+        timestamp = str(round(time.time() * 1000))
+        secret = token.get('secret')
+        secret_enc = secret.encode('utf-8')
+        string_to_sign = '{}\n{}'.format(timestamp, secret)
+        string_to_sign_enc = string_to_sign.encode('utf-8')
+        hmac_code = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
+        sign = urllib.parse.quote_plus(base64.b64encode(hmac_code))
+        params['sign'] = sign
+        params['timestamp'] = timestamp
+    data = {
+        "msgtype": "markdown",
+        "markdown": {
+            "title": title,
+            "text": message.replace('\n', '\n\n')
+        }
+    }
+    headers = {
+        'Content-Type': 'application/json;charset=utf-8'
+    }
+    res = requests.post(url=url, headers=headers, json=data, params=params)
+    res.encoding = 'utf-8'
+    res = res.json()
+    print(res)
+    if res['errmsg'] == 'ok':
+        return True
+    else:
+        return False
+
+sendList = [gocq, pushplus, push, ding] # 函数名
+sendTokenList = ['gocq', 'pushplusToken', 'push+Token', 'dingToken'] # 配置文件中的相关要素
+sendMes = ['gocq', 'pushplus', 'push+', 'ding'] # 未配置对的提示
 
 # =============== 判断函数 和 发送入口 ======================
 
@@ -91,13 +126,14 @@ def send(title, message):
         message = message[0:-1]
     for i in range(len(sendList)):
         try:
-            if pd(send, i) and sendList[i](title, message, send[sendTokenList[i]]):
-                print(f'{sendMes[i]} 推送完成')
-                if send.get('all') == None:
-                    return
-                if send['all'] == 0:
-                    return
-            else:
-                print(f'{sendMes[i]} 推送失败')
+            if pd(send, i):
+                if sendList[i](title, message, send[sendTokenList[i]]):
+                    print(f'{sendMes[i]} 推送完成')
+                    if send.get('all') == None:
+                        return
+                    if send['all'] == 0:
+                        return
+                else:
+                    print(f'{sendMes[i]} 推送失败, 查看一下配置文件')
         except Exception as e:
             print('异常: ' + e)
