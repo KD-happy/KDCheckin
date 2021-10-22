@@ -154,6 +154,7 @@ whyour/qinglong:latest
 │  VQQ.py              # 腾讯视频
 │  W2PJ.py             # 吾爱破解
 │  Weather.py          # 天气预报
+│  WPS.py              # WPS签到
 │  XMYD.py             # 小米运动
 │
 ├─KDsrc                # 多文件签到的程序文件夹
@@ -198,6 +199,7 @@ whyour/qinglong:latest
 | [腾讯视频](https://v.qq.com/) | 每日两次腾讯视频签到获取成长值 | cookie、auth_refresh | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
 | 每日新闻 | 每日新闻、历史上的今天 | ip（可无） | [自制](http://icheer.me/201910/1099/) | 🟢 |
 | [乐同步](https://pim.lenovo.com/contact/contact/portal/home.html) | 每日签到 | cookie | 自制 | 🟢 |
+| [WPS签到](https://vip.wps.cn/) | 签到领空间和积分 | cookie | 自制 | 🟡 |
 
 ## 特别说明
 

@@ -27,6 +27,7 @@ from KDsrc.ToolLu import ToolLu
 from KDsrc.VQQ import VQQ
 from KDsrc.W2PJ import W2PJ
 from KDsrc.Weather import Weather
+from KDsrc.WPS import WPS
 from KDsrc.XMYD import XMYD
 
 map = {
@@ -56,5 +57,6 @@ map = {
     "VQQ": ["腾讯视频", VQQ],
     "W2PJ": ["吾爱破解", W2PJ],
     "Weather": ["天气预报", Weather],
+    "WPS": ["WPS签到", WPS],
     "XMYD": ["小米运动", XMYD]
 }
