@@ -64,8 +64,7 @@ class AcFun:
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.70"
         }
-        response = self.session.post(
-            url=url, cookies=cookies, headers=headers, verify=False)
+        response = self.session.post(url=url, cookies=cookies, headers=headers, verify=False)
         return response.json().get("msg")
 
     # 弹幕 修改版
@@ -166,10 +165,13 @@ class AcFun:
             try:
                 self.name = cookie.get('name')
                 self.cookie = cookie.get('cookie')
-                cookies = {
-                    item.split("=")[0]: item.split("=")[1]
-                    for item in self.cookie.split("; ")
-                }
+                if '=' in self.cookie:
+                    cookies = {
+                        item.split("=")[0]: item.split("=")[1]
+                        for item in self.cookie.split("; ")
+                    }
+                else:
+                    cookies = ''
                 self.session = requests.session()
 
                 self.get_video()
@@ -177,14 +179,26 @@ class AcFun:
 
                 sign_msg = self.sign(cookies) # 签到
                 print(sign_msg)
+                if not sign_msg:
+                    time.sleep(1)
+                    msg = (
+                        f"帐号信息: {self.name}\n"
+                        f"签到状态: Cookie失效\n"
+                    )
+                    self.sio.write(msg)
+                    continue
                 like_msg = self.like(token) # 点赞
                 print(like_msg)
+                time.sleep(1)
                 share_msg = self.share() # 分享 失效
                 print(share_msg)
+                time.sleep(1)
                 danmu_msg = self.danmu() # 弹幕
                 print(danmu_msg)
+                time.sleep(1)
                 throwbanana_msg = self.throwbanana() # 投香蕉
                 print(throwbanana_msg)
+                time.sleep(1)
 
                 msg = (
                     f"帐号信息: {self.name}\n"
