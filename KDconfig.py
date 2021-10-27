@@ -65,6 +65,9 @@ def push(title, message, token):
 
 def ding(title, message, token):
     url = 'https://oapi.dingtalk.com/robot/send'
+    if token.get('access_token') == '':
+        print('ding 推送未配置, 推送失败')
+        return False
     params = {
         'access_token': token.get('access_token')
     }
@@ -85,6 +88,7 @@ def ding(title, message, token):
             "text": message.replace('\n', '\n\n')
         }
     }
+    data = {"msgtype": "text", "text": {"content": message}}
     headers = {
         'Content-Type': 'application/json;charset=utf-8'
     }
@@ -97,9 +101,43 @@ def ding(title, message, token):
     else:
         return False
 
-sendList = [gocq, pushplus, push, ding] # 函数名
-sendTokenList = ['gocq', 'pushplusToken', 'push+Token', 'dingToken'] # 配置文件中的相关要素
-sendMes = ['gocq', 'pushplus', 'push+', 'ding'] # 未配置对的提示
+def qywx(title, message, token):
+    qyextoken = token.replace(' ', '').split(',')
+    corpid = qyextoken[0]
+    agentid = qyextoken[1]
+    corpsecret = qyextoken[2]
+    touser = qyextoken[3]
+    media_id = '2jtiZMCr8n2kIey-LH4Qj2lexpQKyn7cmbtgjNsiyVw3_a-eHWtOQPs1IswybpQ4V'
+    if qyextoken[4] != '':
+        media_id = qyextoken[4]
+    res = requests.get(f"https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}")
+    token = res.json().get("access_token", False)
+    data = {
+        "touser": touser,
+        "msgtype": "mpnews",
+        "agentid": int(agentid),
+        "mpnews": {
+            "articles": [
+                {
+                    "title": title,
+                    "thumb_media_id": media_id,
+                    "author": "kdlong",
+                    "content_source_url": "https://github.com/KD-happy/KDCheckin",
+                    "content": message.replace("\n", "<br>"),
+                    "digest": message,
+                }
+            ]
+        },
+    }
+    res = requests.post(url=f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", data=json.dumps(data))
+    print(res.text)
+    if res.json().get('errcode') == 0:
+        return True
+    return False
+
+sendList = [gocq, pushplus, push, ding, qywx] # 函数名
+sendTokenList = ['gocq', 'pushplusToken', 'push+Token', 'dingToken', 'qywxToken'] # 配置文件中的相关要素
+sendMes = ['gocq', 'pushplus', 'push+', 'ding', 'qywx'] # 未配置对的提示
 
 # =============== 判断函数 和 发送入口 ======================
 

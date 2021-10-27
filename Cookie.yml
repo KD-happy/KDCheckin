@@ -14,6 +14,8 @@ send:
         access_token: ''
         # 钉钉的加密密钥 没有可不填
         secret: ''
+    # 企业ID, 应用的AgentId, 应用的Secret, 通讯录中的用户账号, 素材库中的图片media_id
+    qywxToken: ''
 
 # 签到列表
 signList: ''
