@@ -94,9 +94,7 @@ def ding(title, message, token):
     }
     res = requests.post(url=url, headers=headers, json=data, params=params)
     res.encoding = 'utf-8'
-    res = res.json()
-    print(res)
-    if res['errmsg'] == 'ok':
+    if res.json()['errmsg'] == 'ok':
         return True
     else:
         return False
