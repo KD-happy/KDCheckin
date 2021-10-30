@@ -49,6 +49,7 @@ yum install -y yum-utils
 yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 [可以看一下](https://blog.csdn.net/weixin_46152207/article/details/111354882)
+
 安装docker-ce
 ```shell
 dnf install docker-ce
@@ -114,6 +115,14 @@ docker run -dit \
 whyour/qinglong:latest
 ```
 
+## 腾讯云一键部署
+
+```shell
+curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
+```
+
+需要自行添加函数名
+
 ## 本仓库的文件配合
 
 1. 支持根目录下的所有的签到单独执行
@@ -142,6 +151,7 @@ whyour/qinglong:latest
 │  IQIYI.py            # 爱奇艺
 │  KDconfig.py         # 文件读取、推送
 │  Lenovo.py           # 联想
+│  LenovoLTB.py        # 联想乐同步
 │  Music163.py         # 网易云音乐
 │  News.py             # 每日新闻
 │  NoteYouDao.py       # 有道云笔记
@@ -162,6 +172,7 @@ whyour/qinglong:latest
 │
 └─other
         bt.sh          # 宝塔一键部署
+        go.sh          # 腾讯云函数一键部署
         ql.sh          # 青龙一键部署
         模板.py         # 模板文件
 ```
