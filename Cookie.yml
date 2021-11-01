@@ -183,7 +183,7 @@ LenovoLTB:
     cookies:
         - user:
             name: ''
-            # GSESSIONID 或 lpsust
+            # 新版本的LoginResponse 直接填值 (GSESSIONID 或 lpsust)
             cookie: ''
 
 # 网易云音乐

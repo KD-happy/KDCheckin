@@ -15,6 +15,23 @@ class LenovoLTB:
         self.cookie = ''
         self.totalSize = 0
 
+    def LoginResponse(self):
+        url = 'https://uss.lenovomm.com/authen/1.2/st/getbycredential'
+        data = {
+            'source': 'android:com.lenovo.leos.cloud.sync-5.0.70.99',
+            'lang': 'zh-CN',
+            'lpsutgt': self.cookie,
+            'realm': 'contact.cloud.lps.lenovo.com',
+            'packagename': 'com.lenovo.leos.cloud.sync',
+            'packagesign': '',
+            'appname': '乐同步',
+        }
+        headers = {
+            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; PCAM00 Build/RKQ1.201217.002)'
+        }
+        res = requests.post(url=url, headers=headers, data=data)
+        self.cookie = 'lpsust=' + re.findall('<Value>(.*)</Value>', res.text)[0]
+
     def userinfo(self):
         url = 'https://pimapi.lenovomm.com/userspaceapi/storage/userinfo'
         headers = {
@@ -56,6 +73,7 @@ class LenovoLTB:
             self.sio.write(f"{cookie.get('name')}: ")
             self.cookie = cookie.get('cookie')
             try:
+                self.LoginResponse()
                 self.userinfo()
                 self.addspace()
             except:
