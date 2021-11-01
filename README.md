@@ -188,8 +188,8 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [luck-ying01](https://github.com/luck-ying01/3floor_sign) | 🟢️ |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 自制 | 🟢️ |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [silence4u](https://github.com/silence4u/lenovo_auto_signin) + 自制修改 | 🟢 |
-| [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [Oreomeow](https://github.com/Oreomeow/checkinpanel/blob/master/ck_duokan.py) | 🟢️ |
-| [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Oreomeow](https://github.com/Oreomeow/checkinpanel/blob/master/ck_acfun.py) + 自制修改 | 🟢 |
+| [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢️ |
+| [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🟢 |
 | [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）、领取任务奖励 | cookie | 自制 | 🟢 |
@@ -197,12 +197,12 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 自制 | 🟢 |
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 自制 + 模仿 | 🟢 |
-| [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、发送直播弹幕、送免费辣条、礼物过期提醒 | cookie | [Oreomeow](https://github.com/Oreomeow/checkinpanel/blob/master/ck_bilibili.py) + 自制修改 | 🟢 |
+| [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、发送直播弹幕、送免费辣条、礼物过期提醒 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告、空间大小 | cookie | 找不到 + 自制 | 🟢 |
 | [Tool工具](https://tool.lu/) | 签到 | cookie | 自制 | 🟢 |
 | [百度贴吧](https://tieba.baidu.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 | [什么值得买](https://www.smzdm.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟡 |
-| [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) | 🟢 |
+| [网易读书](https://du.163.com/) | 签到 | cookie | [Wenmoux](https://github.com/Wenmoux/checkbox/blob/master/scripts/du163.js) + 自制修改 | 🟢 |
 | 小米运动 | 刷步数 | 手机号、密码 | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
 | [网易云音乐](https://music.163.com/) | 签到 | cookie | 自制 | 🟢 |
 | [天气预报](https://www.qweather.com/) | 每日天气推送、奇怪的知识 | city_id | 自制 | 🟢 |
