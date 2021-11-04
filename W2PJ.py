@@ -61,6 +61,8 @@ class W2PJ:
                 self.task()
             except BaseException as e:
                 print(f"{cookie.get('name')}: 异常 {e}\n")
+                if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
+                    self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
 
 if __name__ == '__main__':
