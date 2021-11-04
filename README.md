@@ -217,7 +217,8 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 1. send.send的值为 `0` 时, 集合签到和单独签到都不会有通知
 2. 只有send.send的值为 `1` 和 单独签到的send的值为 `1` 时, 才会通知
 3. signList的值 `不为空` 时, 集合签到只会签到signList规定的
-4. 可通过指令 `python QianDao.py -h` 查看参数的使用
-5. `--include` : 签到包含什么, 其他的都不包含
-6. `--exclude` : 签到不包含什么, 包含的都是剩余的
-7. `Cookie.yml` 文件中的cookie格式一定要符合条件, 用 `; ` 作为两个变量中间的分隔符
+4. 只有signList的值`为空` 时, 参数签到才可以使用。
+5. 可通过指令 `python QianDao.py -h` 查看参数的使用
+6. `-i` 或 `--include` : 签到包含什么, 其他的都不包含
+7. `-e` 或 `--exclude` : 签到不包含什么, 包含的都是剩余的
+8. `Cookie.yml` 文件中的cookie格式一定要符合条件, 用 `; ` 作为两个变量中间的分隔符

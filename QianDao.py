@@ -15,8 +15,8 @@ signList = config.get('signList', '')
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--include", nargs="+", help="任务执行包含的任务列表")
-    parser.add_argument("--exclude", nargs="+", help="任务执行排除的任务列表")
+    parser.add_argument("-i", "--include", nargs="+", help="任务执行包含的任务列表")
+    parser.add_argument("-e", "--exclude", nargs="+", help="任务执行排除的任务列表")
     return parser.parse_args()
 
 if signList == '':
