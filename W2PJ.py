@@ -4,7 +4,7 @@ cron: 21 6 * * *
 new Env('吾爱破解');
 """
 
-import requests, sys, re
+import requests, sys, re, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
 
@@ -24,8 +24,11 @@ class W2PJ:
         }
         session.get(url="https://www.52pojie.cn/home.php?mod=task&do=apply&id=2", headers=headers)
         resp = session.get(url="https://www.52pojie.cn/home.php?mod=task&do=draw&id=2", headers=headers)
-        content = re.findall(r'<div id="messagetext".*?\n<p>(.*?)</p>', resp.text)[0]
-        print(content)
+        content = re.findall(r'<div id="messagetext".*?\n<p>(.*?)</p>', resp.text)
+        if len(content) == 0:
+            print('出现了问题')
+        else:
+            print(content[0])
         if '恭喜' in resp.text:
             self.sio.write('签到成功')
             self.getCB()
@@ -59,8 +62,8 @@ class W2PJ:
             self.sio.write(f"{cookie.get('name')}: ")
             try:
                 self.task()
-            except BaseException as e:
-                print(f"{cookie.get('name')}: 异常 {e}\n")
+            except:
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}\n")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
                     self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
