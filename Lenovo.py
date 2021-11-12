@@ -5,6 +5,8 @@ new Env('联想商城');
 
 import requests, sys, re, traceback, time
 from io import StringIO
+
+from requests.sessions import session
 from KDconfig import getYmlConfig, send
 
 class Lenovo:
@@ -13,15 +15,20 @@ class Lenovo:
         self.Cookies = cookie
         self.token = ''
         self.cookie = ''
+        self.session = requests.session()
+
+    # Cookie -> 将字典转为CookieJar
+    def read_cookies(self):
+        cookies = {}
+        for cookie in self.cookie.split(';'):
+            name, value = cookie.strip().split('=',1)
+            cookies[name] = value
+        cookiesJar = requests.utils.cookiejar_from_dict(cookies, cookiejar=None, overwrite=True)
+        return cookiesJar
 
     def signin(self):
         url = 'https://club.lenovo.com.cn/sign'
-        headers = {
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-            'referer': 'https://club.lenovo.com.cn/signlist/',
-            'cookie': self.cookie,
-        }
-        res = requests.post(url, headers=headers, data={'_token': self.token})
+        res = self.session.post(url=url, data={'_token': self.token})
         check = res.json()
         print(check)
         if "success" in str(check):
@@ -46,17 +53,18 @@ class Lenovo:
                 self.cookie = cookie['cookie']
                 self.sio.write(f'{cookie["name"]}: ')
                 print(f'{cookie.get("name")} 开始签到...')
+                self.session.cookies = self.read_cookies()
                 headers = {
                     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-                    'referer': 'https://club.lenovo.com.cn/signlist/',
-                    'cookie': self.cookie,
+                    'referer': 'https://club.lenovo.com.cn/signlist/'
                 }
-                res = requests.get('https://club.lenovo.com.cn/signlist/', headers=headers)
+                self.session.headers = headers
+                res = self.session.get('https://club.lenovo.com.cn/signlist/')
                 test = re.findall('\$CONFIG\.token = "(.*)";', res.text)
                 if test == []:
                     print('第二次尝试\n')
                     time.sleep(2)
-                    res = requests.get('https://club.lenovo.com.cn/signlist/', headers=headers)
+                    res = self.session.get('https://club.lenovo.com.cn/signlist/')
                     test = re.findall('\$CONFIG\.token = "(.*)";', res.text)
                 if test == []:
                     self.token = ''

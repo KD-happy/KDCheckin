@@ -174,7 +174,7 @@ Lenovo:
     cookies:
         - user:
             name: ''
-            # laravel_session, cerpreg-passport, XSRF-TOKEN
+            # cerpreg-passport
             cookie: ''
 
 # 乐同步
