@@ -3,7 +3,7 @@ cron: 11 6 * * *
 new Env('葫芦侠')
 """
 
-import requests, json, sys, hashlib, traceback
+import requests, json, sys, hashlib, traceback, time
 from io import StringIO
 from KDconfig import getYmlConfig, send
 from bs4 import BeautifulSoup
@@ -31,6 +31,7 @@ class HLX:
         url = 'http://floor.huluxia.com/account/login/ANDROID/4.0?device_code=1'
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'okhttp/3.8.1',
         }
         data = {
             'account': self.username,
@@ -63,6 +64,7 @@ class HLX:
             title = list['title']
             url = 'https://floor.huluxia.com/user/signin/ANDROID/4.0?_key={key}&cat_id={categoryID}'.format(
                 key=self.key, categoryID=categoryID)
+            time.sleep(1)
             response = requests.get(url=url)
             msg = json.loads(response.text)['msg']
             status = json.loads(response.text)['status']
@@ -93,7 +95,6 @@ class HLX:
                 continue
             self.get_level()
             print('---结束【登录，查询用户信息】---')
-
             print('---开始【签到】---')
             self.sign()
             print('---结束【签到】---')
