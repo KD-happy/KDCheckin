@@ -134,7 +134,7 @@ class Egame:
     # 签到
     def signin(self):
         url = 'https://game.egame.qq.com/cgi-bin/pgg_async_fcgi'
-        header = {
+        headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
         }
@@ -146,7 +146,7 @@ class Egame:
             'param': '{"key":{"module":"pgg.user_task_srf_svr.CPGGUserTaskSrfSvrObj","method":"OldUserCheckin","param":{}}}',
             'app_info': '{"platform":4,"terminal_type":2,"egame_id":"egame_official","imei":"","version_code":"9.9.9.9","version_name":"9.9.9.9","ext_info":{"_qedj_t":"","ALG-flag_type":"","ALG-flag_pos":""},"pvid":"344111513621080422"}',
         }
-        res = requests.get(url, headers=header, params=params0)
+        res = requests.get(url, headers=headers, params=params0)
         if res.json().get('uid') == 0:
             print('Cookie失效')
             self.sio.write('Cookie失效\n')
@@ -154,7 +154,7 @@ class Egame:
             print('今日已签')
             self.sio.write('今日已签\n')
         else:
-            res = requests.get(url=url, headers=header, params=params1)
+            res = requests.get(url=url, headers=headers, params=params1)
             data = res.json()
             print(f"签到成功, 获得{data['data']['key']['retBody']['data']['award']['description']}")
             self.sio.write(f"签到成功, 获得{data['data']['key']['retBody']['data']['award']['description']}\n")

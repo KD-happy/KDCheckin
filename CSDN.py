@@ -16,11 +16,11 @@ class CSDN:
 
     def signIn(self):
         url = 'https://me.csdn.net/api/LuckyDraw_v2/signIn'
-        header = {
+        headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
         }
-        res = requests.get(url, headers=header)
+        res = requests.get(url, headers=headers)
         data = res.json()
         print(data)
         if data['code'] == 200:
@@ -34,11 +34,11 @@ class CSDN:
     
     def goodluck(self):
         url = 'https://me.csdn.net/api/LuckyDraw_v2/goodluck'
-        header = {
+        headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
         }
-        res = requests.get(url, headers=header)
+        res = requests.get(url, headers=headers)
         data = res.json()
         print(data)
         if data['code'] == 200:

@@ -17,15 +17,15 @@ class Cloud:
         url0 = "https://api.cloud.189.cn/mkt/userSign.action?rand="+str(rand)+"&clientType=TELEANDROID&version=8.6.3&model=SM-G930K"
         url1 = "https://m.cloud.189.cn/v2/drawPrizeMarketDetails.action?taskId=TASK_SIGNIN&activityId=ACT_SIGNIN"
         url2 = "https://m.cloud.189.cn/v2/drawPrizeMarketDetails.action?taskId=TASK_SIGNIN_PHOTOS&activityId=ACT_SIGNIN"
-        header = {
+        headers = {
             "Cookie": cookie,
             'User-Agent':'Mozilla/5.0 (Linux; Android 5.1.1; SM-G930K Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Ecloud/8.6.3 Android/22 clientId/355325117317828 clientModel/SM-G930K imsi/460071114317824 clientChannelId/qq proVersion/1.0.6',
             "Host" : "m.cloud.189.cn",
             "Accept-Encoding" : "gzip"
         }
-        s = requests.get(url0, headers=header) #签到
-        s1 = requests.get(url1, headers=header) #抽奖1
-        s2 = requests.get(url2, headers=header) #抽奖2
+        s = requests.get(url0, headers=headers) #签到
+        s1 = requests.get(url1, headers=headers) #抽奖1
+        s2 = requests.get(url2, headers=headers) #抽奖2
         print(str(name) + ": \n"+ s.text[:200] + "\n"+ s1.text[:200])
         if "User_Not_Chance" in str(s1.json()):
             s = "签到得"+ str(s.json()["netdiskBonus"]) +"M，两次抽奖机会已用完"
@@ -42,9 +42,9 @@ class Cloud:
                 text = "Cookie失效"
                 self.sio.write(str(name) +": "+ text + "\n")
 
-    def Sign_in_TV(self, name, familyId, header):
+    def Sign_in_TV(self, name, familyId, headers):
         url = f"http://api.cloud.189.cn/family/manage/exeFamilyUserSign.action?familyId={familyId}"
-        res = requests.get(url, headers=header)
+        res = requests.get(url, headers=headers)
         print(name +" TV: \n"+ res.text)
         Obj = re.search(r"<bonusSpace>(.*)</bonusSpace>", res.text, re.M|re.I)
         if Obj:
