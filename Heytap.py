@@ -7,7 +7,6 @@ from random import randint
 import requests, time, traceback, sys
 from io import StringIO
 from KDconfig import getYmlConfig, send
-from KDsrc.more import act_task
 
 class Heytap:
     def __init__(self, cookie):
