@@ -6,6 +6,7 @@ new Env('爱助攻');
 
 import requests, sys, traceback
 from io import StringIO
+from bs4 import BeautifulSoup
 from KDconfig import getYmlConfig, send
 
 class AZG:
@@ -14,8 +15,19 @@ class AZG:
         self.Cookies = cookie
         self.cookie = ''
 
+    def get_formhash(self):
+        url = 'https://www.aizhugong.com/plugin.php?id=k_misign:sign'
+        headers = {
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+            "cookie": self.cookie
+        }
+        res = requests.get(url=url, headers=headers)
+        soup = BeautifulSoup(res.text, "html.parser")
+        formhash = soup.select("input[name=formhash]")[0]['value']
+        return formhash
+
     def k_misign(self):
-        url = 'https://www.aizhugong.com/plugin.php?id=k_misign:sign&operation=qiandao&formhash=76f8716f'
+        url = f'https://www.aizhugong.com/plugin.php?id=k_misign:sign&operation=qiandao&formhash={self.get_formhash()}'
         headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
