@@ -23,7 +23,7 @@ class Heytap:
                 "aid": 1418,
                 "if_task": True,  # 是否有任务
                 "referer": "https://hd.oppo.com/act/m/2021/jifenzhuanpan/index.html?us=gerenzhongxin&um=hudongleyuan&uc=yingjifen",
-                "if_draw": True,  # 是否有抽奖活动，已修复抽奖，如不需要抽奖请自行修改为False
+                "if_draw": False,  # 是否有抽奖活动，已修复抽奖，如不需要抽奖请自行修改为False
                 "extra_draw_cookie": 'app_innerutm={"uc":"yingjifen","um":"hudongleyuan","ut":"direct","us":"gerenzhongxin"};',
                 # 抽奖必要的额外cookie信息，请勿随意修改，否则可能导致不中奖
                 "lid": 1307,  # 抽奖参数
@@ -78,18 +78,6 @@ class Heytap:
                 "draw_times": 1,
                 "end_time": "2033-8-18 23:59:59",
                 "text": "每次扣取10积分",
-            },
-            {
-                "act_name": "双十一活动",
-                "aid": 1768,
-                "if_task": True,
-                "referer": "https://hd.oppo.com/act/m/2021/choumiandan/index.html?us=shouye&um=youshangjiao&uc=2021oppowin",
-                "if_draw": False,  # 已修复抽奖，如不需要抽奖请自行修改为False
-                "extra_draw_cookie": 'app_innerutm={"uc":"direct","um":"direct","ut":"direct","us":"direct"};',
-                "lid": 1586,
-                "draw_times": 1,
-                "end_time": "2021-11-13 23:59:59",
-                "text": "每次扣取5积分",
             }
         ]
     
