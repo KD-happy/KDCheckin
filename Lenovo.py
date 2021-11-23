@@ -53,6 +53,11 @@ class Lenovo:
                 self.cookie = cookie['cookie']
                 self.sio.write(f'{cookie["name"]}: ')
                 print(f'{cookie.get("name")} 开始签到...')
+                gqtime = self.cookie.split('|')[3]
+                if int(time.time()) > int(gqtime):
+                    print("Cookie过期了")
+                    self.sio.write('Cookie过期了\n')
+                    continue
                 self.session.cookies = self.read_cookies()
                 headers = {
                     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
