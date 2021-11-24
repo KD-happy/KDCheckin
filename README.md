@@ -130,7 +130,10 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 
 > 由于技术限制，未实现的
 > * 可以通过 Cookie.yml 配置文件中 signList 的参数来选取哪些需要签到
-  
+
+<details>
+<summary>文件说明</summary>
+
 ```
 │  AcFun.py            # AcFun
 │  AiHao.py            # 爱好论坛
@@ -176,6 +179,8 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
         ql.sh          # 青龙一键部署
         模板.py         # 模板文件
 ```
+
+</details>
 
 ## 支持的签到
 
