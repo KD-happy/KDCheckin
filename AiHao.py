@@ -6,6 +6,7 @@ new Env('爱好论坛');
 
 import requests, sys, datetime, traceback, re
 from io import StringIO
+from bs4 import BeautifulSoup
 from KDconfig import getYmlConfig, send
 
 class AiHao:
@@ -22,7 +23,7 @@ class AiHao:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "cookie": self.cookie
         }
-        res = requests.post(url, headers=headers, data=self.data)
+        res = requests.post(url=url, headers=headers, data=self.data)
         if '未到打卡时间' in res.text:
             print('未到打卡时间')
         elif '打卡成功' in res.text:
@@ -42,10 +43,15 @@ class AiHao:
             self.sio.write('未知错误\n')
             print('未知错误')
         self.data = {'button4': ''}
-        res = requests.post(url, headers=headers, data=self.data)
+        res = requests.post(url=url, headers=headers, data=self.data)
+        soup = BeautifulSoup(res.text, "html.parser")
+        alert = soup.select(".alert")
+        print(alert[0].get_text()) if len(alert)>0 else print("获取失败")
         if '您本月还未打卡' in res.text or '无法获得全勤奖励' in res.text:
             print(re.findall('您本月打卡次数：\d+', res.text)[0])
             # print('月打卡次数不满足要求')
+        elif '请勿重复领取' in res.text:
+            print('本月全勤奖励已领取')
         else:
             print(res.text)
 
