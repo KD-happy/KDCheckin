@@ -5,7 +5,7 @@
 拉取本站
 ```shell
 ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather|News|Egame" "" "KD"
-cp -f /ql/repo/KD-happy_KDCheckin/*.py /ql/scripts/KDsrc
+\cp -f /ql/repo/KD-happy_KDCheckin/*.py /ql/scripts/KD-happy_KDCheckin/KDsrc
 ```
 
 将配置文件复制到指定位置
