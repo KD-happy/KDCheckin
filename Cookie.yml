@@ -255,7 +255,7 @@ W2PJ:
     cookies:
         - user:
             name: ''
-            # htVD_2132_saltkey, htVD_2132_auth
+            # htVC_2132_saltkey, htVC_2132_auth
             cookie: ''
 
 # 天气预报

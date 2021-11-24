@@ -22,8 +22,8 @@ class W2PJ:
             "Cookie": self.cookie,
             "ContentType": "text/html;charset=gbk",
         }
-        session.get(url="https://www.52pojie.cn/home.php?mod=task&do=apply&id=2", headers=headers)
-        resp = session.get(url="https://www.52pojie.cn/home.php?mod=task&do=draw&id=2", headers=headers)
+        session.put(url="https://www.52pojie.cn/home.php?mod=task&do=apply&id=2", headers=headers)
+        resp = session.put(url="https://www.52pojie.cn/home.php?mod=task&do=draw&id=2", headers=headers)
         content = re.findall(r'<div id="messagetext".*?\n<p>(.*?)</p>', resp.text)
         if len(content) == 0:
             print('出现了问题')
@@ -42,12 +42,12 @@ class W2PJ:
     # 获取 CB
     def getCB(self):
         url = 'https://www.52pojie.cn/home.php?mod=spacecp&ac=credit&showcredit=1&inajax=1&ajaxtarget=extcreditmenu_menu'
-        header = {
+        headers = {
             "Referer": "https://www.52pojie.cn",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
             "Cookie": self.cookie
         }
-        res = requests.get(url, headers=header)
+        res = requests.get(url=url, headers=headers)
         cb = re.findall('吾爱币: <span id="hcredit_2">(.*)</span></li><li> 贡献值', res.text)[0]
         print(f'剩余{cb}')
         self.sio.write(f', 剩余{cb}\n')
