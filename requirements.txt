@@ -1,2 +1,3 @@
+requests
 pyyaml
 bs4

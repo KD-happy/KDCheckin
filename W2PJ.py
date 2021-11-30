@@ -22,8 +22,8 @@ class W2PJ:
             "Cookie": self.cookie,
             "ContentType": "text/html;charset=gbk",
         }
-        session.put(url="https://www.52pojie.cn/home.php?mod=task&do=apply&id=2", headers=headers)
-        resp = session.put(url="https://www.52pojie.cn/home.php?mod=task&do=draw&id=2", headers=headers)
+        session.post(url="https://www.52pojie.cn/home.php?mod=task&do=apply&id=2", headers=headers)
+        resp = session.post(url="https://www.52pojie.cn/home.php?mod=task&do=draw&id=2", headers=headers)
         content = re.findall(r'<div id="messagetext".*?\n<p>(.*?)</p>', resp.text)
         if len(content) == 0:
             print('出现了问题')

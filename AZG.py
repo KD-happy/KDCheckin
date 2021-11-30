@@ -36,7 +36,7 @@ class AZG:
         print(res.text[:500])
         if '已签' in res.text:
             self.sio.write('重复签到\n')
-        elif '未定义' in res.text:
+        elif '立即注册' in res.text:
             self.sio.write('Cookie失效\n')
         else:
             self.sio.write('签到成功\n')
