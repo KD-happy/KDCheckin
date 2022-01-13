@@ -16,7 +16,8 @@ class LenovoLTB:
         self.totalSize = 0
 
     def LoginResponse(self):
-        url = 'https://uss.lenovomm.com/authen/1.2/st/getbycredential'
+        # url = 'https://uss.lenovomm.com/authen/1.2/st/getbycredential'
+        url = 'https://passport.lenovo.com/authen/1.2/st/getbycredential'
         data = {
             'source': 'android:com.lenovo.leos.cloud.sync-5.0.70.99',
             'lang': 'zh-CN',
@@ -30,12 +31,14 @@ class LenovoLTB:
             'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; PCAM00 Build/RKQ1.201217.002)'
         }
         res = requests.post(url=url, headers=headers, data=data)
-        self.cookie = 'lpsust=' + re.findall('<Value>(.*)</Value>', res.text)[0]
+        # self.cookie = 'lenovoauth lpsust=' + re.findall('<Value>(.*)</Value>', res.text)[0]
+        self.cookie = re.findall('<Value>(.*)</Value>', res.text)[0]
 
     def userinfo(self):
         url = 'https://pimapi.lenovomm.com/userspaceapi/storage/userinfo'
         headers = {
-            "cookie": self.cookie,
+            'Authorization': f'LenovoAuth LPSUST="{self.cookie}"',
+            'X-Lenovows-Authorization': f'LenovoAuth LPSUST="{self.cookie}"',
             "user-agent": "Mozilla/5.0 (Linux; Android 11; PCAM00 Build/RKQ1.201217.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36 com.lenovo.leos.cloud.sync/6.3.0.99",
         }
         res = requests.post(url=url, headers=headers)
@@ -50,7 +53,8 @@ class LenovoLTB:
         url = 'https://pim.lenovo.com/lesynch5/userspaceapi/v4/addspace'
         # url = 'https://pimapi.lenovomm.com/userspaceapi/v3/addspace'
         headers = {
-            "cookie": self.cookie,
+            'Authorization': f'LenovoAuth LPSUST="{self.cookie}"',
+            'X-Lenovows-Authorization': f'LenovoAuth LPSUST="{self.cookie}"',
             "user-agent": "Mozilla/5.0 (Linux; Android 11; PCAM00 Build/RKQ1.201217.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36 com.lenovo.leos.cloud.sync/6.3.0.99",
         }
         res = requests.get(url=url, headers=headers)
