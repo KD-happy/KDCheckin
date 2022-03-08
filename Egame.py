@@ -73,13 +73,13 @@ class Egame:
                 curr = data.get('curr', {})
                 if prev.get('join_status', 0) == 1 and datetime.datetime.now().hour == 8: # 0: 未报名, 1: 报名?, 2: 要打卡? ,3: 打卡了?
                     print(f'打卡 加入状态:{prev.get("join_status")} 标题:{prev.get("act_title")} 类型:{prev.get("class_type")}')
-                    time.sleep(1)
+                    time.sleep(3)
                     self.attendance_mark(prev.get("signup_ts"), prev.get("class_type"), prev.get("act_title"))
                 else:
                     print('未到打卡时间')
                 if curr.get('join_status') == 0 and str(i+1) in self.sign: # 0: 未报名, 1: 已报名,
                     print(f'报名 加入状态:{curr.get("join_status")} 标题:{curr.get("act_title")} 类型:{curr.get("class_type")}')
-                    time.sleep(1)
+                    time.sleep(3)
                     self.attendance_sign_up(prev.get("class_type"), prev.get("act_title"))
 
     # 领取奖励
@@ -114,7 +114,7 @@ class Egame:
         res = requests.get(url=url, headers=headers, params=params).json()
         hour = datetime.datetime.now().hour
         if hour in [12, 13, 18, 19, 20]:
-            time.sleep(1)
+            time.sleep(3)
             res = requests.get(url=url, headers=headers, params=params).json()
         if res.get('uid') == 0:
             print('Cookie失效 退出任务奖励领取')
