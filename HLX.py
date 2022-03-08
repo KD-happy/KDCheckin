@@ -28,7 +28,7 @@ class HLX:
 
     def login(self):
         password_md5 = self.md5()
-        url = 'http://floor.huluxia.com/account/login/ANDROID/4.0?device_code=1'
+        url = 'http://floor.huluxia.com/account/login/IOS/4.0?device_code=1'
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'User-Agent': 'okhttp/3.8.1',
@@ -55,26 +55,40 @@ class HLX:
 
 
     def sign(self):
-        url = 'https://floor.huluxia.com/category/list/ANDROID/2.0'
-        response = requests.get(url=url)
-        categories = json.loads(response.text)['categories']
-        count = 0  #签到次数
-        for list in categories:
-            categoryID = list['categoryID']
-            title = list['title']
-            url = 'https://floor.huluxia.com/user/signin/ANDROID/4.0?_key={key}&cat_id={categoryID}'.format(
-                key=self.key, categoryID=categoryID)
-            time.sleep(1)
-            response = requests.get(url=url)
-            msg = json.loads(response.text)['msg']
-            status = json.loads(response.text)['status']
-            if status == 0:
-                print('[+]' + msg)
-            if status == 1:
-                count += 1
-                print('[+]板块' + str(count) + '：' + title + ' 签到成功')
+        url = "https://floor.huluxia.com/category/forum/list/IOS/1.0"
+        ura = "https://floor.huluxia.com/category/forum/list/all/IOS/1.0"
+        urs = "https://floor.huluxia.com/user/signin/IOS/1.1"
+        categoryforum = requests.post(url).json()["categoryforum"]
+        count = 0
+        for i in categoryforum:
+            categories = requests.post(url=ura, data={"fum_id": i["id"]}).json()[
+                "categories"
+            ]
+            for cat in categories:
+                headers = {
+                    "Host": "floor.huluxia.com",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Connection": "keep-alive",
+                    "Accept": "*/*",
+                    "User-Agent": "Floor/1.3.0 (iPhone; iOS 15.3; Scale/3.00)",
+                    "Accept-Language": "zh-Hans-CN;q=1",
+                    "Content-Length": "304",
+                    "Accept-Encoding": "gzip, deflate, br",
+                }
+                res = requests.post(
+                    url=urs,
+                    data={"_key": self.key, "cat_id": cat["categoryID"]},
+                    headers=headers,
+                ).json()
+                msg = res["msg"]
+                status = res["status"]
+                if status == 0:
+                    print("[+]" + cat["title"] + " 签到失败 错误原因：" + msg)
+                elif status == 1:
+                    count += 1
+                    print("[+]" + cat["title"]+ " 签到成功 获得经验：" + str(res["experienceVal"]))
         self.sio.write(': 共计签到' + str(count) + '个板块\n')
-        print('[+]共计签到' + str(count) + '个板块')
+        print('[+]共计签到' + str(count) + '个板块\n')
 
     def SignIn(self):
         print("【葫芦侠 日志】")
