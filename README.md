@@ -28,6 +28,8 @@ docker exec -it qinglong bash
 exit
 ```
 
+添加相关依赖 requirements.txt 文件里面有相关的导包，请自行安装
+
 ## 详细操作
 
 **1.安装 docer**
@@ -85,7 +87,7 @@ docker pull whyour/qinglong:latest
 ```shell
 docker run -dit \
   -v $pwd/ql:/ql/data \
-  -p 8866:5700 \
+  -p 5700:5700 \
   --name qinglong \
   --hostname qinglong \
   --restart unless-stopped \
@@ -176,8 +178,8 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | 名称 | 备注 | 签到方式 | 来源 | 当前状态 |
 | ---- | ---- | ---- | ---- | ---- |
 | [天翼云盘](https://cloud.189.cn/web/main/) | 手机签到+抽奖、天翼云TV端 | cookie | 找不到 + 自制 | 🟢️ |
-| [欢太商城](https://www.heytap.com/cn/m/ucenter/index) | 每日签到、浏览商品、分享商品 | cookie | [hwkxk](https://github.com/hwkxk/HeytapTask) | 🟢️ |
-| 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [Mashiro2000](https://github.com/Mashiro2000/HeyTapTask) | 🟢️ |
+| [欢太商城](https://www.heytap.com/cn/m/ucenter/index) | 每日签到、浏览商品、分享商品 | cookie | [hwkxk](https://github.com/hwkxk/HeytapTask) | 🔴 |
+| 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [Mashiro2000](https://github.com/Mashiro2000/HeyTapTask) | 🔴 |
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [luck-ying01](https://github.com/luck-ying01/3floor_sign) | 🟢️ |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 自制 | 🟢️ |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [silence4u](https://github.com/silence4u/lenovo_auto_signin) + 自制修改 | 🟢 |
@@ -186,7 +188,7 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🟢 |
 | [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）、领取任务奖励 | cookie | 自制 | 🟢 |
-| [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🟢 |
+| [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🔴 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 自制 | 🟢 |
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 自制 + 模仿 | 🟢 |
