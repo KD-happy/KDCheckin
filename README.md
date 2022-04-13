@@ -5,7 +5,7 @@
 拉取本站
 ```shell
 ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather|News|Egame" "" "KD"
-\cp -f /ql/repo/KD-happy_KDCheckin/*.py /ql/scripts/KD-happy_KDCheckin/KDsrc
+\cp -f /ql/data/repo/KD-happy_KDCheckin/*.py /ql/data/scripts/KD-happy_KDCheckin/KDsrc
 ```
 
 将配置文件复制到指定位置
@@ -84,35 +84,23 @@ docker pull whyour/qinglong:latest
 创建容器
 ```shell
 docker run -dit \
--v $pwd/ql/config:/ql/config \
--v $pwd/ql/log:/ql/log \
--v $pwd/ql/db:/ql/db \
--v $pwd/ql/scripts:/ql/scripts \
--v $pwd/ql/jbot:/ql/jbot \
--v $pwd/ql/repo:/ql/repo \
--p 5700:5700 \
--e ENABLE_HANGUP=true \
--e ENABLE_WEB_PANEL=true \
---name qinglong \
---hostname qinglong \
---restart always \
-whyour/qinglong:latest
+  -v $pwd/ql:/ql/data \
+  -p 8866:5700 \
+  --name qinglong \
+  --hostname qinglong \
+  --restart unless-stopped \
+  whyour/qinglong:latest
 ```
 
 创建第二个容器
 ```shell
 docker run -dit \
--v $PWD/config:/ql/config \
--v $PWD/log:/ql/log \
--v $PWD/db:/ql/db \
--v $PWD/scripts:/ql/scripts \
--v $PWD/jbot:/ql/jbot \
--v $PWD/repo:/ql/repo \
--p 5800:5700 \
---name kd \
---hostname kd \
---restart unless-stopped \
-whyour/qinglong:latest
+  -v $PWD/ql:/ql/data \
+  -p 5800:5700 \
+  --name qinglong \
+  --hostname qinglong \
+  --restart unless-stopped \
+  whyour/qinglong:latest
 ```
 
 ## 腾讯云一键部署

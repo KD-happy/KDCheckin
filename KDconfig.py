@@ -2,8 +2,8 @@ import yaml, os, requests, json
 import time, hmac, hashlib,  base64, urllib.parse
 
 def getYmlConfig(yaml_file='Cookie.yml'):
-    ql_file = '/ql/config/env.sh'
-    cookie_file = '/ql/config/Cookie.yml'
+    ql_file = '/ql/data/config/env.sh'
+    cookie_file = '/ql/data/config/Cookie.yml'
     if os.path.exists(ql_file):
         if os.path.exists(cookie_file):
             file = open(cookie_file, 'r', encoding="utf-8")
