@@ -57,7 +57,7 @@ class BLBL:
 
     # 获得今日获得的经验
     def reward(self):
-        url = 'https://account.bilibili.com/home/reward'
+        url = 'https://api.bilibili.com/x/member/web/exp/reward'
         headers = {
             "cookie": f'DedeUserID={self.mid}; '+self.cookie,
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
