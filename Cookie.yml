@@ -137,7 +137,7 @@ EnShan:
     cookies:
         - user:
             name: ''
-            # DJyZ_2132_saltkey, DJyZ_2132_auth, 
+            # TWcq_2132_saltkey, TWcq_2132_auth
             cookie: ''
 
 # 欢太商城
@@ -235,7 +235,7 @@ ToolLu:
     cookies:
         - user:
             name: ''
-            # laravel_session
+            # remember_web
             cookie: ''
 
 # 腾讯视频
