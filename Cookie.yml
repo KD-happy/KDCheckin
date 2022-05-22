@@ -288,3 +288,11 @@ XMYD:
             min_step: 1000
             # 最大步数
             max_step: 10000
+
+YHZWW:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # B6hk_2132_saltkey, B6hk_2132_auth
+            cookie: ''

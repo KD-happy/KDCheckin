@@ -29,6 +29,7 @@ from KDsrc.W2PJ import W2PJ
 from KDsrc.Weather import Weather
 from KDsrc.WPS import WPS
 from KDsrc.XMYD import XMYD
+from KDsrc.YHZWW import YHZWW
 
 map = {
     "AcFun": ["AcFun", AcFun],
@@ -58,5 +59,6 @@ map = {
     "W2PJ": ["吾爱破解", W2PJ],
     "Weather": ["天气预报", Weather],
     "WPS": ["WPS签到", WPS],
-    "XMYD": ["小米运动", XMYD]
+    "XMYD": ["小米运动", XMYD],
+    "YHZWW": ["油猴中文网", YHZWW]
 }

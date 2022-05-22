@@ -26,7 +26,7 @@ class Du163:
         data = {'csrfToken': self.xsrf}
         res = requests.post(url, headers=headers, data=data)
         print(res.text)
-        mes = 'Cookie失效'
+        msg = 'Cookie失效'
         if '已经签过' in res.text:
             msg = '重复签到'
         elif res.json().get('code') == 0:

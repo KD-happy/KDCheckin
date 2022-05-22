@@ -159,6 +159,7 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  Weather.py          # 天气预报
 │  WPS.py              # WPS签到
 │  XMYD.py             # 小米运动
+│  YHZWW.py            # 油猴中文网
 │
 ├─KDsrc                # 多文件签到的程序文件夹
 │      more.py         # map变量程序
@@ -206,6 +207,7 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | 每日新闻 | 每日新闻、历史上的今天 | ip（可无） | [自制](http://icheer.me/201910/1099/) | 🟢 |
 | [乐同步](https://pim.lenovo.com/contact/contact/portal/home.html) | 每日签到 | cookie | 自制 | 🟢 |
 | [WPS签到](https://vip.wps.cn/) | 签到领空间和积分 | cookie | 自制 | 🟡 |
+| [油猴中文网](https://bbs.tampermonkey.net.cn/) | 签到 | cookie | 自制 | 🟢 |
 
 ## 特别说明
 
