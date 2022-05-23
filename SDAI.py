@@ -4,7 +4,6 @@ cron: 3 8 * * *
 new Env('神代汉化组');
 """
 
-from turtle import shearfactor
 import requests, time, re, json, sys, traceback
 from io import StringIO
 from KDconfig import getYmlConfig, send
