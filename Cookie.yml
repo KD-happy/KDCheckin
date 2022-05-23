@@ -221,6 +221,16 @@ PTA:
             # PTASession, JSESSIONID
             cookie: ''
 
+
+# 神代汉化组
+SDAI:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # wordpress_logged_in_xxxx
+            cookie: ''
+
 # 什么值得买
 SMZDM:
     send: 0

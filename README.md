@@ -152,6 +152,7 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
+│  SDAI.py             # 神代汉化组
 │  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
 │  VQQ.py              # 腾讯视频
@@ -208,6 +209,7 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | [乐同步](https://pim.lenovo.com/contact/contact/portal/home.html) | 每日签到 | cookie | 自制 | 🟢 |
 | [WPS签到](https://vip.wps.cn/) | 签到领空间和积分 | cookie | 自制 | 🟡 |
 | [油猴中文网](https://bbs.tampermonkey.net.cn/) | 签到 | cookie | 自制 | 🟢 |
+| 神代汉化组 | 签到&点赞 | cookie | 自制 | 🟢 |
 
 ## 特别说明
 
