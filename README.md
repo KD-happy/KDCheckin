@@ -4,7 +4,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather|News|Egame" "" "KD"
+ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather|News|Egame|SDAI" "" "KD"
 \cp -f /ql/data/repo/KD-happy_KDCheckin/*.py /ql/data/scripts/KD-happy_KDCheckin/KDsrc
 ```
 
