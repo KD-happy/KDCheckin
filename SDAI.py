@@ -23,6 +23,7 @@ class SDAI:
         self.point = 0
 
     def user_info(self):
+        self._nonce = ""
         self.headers['cookie'] = self.cookie
         res = requests.get(url=self.url, headers=self.headers, params={
                 'action': '05cb72cbd26af33ef26d5525c0097651',
@@ -31,6 +32,7 @@ class SDAI:
                 '7552d1b6008879534d6d573f3bdad742[type]': 'getUnreadCount'
             })
         myjson = res.json()
+        print(myjson)
         if myjson['user']['id'] == 0:
             print("Cookie失效")
         else:
@@ -81,7 +83,9 @@ class SDAI:
                     self.sio.write("Cookie失效\n")
                 else:
                     self.sign_in()
+                    time.sleep(2)
                     self.like()
+                    time.sleep(2)
                     self.user_info()
                     self.sio.write(f' 神币数: {self.point}\n')
             except:
