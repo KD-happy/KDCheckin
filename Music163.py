@@ -48,7 +48,7 @@ class Music163:
             try:
                 self.Sign_in()
             except:
-                self.sio.write(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
+                print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
                     self.sio.write('签到存在异常, 请自行查看签到日志\n')
         return self.sio
