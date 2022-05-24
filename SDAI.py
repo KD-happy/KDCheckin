@@ -32,7 +32,6 @@ class SDAI:
                 '7552d1b6008879534d6d573f3bdad742[type]': 'getUnreadCount'
             })
         myjson = res.json()
-        print(myjson)
         if myjson['user']['id'] == 0:
             print("Cookie失效")
         else:
