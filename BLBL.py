@@ -312,13 +312,28 @@ class BLBL:
         print(f'漫画签到: {msg}')
         self.sio.write(f'漫画签到: {msg}\n')
 
+    # 银瓜子兑硬币
+    def silver2coin(self):
+        url = "https://api.live.bilibili.com/xlive/revenue/v1/wallet/silver2coin"
+        headers = {
+            "cookie": self.cookie,
+            "referer": "https://link.bilibili.com/p/center/index",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+        }
+        data = {
+            'csrf_token': self.bili_jct,
+            'csrf': self.bili_jct
+        }
+        res = requests.post(url=url, headers=headers, data=data)
+        self.sio.write(f"银瓜子兑硬币: {res.json()['message']}\n")
+        print(res.text)
+
     def SignIn(self):
         print("【哔哩哔哩 日志】")
         self.sio.write("【哔哩哔哩】\n")
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             print(f"{cookie.get('name')} 开始签到...")
-            # self.sio.write(f"{cookie.get('name')}: ")
             self.name = cookie.get('name')
             self.cookie = cookie.get('cookie')
             self.bili_jct = cookie.get('bili_jct')
@@ -337,6 +352,9 @@ class BLBL:
                     time.sleep(1)
                     self.reward() # 获取今日获得经验
                     time.sleep(1)
+                    if cookie.get('silver2coin', False):
+                        self.silver2coin() # 银瓜子兑硬币
+                        time.sleep(1)
                     dataList = self.get_list_in_room() # 获得勋章列表
 
                     # 徽章列表直播间 发送弹幕
