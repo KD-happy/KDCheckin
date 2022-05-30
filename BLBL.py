@@ -4,13 +4,9 @@ cron: 5 6 * * *
 new Env('哔哩哔哩');
 """
 
-from datetime import date
-import requests, time, re, json, sys, traceback
+import requests, time, json, sys, traceback
 from io import StringIO
-from requests.api import head
 
-from requests.models import cookiejar_from_dict
-from requests.sessions import merge_setting
 from KDconfig import getYmlConfig, send
 
 class BLBL:
@@ -80,7 +76,6 @@ class BLBL:
         print(msg)
         if pd:
             self.sio.write(msg+'\n')
-        
 
     # *分享视频
     def share(self):
@@ -331,6 +326,18 @@ class BLBL:
         self.sio.write(f"银瓜子兑硬币: {res.json()['message']}\n")
         print(res.text)
 
+    def getStatus(self):
+        url = "https://api.live.bilibili.com/xlive/revenue/v1/wallet/getStatus"
+        headers = {
+            "cookie": self.cookie,
+            "referer": "https://www.bilibili.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+        }
+        res = requests.get(url=url, headers=headers)
+        silver = res.json()['data']['silver']
+        coin = res.json()['data']['coin']
+        return res.json()['data']['silver_2_coin_left'] == 0, silver, coin
+
     def SignIn(self):
         print("【哔哩哔哩 日志】")
         self.sio.write("【哔哩哔哩】\n")
@@ -342,7 +349,7 @@ class BLBL:
             self.bili_jct = cookie.get('bili_jct')
             self.mID = cookie.get('mid', '271952780')
             self.free = self.tx = True
-            self.lt = False
+            self.lt = self.watch_av = self.share_av = False
             try:
                 if self.nav():
                     self.live_sign() # 直播签到
@@ -365,8 +372,18 @@ class BLBL:
                     self.reward(True) # 获取今日获得经验
                     time.sleep(1)
                     if cookie.get('silver2coin', False):
-                        self.silver2coin() # 银瓜子兑硬币
+                        pd, silver, coin = self.getStatus()
                         time.sleep(1)
+                        if not pd:
+                            self.silver2coin() # 银瓜子兑硬币
+                            time.sleep(1)
+                            pd, silver, coin = self.getStatus()
+                            time.sleep(1)
+                        else:
+                            self.sio.write("银瓜子兑硬币: 今日已兑换\n")
+                            print("银瓜子兑硬币: 今日已兑换")
+                        self.sio.write(f"当前硬币和银币数: {coin}/{silver}\n")
+                        print(f"当前硬币和银币数: {coin}/{silver}")
                     dataList = self.get_list_in_room() # 获得勋章列表
 
                     # 徽章列表直播间 发送弹幕
