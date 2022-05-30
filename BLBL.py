@@ -27,6 +27,8 @@ class BLBL:
         self.free = True # 送免费礼物
         self.lt = False # 免费辣条
         self.room_id = '0'
+        self.watch_av = False
+        self.share_av = False
 
     # 获取基本信息
     def nav(self):
@@ -56,7 +58,7 @@ class BLBL:
         return True
 
     # 获得今日获得的经验
-    def reward(self):
+    def reward(self, pd):
         url = 'https://api.bilibili.com/x/member/web/exp/reward'
         headers = {
             "cookie": f'DedeUserID={self.mid}; '+self.cookie,
@@ -67,16 +69,17 @@ class BLBL:
         if res.get('code') == 0:
             data = res.get('data', {})
             login = data.get("login")          # 登陆B站
-            watch_av = data.get("watch_av")    # 看视频
-            coins_av = data.get("coins_av", 0) # 投币 +10 显示的是获得的经验
-            share_av = data.get("share_av")    # 分享视频
-            today_exp = len([one for one in [login, watch_av, share_av] if one]) * 5
-            today_exp += coins_av
+            self.watch_av = data.get("watch")    # 看视频
+            coins = data.get("coins", 0) # 投币 +10 显示的是获得的经验
+            self.share_av = data.get("share")    # 分享视频
+            today_exp = len([one for one in [login, self.watch_av, self.share_av] if one]) * 5
+            today_exp += coins
             msg = f'今日经验: {today_exp}'
         else:
             msg = '今日经验: 获得失败'
         print(msg)
-        self.sio.write(msg+'\n')
+        if pd:
+            self.sio.write(msg+'\n')
         
 
     # *分享视频
@@ -346,11 +349,20 @@ class BLBL:
                     time.sleep(1)
                     self.manga_sign() # 漫画签到
                     time.sleep(1)
-                    self.report() # 看视频
-                    time.sleep(1)
-                    self.share() # 分享视频
-                    time.sleep(1)
-                    self.reward() # 获取今日获得经验
+                    self.reward(False) # 获取今日任务
+                    if not self.watch_av:
+                        self.report() # 看视频
+                        time.sleep(1)
+                    else:
+                        self.sio.write("观看视频: 今日已完成\n")
+                        print("观看视频: 今日已完成")
+                    if not self.share:
+                        self.share() # 分享视频
+                        time.sleep(1)
+                    else:
+                        self.sio.write("分享视频: 今日已完成\n")
+                        print("分享视频: 今日已完成")
+                    self.reward(True) # 获取今日获得经验
                     time.sleep(1)
                     if cookie.get('silver2coin', False):
                         self.silver2coin() # 银瓜子兑硬币
