@@ -363,7 +363,7 @@ class BLBL:
                     else:
                         self.sio.write("观看视频: 今日已完成\n")
                         print("观看视频: 今日已完成")
-                    if not self.share:
+                    if not self.share_av:
                         self.share() # 分享视频
                         time.sleep(1)
                     else:
