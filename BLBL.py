@@ -79,6 +79,9 @@ class BLBL:
 
     # *分享视频
     def share(self):
+        aid_list = self.newlist()
+        aid = aid_list[0].get("aid")
+        title = aid_list[0].get("title")
         # 感觉 csrf=cookie.bili_jct 这个参数没用
         url = 'https://api.bilibili.com/x/web-interface/share/add'
         headers = {
@@ -86,14 +89,14 @@ class BLBL:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
         }
         data = {
-            "aid": self.aid,
+            "aid": aid,
             "csrf": self.bili_jct
         }
         res = requests.post(url=url, headers=headers, data=data)
         print(res.text)
         if res.json().get('code') == 0:
-            self.sio.write(f'分享任务: 分享《{self.title}》成功\n')
-            print(f'分享任务: 分享《{self.title}》成功')
+            self.sio.write(f'分享任务: 分享《{title}》成功\n')
+            print(f'分享任务: 分享《{title}》成功')
             return True
         return False
     
