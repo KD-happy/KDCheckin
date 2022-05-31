@@ -13,7 +13,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|HeytapSleep|DuoKan|QianDao|Weather|News|Egame|SDAI" "" "KD"
+ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|DuoKan|QianDao|Weather|News|Egame" "" "KD"
 \cp -f /ql/data/repo/KD-happy_KDCheckin/*.py /ql/data/scripts/KD-happy_KDCheckin/KDsrc
 ```
 
@@ -136,7 +136,6 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 ```
 │  AcFun.py            # AcFun
 │  AiHao.py            # 爱好论坛
-│  AZG.py              # 爱助攻
 │  BDTieBa.py          # 百度贴吧
 │  BLBL.py             # 哔哩哔哩
 │  CCAVA.py            # CCAVA
@@ -147,8 +146,6 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  Duokan.py           # 多看阅读
 │  Egame.py            # 企鹅电竞
 │  EnShan.py           # 恩山论坛
-│  Heytap.py           # 欢太商城
-│  HeytapSleep.py      # 欢太早睡打卡
 │  HLX.py              # 葫芦侠
 │  IQIYI.py            # 爱奇艺
 │  KDconfig.py         # 文件读取、推送
@@ -161,7 +158,6 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
-│  SDAI.py             # 神代汉化组
 │  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
 │  VQQ.py              # 腾讯视频
@@ -189,15 +185,12 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | 名称 | 备注 | 签到方式 | 来源 | 当前状态 |
 | ---- | ---- | ---- | ---- | ---- |
 | [天翼云盘](https://cloud.189.cn/web/main/) | 手机签到+抽奖、天翼云TV端 | cookie | 找不到 + 自制 | 🟢️ |
-| [欢太商城](https://www.heytap.com/cn/m/ucenter/index) | 每日签到、浏览商品、分享商品 | cookie | [hwkxk](https://github.com/hwkxk/HeytapTask) | 🔴 |
-| 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [Mashiro2000](https://github.com/Mashiro2000/HeyTapTask) | 🔴 |
 | 葫芦侠 | 签到所有的模板 | 手机号、密码 | [luck-ying01](https://github.com/luck-ying01/3floor_sign) | 🟢️ |
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 自制 | 🟢️ |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [silence4u](https://github.com/silence4u/lenovo_auto_signin) + 自制修改 | 🟢 |
 | [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢️ |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
-| [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🟢 |
 | [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）、领取任务奖励 | cookie | 自制 | 🟢 |
 | [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🔴 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🟢 |
@@ -218,7 +211,16 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | [乐同步](https://pim.lenovo.com/contact/contact/portal/home.html) | 每日签到 | cookie | 自制 | 🟢 |
 | [WPS签到](https://vip.wps.cn/) | 签到领空间和积分 | cookie | 自制 | 🟡 |
 | [油猴中文网](https://bbs.tampermonkey.net.cn/) | 签到 | cookie | 自制 | 🟢 |
-| 神代汉化组 | 签到&点赞 | cookie | 自制 | 🟢 |
+
+## 已下架
+
+🟢: 正常运行 🔴: 脚本暂不可用 🔵: 可以执行(需更新) 🟡: 待测试 🟤: 看脸
+| 名称 | 备注 | 签到方式 | 来源 | 当前状态 |
+| ---- | ---- | ---- | ---- | ---- |
+| [欢太商城](https://www.heytap.com/cn/m/ucenter/index) | 每日签到、浏览商品、分享商品 | cookie | [hwkxk](https://github.com/hwkxk/HeytapTask) | 🔴 |
+| 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [Mashiro2000](https://github.com/Mashiro2000/HeyTapTask) | 🔴 |
+| [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🔴 |
+| 神代汉化组 | 签到&点赞 | cookie | 自制 | 🔴 |
 
 ## 特别说明
 

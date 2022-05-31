@@ -38,15 +38,6 @@ AiHao:
             # 95hf_2132_saltkey, 95hf_2132_auth
             cookie: ''
 
-# 爱助攻
-AZG:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # BvH6_2132_saltkey, BvH6_2132_auth
-            cookie: ''
-
 # 百度贴吧
 BDTieBa:
     send: 0
@@ -142,16 +133,6 @@ EnShan:
             # TWcq_2132_saltkey, TWcq_2132_auth
             cookie: ''
 
-# 欢太商城
-Heytap:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # TOKENSID, sa_distinct_id, source_type, s_version, s_channel, app_param
-            cookie: ''
-            ua: ''
-
 # 葫芦侠
 HLX:
     send: 0
@@ -221,16 +202,6 @@ PTA:
         - user:
             name: ''
             # PTASession, JSESSIONID
-            cookie: ''
-
-
-# 神代汉化组
-SDAI:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # wordpress_logged_in_xxxx
             cookie: ''
 
 # 什么值得买

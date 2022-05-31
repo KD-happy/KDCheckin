@@ -3,7 +3,6 @@
 """
 from KDsrc.AcFun import AcFun
 from KDsrc.AiHao import AiHao
-from KDsrc.AZG import AZG
 from KDsrc.BDTieBa import BDTieBa
 from KDsrc.BLBL import BLBL
 from KDsrc.CCAVA import CCAVA
@@ -13,8 +12,6 @@ from KDsrc.Du163 import Du163
 from KDsrc.DuoKan import DuoKan
 from KDsrc.Egame import Egame
 from KDsrc.EnShan import EnShan
-from KDsrc.Heytap import Heytap
-from KDsrc.HeytapSleep import HeytapSleep
 from KDsrc.HLX import HLX
 from KDsrc.IQIYI import IQIYI
 from KDsrc.Lenovo import Lenovo
@@ -30,12 +27,10 @@ from KDsrc.Weather import Weather
 from KDsrc.WPS import WPS
 from KDsrc.XMYD import XMYD
 from KDsrc.YHZWW import YHZWW
-from KDsrc.SDAI import SDAI
 
 map = {
     "AcFun": ["AcFun", AcFun],
     "AiHao": ["爱好论坛", AiHao],
-    "AZG": ["爱助攻", AZG],
     "BDTieBa": ["百度贴吧", BDTieBa],
     "BLBL": ["哔哩哔哩", BLBL],
     "CCAVA": ["CCAVA", CCAVA],
@@ -45,8 +40,6 @@ map = {
     "DuoKan": ["多看阅读", DuoKan],
     "Egame": ["企鹅电竞", Egame],
     "EnShan": ["恩山论坛", EnShan],
-    "Heytap": ["欢太商城", Heytap],
-    "HeytapSleep": ["欢太早睡打卡", HeytapSleep],
     "HLX": ["葫芦侠", HLX],
     "IQIYI": ["爱奇艺", IQIYI],
     "Lenovo": ["联想商城", Lenovo],
@@ -61,6 +54,5 @@ map = {
     "Weather": ["天气预报", Weather],
     "WPS": ["WPS签到", WPS],
     "XMYD": ["小米运动", XMYD],
-    "YHZWW": ["油猴中文网", YHZWW],
-    "SDAI": ["神代汉化组", SDAI]
+    "YHZWW": ["油猴中文网", YHZWW]
 }
