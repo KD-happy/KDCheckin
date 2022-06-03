@@ -18,8 +18,17 @@ ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|DuoKan|QianDao|Weather|
 ```
 
 将配置文件复制到指定位置
+
+下面的是直接执行再服务器里面的，还要查看是否位置相同（映射到本地的位置）
+
 ```shell
 cp /ql/repo/KD-happy_KDCheckin/Cookie.yml /ql/config/Cookie.yml
+```
+
+不行就直接再qinglong里面执行下面的命令
+
+```shell
+cp /ql/data/repo/KD-happy_KDCheckin/Cookie.yml /ql/data/config/Cookie.yml
 ```
 
 ```shell
