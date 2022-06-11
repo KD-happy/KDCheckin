@@ -13,7 +13,7 @@
 
 拉取本站
 ```shell
-ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|DuoKan|QianDao|Weather|News|Egame" "" "KD"
+ql repo https://github.com/KD-happy/KDCheckin.git "AiHao|DuoKan|QianDao|Weather|News" "" "KD"
 \cp -f /ql/data/repo/KD-happy_KDCheckin/*.py /ql/data/scripts/KD-happy_KDCheckin/KDsrc
 ```
 
@@ -153,7 +153,6 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  CSDN.py             # CSDN
 │  Du163.py            # 网易读书
 │  Duokan.py           # 多看阅读
-│  Egame.py            # 企鹅电竞
 │  EnShan.py           # 恩山论坛
 │  HLX.py              # 葫芦侠
 │  IQIYI.py            # 爱奇艺
@@ -200,7 +199,6 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢️ |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
-| [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）、领取任务奖励 | cookie | 自制 | 🟢 |
 | [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🔴 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 自制 | 🟢 |
@@ -230,6 +228,7 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 | 欢太早睡打卡 | 自动报名、自动打卡 | cookie | [Mashiro2000](https://github.com/Mashiro2000/HeyTapTask) | 🔴 |
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🔴 |
 | 神代汉化组 | 签到&点赞 | cookie | 自制 | 🔴 |
+| [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）、领取任务奖励 | cookie | 自制 | 🔴 |
 
 ## 特别说明
 

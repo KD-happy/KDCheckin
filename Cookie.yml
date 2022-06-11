@@ -113,17 +113,6 @@ DuoKan:
             # user_id, token, device_id, app_id
             cookie: ''
 
-# 企鹅电竞
-Egame:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # pgg_type, pgg_openid, pgg_appid, pgg_access_token
-            cookie: ''
-            # 疯狂打卡报名
-            sign: ''
-
 # 恩山论坛
 EnShan:
     send: 0

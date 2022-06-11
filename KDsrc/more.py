@@ -10,7 +10,6 @@ from KDsrc.Cloud import Cloud
 from KDsrc.CSDN import CSDN
 from KDsrc.Du163 import Du163
 from KDsrc.DuoKan import DuoKan
-from KDsrc.Egame import Egame
 from KDsrc.EnShan import EnShan
 from KDsrc.HLX import HLX
 from KDsrc.IQIYI import IQIYI
@@ -38,7 +37,6 @@ map = {
     "CSDN": ["CSDN", CSDN],
     "Du163": ["网易读书", Du163],
     "DuoKan": ["多看阅读", DuoKan],
-    "Egame": ["企鹅电竞", Egame],
     "EnShan": ["恩山论坛", EnShan],
     "HLX": ["葫芦侠", HLX],
     "IQIYI": ["爱奇艺", IQIYI],
