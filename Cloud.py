@@ -60,6 +60,7 @@ class Cloud:
             cookie = cookie.get("user")
             try:
                 self.Sign_in(cookie.get('name'), cookie.get('cookie'))
+                time.sleep(1)
             except:
                 print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                 if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
@@ -68,6 +69,7 @@ class Cloud:
                 try:
                     cookie = cookie.get('TV')
                     self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), json.loads(cookie.get('header')))
+                    time.sleep(1)
                 except:
                     print(f"{cookie.get('name')}: 异常 {traceback.format_exc()}")
                     if '签到存在异常, 请自行查看签到日志' not in self.sio.getvalue():
