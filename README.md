@@ -187,6 +187,55 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 
 </details>
 
+## 推送配置
+
+[企业微信应用通知粗略教程](http://note.youdao.com/noteshare?id=874fe7233f8cec295bb3d01d38296727&sub=16035CD41B844F179DA230AB9FC531D4)
+
+[企业微信推送设置](http://note.youdao.com/noteshare?id=b7322046a431975dff59c75025e1d2f3&sub=9A27E09849CB414890CBC094B43A43EF)
+
+[获取钉钉自定义机器人webhook](http://note.youdao.com/noteshare?id=25d15ba93ca80a29cfbf550078d096a8&sub=78340C89F0BB4295A4E559E12ED2EC83)
+
+## Cookie.yml 简单介绍
+
+```yaml
+# AcFun  <-  支持签到的名称
+AcFun:
+  send: 0 # <-  是否发送通知 0: 不发送，1: 发送
+  cookies: # <-  cookies列表
+    - user: # <- 用户1
+        name: 'xxx1' # <- 用户1名称（用来记录日志或发送通知的名称）
+        # acPasstoken, auth_key # <- 关键cookie，必须有的cookie
+        cookie: 'acPasstoken=xxxxxxx; auth_key=xxxxxx'
+    - user: # <- 用户2
+        name: 'xxx2' # <- 用户2名称（用来记录日志或发送通知的名称）
+        # acPasstoken, auth_key
+        cookie: 'acPasstoken=xxxxxxx; auth_key=xxxxxx'
+```
+
+对应的json格式
+
+```json
+{
+  "AcFun": {
+    "send": 0,
+    "cookies": [
+      {
+        "user": {
+          "name": "xxx1",
+          "cookie": "acPasstoken=xxxxxxx; auth_key=xxxxxx"
+        }
+      },
+      {
+        "user": {
+          "name": "xxx2",
+          "cookie": "acPasstoken=xxxxxxx; auth_key=xxxxxx"
+        }
+      }
+    ]
+  }
+}
+```
+
 ## 支持的签到
 
 🟢: 正常运行 🔴: 脚本暂不可用 🔵: 可以执行(需更新) 🟡: 待测试 🟤: 看脸
