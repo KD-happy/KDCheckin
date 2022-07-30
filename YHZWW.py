@@ -4,8 +4,10 @@ cron: 55 7 * * *
 new Env('油猴中文网');
 """
 
+from signal import valid_signals
 import requests, time, re, json, sys, traceback
 from io import StringIO
+from bs4 import BeautifulSoup
 from KDconfig import getYmlConfig, send
 
 class YHZWW:
@@ -14,10 +16,23 @@ class YHZWW:
         self.Cookies = cookie
         self.cookie = ''
 
+    def get_formhash(self):
+        url = 'https://bbs.tampermonkey.net.cn/dsu_paulsign-sign.html'
+        headers = {
+            'cookie': self.cookie,
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+        }
+        res = requests.get(url, headers=headers)
+        soup = BeautifulSoup(res.text, "html.parser")
+        alert = soup.select("input[name=formhash][type=hidden]")
+        value =  alert[0]['value']
+        print(value)
+        return value
+
     def Sign_in(self):
         url = "https://bbs.tampermonkey.net.cn/plugin.php?id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1"
         data = {
-            'formhash': '3f99f3fa',
+            'formhash': self.get_formhash(),
             'qdxq': 'kx',
             'qdmode': 3,
             'todaysay': '',
