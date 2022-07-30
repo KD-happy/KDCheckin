@@ -17,7 +17,7 @@ class YHZWW:
     def Sign_in(self):
         url = "https://bbs.tampermonkey.net.cn/plugin.php?id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1"
         data = {
-            'formhash': 'f0849768',
+            'formhash': '3f99f3fa',
             'qdxq': 'kx',
             'qdmode': 3,
             'todaysay': '',
