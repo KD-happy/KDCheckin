@@ -1,5 +1,9 @@
 # KD签到
 
+![GitHub issues](https://img.shields.io/github/issues/KD-happy/KDCheckin?logo=github) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/KD-happy/KDCheckin?logo=github) ![GitHub forks](https://img.shields.io/github/forks/KD-happy/KDCheckin?logo=github) ![GitHub Repo stars](https://img.shields.io/github/stars/KD-happy/KDCheckin?logo=github)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/KD-happy/KDCheckin?logo=github) ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/KD-happy/KDCheckin?logo=github) ![GitHub repo size](https://img.shields.io/github/repo-size/KD-happy/KDCheckin?logo=github)
+
 ## 免责声明
 
 - 本仓库发的任何脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。
