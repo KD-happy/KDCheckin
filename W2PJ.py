@@ -26,6 +26,8 @@ class W2PJ:
         p1 = re.findall('\|\/(.*=)\|', res.text)[0]
         res = requests.get(url=f"https://www.52pojie.cn/{p1}?wzwscspd=MC4wLjAuMA==", headers=headers, allow_redirects=False)
         wzws_sid = re.findall('wzws_sid=([0-9a-z]+); ', res.headers['set-cookie'])[0]
+        if headers['Cookie'][-1] != ';':
+            headers['Cookie'] += ';'
         headers['Cookie'] += f' wzws_sid={wzws_sid};'
         resp = requests.get(url='https://www.52pojie.cn/home.php?mod=task&do=draw&id=2', headers=headers)
         soup = BeautifulSoup(resp.text, "html.parser")
