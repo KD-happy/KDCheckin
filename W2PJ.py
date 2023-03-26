@@ -17,6 +17,7 @@ class W2PJ:
 
     # 签到
     def task(self):
+        session = requests.Session()
         headers = {
             "Referer": "https://www.52pojie.cn",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36",
@@ -29,7 +30,7 @@ class W2PJ:
         if headers['Cookie'][-1] != ';':
             headers['Cookie'] += ';'
         headers['Cookie'] += f' wzws_sid={wzws_sid};'
-        resp = requests.get(url='https://www.52pojie.cn/home.php?mod=task&do=draw&id=2', headers=headers)
+        resp = session.get(f"https://www.52pojie.cn/home.php?mod=task&do=apply&id=2&referer=%2F", headers=headers)
         soup = BeautifulSoup(resp.text, "html.parser")
         content = soup.select("#messagetext>p")
         soup = BeautifulSoup(resp.text, "html.parser")
