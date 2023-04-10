@@ -29,8 +29,8 @@ class BDTieBa:
         user_name = self.login_info(session=session)["userName"]
         return tbs, user_name
 
-    def tieba_list_more(self,session):
-        content = session.get(url="http://tieba.baidu.com/f/like/mylike?&pn=1", timeout=(5, 20), allow_redirects=False)
+    def tieba_list_more(self, session):
+        content = session.get(url="https://tieba.baidu.com/f/like/mylike?&pn=1", timeout=(5, 20), allow_redirects=False)
         try:
             pn = int(re.match(r".*/f/like/mylike\?&pn=(.*?)\">尾页.*", content.text, re.S | re.I).group(1))
         except Exception as e:
@@ -82,7 +82,6 @@ class BDTieBa:
         for cookie in self.Cookies:
             cookie = cookie.get("user")
             print(f"{cookie.get('name')} 开始签到...")
-            # self.sio.write(f"{cookie.get('name')}: \n")
             self.cookie = cookie.get('cookie')
             try:
                 tieba_cookie = {item.split("=")[0]: item.split("=")[1] for item in self.cookie.split("; ")}

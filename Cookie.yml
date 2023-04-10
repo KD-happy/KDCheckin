@@ -44,7 +44,7 @@ BDTieBa:
     cookies:
         - user:
             name: ''
-            # BDUSS STOKEN
+            # BDUSS, STOKEN
             cookie: ''
 
 # 哔哩哔哩
