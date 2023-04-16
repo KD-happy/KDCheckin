@@ -18,6 +18,10 @@ class W2PJ:
     # 签到
     def task(self):
         session = requests.session()
+        if self.cookie == "":
+            print("请配置Cookie再试试")
+            self.sio.write("请配置Cookie再试试\n")
+            return
         requests.utils.add_dict_to_cookiejar(session.cookies, {item.split("=")[0]: item.split("=")[1] for item in self.cookie.split("; ")})
         session.headers.update({"Referer": "https://www.52pojie.cn/home.php?mod=task&do=draw&id=2&referer=%2F"})
         session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"})
