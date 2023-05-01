@@ -22,7 +22,7 @@ class EnShan:
             'Cookie': self.cookie
         }
         res = requests.get(url, headers=headers)
-        if '登录' in res.text:
+        if '您需要先登录才能继续本操作' in res.text:
             print("Cookie失效")
             self.sio.write("Cookie失效\n")
         else:
