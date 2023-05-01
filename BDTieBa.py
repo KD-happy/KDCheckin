@@ -43,7 +43,7 @@ class BDTieBa:
                 yield x
             next_page += 1
             content = session.get(
-                url=f"http://tieba.baidu.com/f/like/mylike?&pn={next_page}", timeout=(5, 20), allow_redirects=False
+                url=f"https://tieba.baidu.com/f/like/mylike?&pn={next_page}", timeout=(5, 20), allow_redirects=False
             )
 
     def get_tieba_list(self, session):
