@@ -25,6 +25,8 @@ class BLBL:
         self.room_id = '0'
         self.watch_av = False
         self.share_av = False
+        self.coins = 0 # 已经投币
+        self.coin = 0 # 需要投币
 
     # 获取基本信息
     def nav(self):
@@ -43,7 +45,6 @@ class BLBL:
         res = requests.get(url=url, headers=headers)
         data = res.json()
         self.mid = data.get('mid')
-        print(str(data)[:500])
         if data.get('code') != 0:
             self.sio.write(f'{self.name}: Cookie失效\n')
             print(f'{self.name}: Cookie失效')
@@ -67,6 +68,7 @@ class BLBL:
             login = data.get("login")          # 登陆B站
             self.watch_av = data.get("watch")    # 看视频
             coins = data.get("coins", 0) # 投币 +10 显示的是获得的经验
+            self.coins = coins//10
             self.share_av = data.get("share")    # 分享视频
             today_exp = len([one for one in [login, self.watch_av, self.share_av] if one]) * 5
             today_exp += coins
@@ -86,7 +88,8 @@ class BLBL:
         url = 'https://api.bilibili.com/x/web-interface/share/add'
         headers = {
             "cookie": self.cookie,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+            "referer": "https://www.bilibili.com",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
         }
         data = {
             "aid": aid,
@@ -98,6 +101,9 @@ class BLBL:
             self.sio.write(f'分享任务: 分享《{title}》成功\n')
             print(f'分享任务: 分享《{title}》成功')
             return True
+        else:
+            self.sio.write(f'分享任务: {res.json().get("message")}\n')
+            print(f'分享任务: {res.json().get("message")}')
         return False
     
     # 获取分区视频的相关消息
@@ -245,7 +251,7 @@ class BLBL:
         res = requests.get(url=f'https://api.bilibili.com/x/space/acc/info?mid={self.mID}', headers=headers).json()
         if res.get('code') != 0:
             self.sio.write('主播ID错误\n')
-            return
+            return False
         url = 'https://api.live.bilibili.com/xlive/revenue/v1/gift/sendBag'
         data = {
             "uid": str(self.mid), # 用户的id
@@ -341,6 +347,41 @@ class BLBL:
         coin = res.json()['data']['coin']
         return res.json()['data']['silver_2_coin_left'] == 0, silver, coin
 
+    def Coin(self):
+        if self.coins >= self.coin:
+            self.sio.write(f"投币任务: {self.coin}/{self.coins}\n")
+            print(f"投币任务: {self.coin}/{self.coins}")
+            return
+        for item in self.newlist():
+            num = self.coin - self.coins
+            if num > 2:
+                num = 2
+            elif num <= 0:
+                self.sio.write(f"投币任务: {self.coin}/{self.coins}\n")
+                print(f"投币任务: {self.coin}/{self.coins}")
+                return
+            url = "https://api.bilibili.com/x/web-interface/coin/add"
+            data = {
+                'aid': item['aid'],
+                'multiply': num,
+                'select_like': 1,
+                'cross_domain': 'true',
+                'csrf': self.bili_jct
+            }
+            headers = {
+                "cookie": self.cookie,
+                "referer": "https://www.bilibili.com",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+            }
+            res = requests.post(url=url, data=data, headers=headers)
+            if res.json()['code'] == 0:
+                print(f'{item["aid"]}: 投币成功')
+                self.coins += num
+            else:
+                print(f'{item["aid"]}: 投币失败，{res.json()["message"]}')
+        self.sio.write(f"投币任务: {self.coin}/{self.coins}\n")
+        print(f"投币任务: {self.coin}/{self.coins}")
+
     def SignIn(self):
         print("【哔哩哔哩 日志】")
         self.sio.write("【哔哩哔哩】\n")
@@ -350,7 +391,10 @@ class BLBL:
             self.name = cookie.get('name')
             self.cookie = cookie.get('cookie')
             self.bili_jct = cookie.get('bili_jct')
-            self.mID = cookie.get('mid', '271952780')
+            self.mID = cookie.get('mid', 0)
+            self.coin = cookie.get('coin', 0)
+            if self.coin > 5:
+                self.coin = 5
             self.free = self.tx = True
             self.lt = self.watch_av = self.share_av = False
             try:
@@ -372,6 +416,8 @@ class BLBL:
                     else:
                         self.sio.write("分享视频: 今日已完成\n")
                         print("分享视频: 今日已完成")
+                    self.Coin() # 投币
+                    time.sleep(1)
                     self.reward(True) # 获取今日获得经验
                     time.sleep(1)
                     if cookie.get('silver2coin', False):
@@ -409,6 +455,7 @@ class BLBL:
                     for one in bagList:
                         if one.get('gift_name') == '辣条':
                             self.lt = True
+                            time.sleep(1)
                             if self.sendBag(one, one.get('gift_num')):
                                 if self.free:
                                     self.sio.write('免费礼物: 赠送成功\n')

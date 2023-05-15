@@ -252,11 +252,10 @@ AcFun:
 | [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢️ |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
 | [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
-| [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🔴 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🟢 |
 | [爱好论坛](https://www.aihao.cc/) | 打卡 | cookie | 自制 | 🟢 |
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 自制 + 模仿 | 🟢 |
-| [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、银瓜子兑硬币、发送直播弹幕、送免费辣条、礼物过期提醒 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
+| [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、银瓜子兑硬币、发送直播弹幕、送免费辣条、礼物过期提醒、自定义投币 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
 | [有道云笔记](https://note.youdao.com/web/) | 签到、看广告、空间大小 | cookie | 找不到 + 自制 | 🟢 |
 | [Tool工具](https://tool.lu/) | 签到 | cookie | 自制 | 🟢 |
 | [百度贴吧](https://tieba.baidu.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢 |
@@ -282,6 +281,7 @@ AcFun:
 | [爱助攻](https://www.aizhugong.com/) | 签到 | cookie | 自制 | 🔴 |
 | 神代汉化组 | 签到&点赞 | cookie | 自制 | 🔴 |
 | [企鹅电竞](https://egame.qq.com/) | 签到、疯狂打卡（报名和打卡）、领取任务奖励 | cookie | 自制 | 🔴 |
+| [CCAVA](https://pc.ccava.net/) | 签到 | cookie | 自制 | 🔴 |
 
 ## 特别说明
 

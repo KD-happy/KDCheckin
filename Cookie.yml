@@ -60,15 +60,8 @@ BLBL:
             silver2coin: false
             # 主播的ID 送免费的辣条
             mid: ''
-
-# CCAVA
-CCAVA:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # token_53f2e3eb, username_53f2e3eb
-            cookie: ''
+            # 投币数量（0 <= coin <= 5）
+            coin: 0
 
 # 天翼云盘
 Cloud:
