@@ -68,6 +68,8 @@ class Cloud:
             if cookie.get('TV') != None:
                 try:
                     cookie = cookie.get('TV')
+                    if cookie['familyId'] == "":
+                        continue
                     self.Sign_in_TV(cookie.get('name'), cookie.get('familyId'), json.loads(cookie.get('header')))
                     time.sleep(1)
                 except:
