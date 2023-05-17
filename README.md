@@ -151,7 +151,6 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  AiHao.py            # 爱好论坛
 │  BDTieBa.py          # 百度贴吧
 │  BLBL.py             # 哔哩哔哩
-│  CCAVA.py            # CCAVA
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
 │  CSDN.py             # CSDN

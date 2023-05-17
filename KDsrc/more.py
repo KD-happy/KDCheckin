@@ -5,7 +5,6 @@ from KDsrc.AcFun import AcFun
 from KDsrc.AiHao import AiHao
 from KDsrc.BDTieBa import BDTieBa
 from KDsrc.BLBL import BLBL
-from KDsrc.CCAVA import CCAVA
 from KDsrc.Cloud import Cloud
 from KDsrc.CSDN import CSDN
 from KDsrc.Du163 import Du163
@@ -32,7 +31,6 @@ map = {
     "AiHao": ["爱好论坛", AiHao],
     "BDTieBa": ["百度贴吧", BDTieBa],
     "BLBL": ["哔哩哔哩", BLBL],
-    "CCAVA": ["CCAVA", CCAVA],
     "Cloud": ["天翼云盘", Cloud],
     "CSDN": ["CSDN", CSDN],
     "Du163": ["网易读书", Du163],
