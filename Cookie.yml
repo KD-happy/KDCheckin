@@ -55,6 +55,7 @@ BLBL:
             name: ''
             # SESSDATA
             cookie: ''
+            # 只填值
             bili_jct: ''
             # 是否银瓜子兑硬币 false|true
             silver2coin: false

@@ -27,6 +27,7 @@ class BLBL:
         self.share_av = False
         self.coins = 0 # 已经投币
         self.coin = 0 # 需要投币
+        self.idError = True
 
     # 获取基本信息
     def nav(self):
@@ -250,7 +251,10 @@ class BLBL:
         # 获取主播的相关消息
         res = requests.get(url=f'https://api.bilibili.com/x/space/acc/info?mid={self.mID}', headers=headers).json()
         if res.get('code') != 0:
-            self.sio.write('主播ID错误\n')
+            if self.idError:
+                self.sio.write('mid配置: 主播ID错误\n')
+                print('mid配置: 主播ID错误')
+            self.idError = False
             return False
         url = 'https://api.live.bilibili.com/xlive/revenue/v1/gift/sendBag'
         data = {
@@ -386,6 +390,7 @@ class BLBL:
         print("【哔哩哔哩 日志】")
         self.sio.write("【哔哩哔哩】\n")
         for cookie in self.Cookies:
+            self.idError = True
             cookie = cookie.get("user")
             print(f"{cookie.get('name')} 开始签到...")
             self.name = cookie.get('name')
