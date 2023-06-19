@@ -140,15 +140,13 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 1. 支持根目录下的所有的签到单独执行
 2. 支持由一个签到函数来调动其他的程序
 
-> 由于技术限制，未实现的
-> * 可以通过 Cookie.yml 配置文件中 signList 的参数来选取哪些需要签到
-
 <details>
 <summary>文件说明</summary>
 
 ```
 │  AcFun.py            # AcFun
 │  AiHao.py            # 爱好论坛
+│  ALiYun.py           # 阿里云盘
 │  BDTieBa.py          # 百度贴吧
 │  BLBL.py             # 哔哩哔哩
 │  Cloud.py            # 天翼云盘
@@ -269,6 +267,7 @@ AcFun:
 | [乐同步](https://pim.lenovo.com/contact/contact/portal/home.html) | 每日签到 | cookie | 自制 | 🟢 |
 | [WPS签到](https://vip.wps.cn/) | 签到领空间和积分 | cookie | 自制 | 🟡 |
 | [油猴中文网](https://bbs.tampermonkey.net.cn/) | 签到 | cookie | 自制 | 🟢 |
+| [阿里云盘](https://www.aliyundrive.com/drive/) | 签到、领奖 | token | [libuke](https://github.com/libuke/aliyundrive-checkin) | 🟢 |
 
 ## 已下架
 

@@ -3,6 +3,7 @@
 """
 from KDsrc.AcFun import AcFun
 from KDsrc.AiHao import AiHao
+from KDsrc.ALiYun import ALiYun
 from KDsrc.BDTieBa import BDTieBa
 from KDsrc.BLBL import BLBL
 from KDsrc.Cloud import Cloud
@@ -29,6 +30,7 @@ from KDsrc.YHZWW import YHZWW
 map = {
     "AcFun": ["AcFun", AcFun],
     "AiHao": ["爱好论坛", AiHao],
+    "ALiYun": ["阿里云盘", ALiYun],
     "BDTieBa": ["百度贴吧", BDTieBa],
     "BLBL": ["哔哩哔哩", BLBL],
     "Cloud": ["天翼云盘", Cloud],

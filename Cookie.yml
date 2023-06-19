@@ -38,6 +38,15 @@ AiHao:
             # 95hf_2132_saltkey, 95hf_2132_auth
             cookie: ''
 
+# 阿里云盘
+ALiYun:
+    send: 0
+    cookies:
+        - user:
+            name: ''
+            # JSON.parse(localStorage.token).refresh_token <= 控制台输入获取token
+            cookie: ''
+
 # 百度贴吧
 BDTieBa:
     send: 0
