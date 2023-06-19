@@ -89,15 +89,6 @@ Cloud:
                 # {"SessionKey": "_____", "Signature": "_____", "Date": "_____"}
                 header: ''
 
-# CSDN
-CSDN:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # UserName, UserToken, ssxmod_itna
-            cookie: ''
-
 # 网易读书
 Du163:
     send: 0
@@ -133,24 +124,6 @@ HLX:
             name: ''
             username: ''
             password: ''
-
-# 爱奇艺
-IQIYI:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # P00001, P00002, P00003 最后一个必须加 ;
-            cookie: ''
-
-# 联想
-Lenovo:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # cerpreg-passport
-            cookie: ''
 
 # 乐同步
 LenovoLTB:
@@ -196,14 +169,6 @@ PTA:
             # PTASession, JSESSIONID
             cookie: ''
 
-# 什么值得买
-SMZDM:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            cookie: ''
-
 # Tool工具
 ToolLu:
     send: 0
@@ -212,17 +177,6 @@ ToolLu:
             name: ''
             # remember_web
             cookie: ''
-
-# 腾讯视频
-VQQ:
-    send: 0
-    cookies:
-        - user:
-            name: ''
-            # vqq_vusession, vqq_vuserid, main_login, vqq_openid, vqq_appid, vqq_access_token
-            cookie: ''
-            # 带有 auth_refresh 的URL
-            auth_refresh: ''
 
 # 吾爱破解
 W2PJ:
@@ -240,14 +194,6 @@ Weather:
         - user:
             # https://where.heweather.com/index.html
             city_id: ''
-
-# WPS
-WPS:
-    send: 0
-    cookies:
-        - user:
-            # wps_sid
-            cookie: ''
 
 # 小米运动
 XMYD:
