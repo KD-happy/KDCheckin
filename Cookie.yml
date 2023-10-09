@@ -17,7 +17,7 @@ send:
     # 企业ID, 应用的AgentId, 应用的Secret, 通讯录中的用户账号, 素材库中的图片media_id
     qywxToken: ''
 
-# 签到列表
+# 签到列表，如（AcFun, BLBL）
 signList: ''
 
 # AcFun
@@ -175,7 +175,7 @@ ToolLu:
     cookies:
         - user:
             name: ''
-            # remember_web
+            # _session
             cookie: ''
 
 # 吾爱破解

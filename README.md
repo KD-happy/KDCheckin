@@ -151,14 +151,11 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  BLBL.py             # 哔哩哔哩
 │  Cloud.py            # 天翼云盘
 │  Cookie.yml          # 签到配置文件
-│  CSDN.py             # CSDN
 │  Du163.py            # 网易读书
 │  Duokan.py           # 多看阅读
 │  EnShan.py           # 恩山论坛
 │  HLX.py              # 葫芦侠
-│  IQIYI.py            # 爱奇艺
 │  KDconfig.py         # 文件读取、推送
-│  Lenovo.py           # 联想
 │  LenovoLTB.py        # 联想乐同步
 │  Music163.py         # 网易云音乐
 │  News.py             # 每日新闻
@@ -167,12 +164,8 @@ curl https://cdn.jsdelivr.net/gh/KD-happy/KDCheckin@main/other/go.sh|bash
 │  QianDao.py          # 多文件签到的入口程序
 │  README.md
 │  requirements.txt    # 导包依赖库
-│  SMZDM.py            # 什么值得买
 │  ToolLu.py           # Tool工具
-│  VQQ.py              # 腾讯视频
-│  W2PJ.py             # 吾爱破解
 │  Weather.py          # 天气预报
-│  WPS.py              # WPS签到
 │  XMYD.py             # 小米运动
 │  YHZWW.py            # 油猴中文网
 │
@@ -247,7 +240,6 @@ AcFun:
 | [PTA](https://pintia.cn/market) | 每日签到 | cookie | 自制 | 🟢️ |
 | [多看阅读](https://www.duokan.com/) | 签到、延期、领书、看广告、下载任务 等 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🟢️ |
 | [AcFun](https://www.acfun.cn/) | 签到、点赞、弹幕、香蕉 ~~、分享~~ | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
-| [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🟢️ |
 | [爱好论坛](https://www.aihao.cc/forum.php) | 打卡 | cookie | 自制 | 🟢 |
 | [恩山论坛](https://www.right.com.cn/forum/) | 签到 | cookie | 自制 + 模仿 | 🟢 |
 | [哔哩哔哩](https://www.bilibili.com/) | 签到、看&分享视频、银瓜子兑硬币、发送直播弹幕、送免费辣条、礼物过期提醒、自定义投币 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) + 自制修改 | 🟢 |
@@ -280,6 +272,7 @@ AcFun:
 | [什么值得买](https://www.smzdm.com/) | 签到 | cookie | [Sitoi](https://github.com/Sitoi/dailycheckin) | 🔴 |
 | [CSDN](https://www.csdn.net/) | 签到、抽奖 | cookie | 自制 + 模仿 | 🔴 |
 | [联想](https://club.lenovo.com.cn/signlist/) | 每日签到 | cookie | [silence4u](https://github.com/silence4u/lenovo_auto_signin) + 自制修改 | 🔴 |
+| [吾爱破解](https://www.52pojie.cn/) | 签到、获取CB | cookie | 自制 + 模仿 | 🔴 |
 
 ## 特别说明
 
